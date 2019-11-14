@@ -1,0 +1,198 @@
+<div id="section-{{ section.id }}" class="advanced-product-list" data-section-id="{{ section.id }}">
+  <div class="Container">
+	<div class="wrap-all hidden-phone">
+      <div class="left-product">
+        {%- for block in section.blocks limit: 2-%}
+        <div class="product-wrap">
+          <h2 class="Product-tilte heading u-h6">{{block.settings.title}}</h2>
+          <a href="{{ block.settings.link }}" class="secondary-link">{{ block.settings.link_text }}</a>
+          <div class="product-img-cover">
+            <img src="{{ block.settings.product_image }}" alt="{{block.settings.title}}"/>
+            <div class="bose-hotSpot__pulseButton -white">
+              <div class="bose-hotSpot__pulseButton__pulse -pulse1">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__pulse -pulse2">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__icon -plus">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__icon -minus">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="middle-part">
+      	<img src="{{ section.settings.mobile_ss | img_url: '300x'}}">
+      </div>
+
+      <div class="right-product">
+        {%- for block in section.blocks offset: 2-%}
+        <div class="product-wrap">
+          <h2 class="Product-tilte heading u-h6" >{{block.settings.title}}</h2>
+          <a href="{{ block.settings.link }}" class="secondary-link" >{{ block.settings.link_text }}</a>
+          <div class="product-img-cover">
+            <img src="{{ block.settings.product_image }}" alt="{{block.settings.title}}"/>
+            <div class="bose-hotSpot__pulseButton -white">
+              <div class="bose-hotSpot__pulseButton__pulse -pulse1">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__pulse -pulse2">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__icon -plus">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__icon -minus">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+
+    </div>
+
+    <div class="hidden-tablet-and-up">
+      <div class="mobile-products">
+        {%- for block in section.blocks-%}
+        <div class="product-wrap">
+          <div class="mobile-left">
+            <img class="bg-image" src="{{ block.settings.mobile_phone_image | img_url: '300x'}}"/>
+          </div>
+
+          <div class="mobile-right">
+            <h2 class="Product-tilte heading u-h6" style="font-size: {{ block.settings.font_size }}px;font-weight: {{block.settings.font_weight}}">{{block.settings.title}}</h2>
+            <a href="{{ block.settings.link }}" style="font-size: {{ block.settings.font_size_2 }}px;font-weight: {{ block.settings.font_weight_2 }}">{{ block.settings.link_text }}</a>
+          </div>
+
+          <div class="mobile-middle">
+            <img class="product-image" src="{{ block.settings.product_image }}" alt="{{block.settings.title}}"/>
+            <div class="bose-hotSpot__pulseButton -white">
+              <div class="bose-hotSpot__pulseButton__pulse -pulse1">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__pulse -pulse2">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__icon -plus">&nbsp;</div>
+              <div class="bose-hotSpot__pulseButton__icon -minus">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Advance product list",
+    "class": "advanced-product-list",
+	"max_blocks": 3,
+    "presets": [
+    {
+      "category": "Product",
+      "name": "Advanced product List"
+    }],
+	"settings": [
+	{
+		"type": "image_picker",
+		"id": "mobile_ss",
+		"label": "Mobile Screnshot"
+	}],
+	"blocks": [
+    {
+      "type": "image",
+      "name": "product",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Product Url"
+		},
+		{
+			"type": "url",
+			"id": "product_image",
+			"label": "product image"
+		},
+    {
+  		"type": "image_picker",
+  		"id": "mobile_phone_image",
+  		"label": "Mobile Phone Image"
+  	},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+        },
+        {
+            "type": "range",
+            "id": "font_size",
+            "label": "Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 40,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight",
+			"label": "Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "900"
+		},
+        {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text"
+        },
+        {
+            "type": "range",
+            "id": "font_size_2",
+            "label": "Font Size",
+            "min": 10,
+            "max": 20,
+            "default": 15,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight_2",
+			"label": "Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              }
+			]
+		}]
+	}]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,228 @@
+<div class="reviews-section">
+  <div class="main-container">
+     <ul class="row review-list">
+       <li class="col-md-6 col-lg-3">
+         <div class="review-list-image">
+         {% if section.settings.link_one != blank %}
+           <a href="{{ section.settings.link_one }}" class"review-list-image">
+         {% endif %}
+         {% if section.settings.image_one != blank %}
+           {{ section.settings.image_one | img_tag: section.settings.image.alt, 'news__image' }}
+         {% else %}
+           {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+         {% endif %}
+         {% if section.settings.link_one != blank %}
+           </a>
+         </div>
+         <div class="review-list-text">
+         {% endif %}
+         {% if section.settings.text_one != blank %}
+          <p>{{ section.settings.text_one }}</p>
+         {% endif %}
+         </div>
+       </li>
+       <li class="col-md-6 col-lg-3">
+         <div class="review-list-image">
+         {% if section.settings.link_two != blank %}
+           <a href="{{ section.settings.link_two }}" class"review-list-image">
+         {% endif %}
+         {% if section.settings.image_two != blank %}
+           {{ section.settings.image_two | img_tag: section.settings.image.alt, 'news__image' }}
+         {% else %}
+           {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+         {% endif %}
+         {% if section.settings.link_two != blank %}
+           </a>
+         </div>
+         <div class="review-list-text">
+         {% endif %}
+         {% if section.settings.text_two != blank %}
+          <p>{{ section.settings.text_two }}</p>
+         {% endif %}
+         </div>
+       </li>
+       <li class="col-md-6 col-lg-3">
+         <div class="review-list-image">
+         {% if section.settings.link_three != blank %}
+           <a href="{{ section.settings.link_three }}" class"review-list-image">
+         {% endif %}
+         {% if section.settings.image_three != blank %}
+           {{ section.settings.image_three | img_tag: section.settings.image.alt, 'news__image' }}
+         {% else %}
+           {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+         {% endif %}
+         {% if section.settings.link_three != blank %}
+           </a>
+         </div>
+         <div class="review-list-text">
+         {% endif %}
+         {% if section.settings.text_three != blank %}
+          <p>{{ section.settings.text_three }}</p>
+         {% endif %}
+         </div>
+       </li>
+       <li class="col-md-6 col-lg-3">
+         <div class="review-list-image">
+         {% if section.settings.link_four != blank %}
+           <a href="{{ section.settings.link_four }}" class"review-list-image">
+         {% endif %}
+         {% if section.settings.image_four != blank %}
+           {{ section.settings.image_four | img_tag: section.settings.image.alt, 'news__image' }}
+         {% else %}
+           {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+         {% endif %}
+         {% if section.settings.link_four != blank %}
+           </a>
+         </div>
+         <div class="review-list-text">
+         {% endif %}
+         {% if section.settings.text_four != blank %}
+          <p>{{ section.settings.text_four }}</p>
+         {% endif %}
+         </div>
+       </li>
+     </ul>
+    
+
+  </div>
+</div>
+    
+
+<style>
+.reviews-section {
+  padding-top: 44px;
+  padding-bottom: 20px; }
+
+.review-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  
+  .review-list li {
+    display: block;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin-bottom: 40px;}
+    @media (max-width: 1023.98px) {
+      .review-list li {
+        margin-bottom: 32px; } }
+    .review-list li .review-list-image,
+    .review-list li .review-list-text {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      text-align: center;
+      height: 40px; }
+    .review-list li .review-list-image {
+      margin-bottom: 18px;
+      -webkit-box-align: end;
+          -ms-flex-align: end;
+              align-items: flex-end; }
+      .review-list li .review-list-image img {
+        max-height: 40px;
+        max-width: 120px; }
+    .review-list li .review-list-text {
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
+      .review-list li .review-list-text p {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.2px;
+        color: #999994;
+        margin: 0; }
+</style>
+
+{% schema %}
+  {
+    "name": "News block",
+    "presets": [
+      {
+        "name": "News block",
+        "category": "Custom sections"
+      }
+     ],
+
+     "settings": [
+       {
+         "type": "image_picker",
+         "id": "image_one",
+         "label": "Image"
+       },
+       {
+         "type": "url",
+         "id": "link_one",
+         "label": "Link"
+       },
+       {
+         "type": "text",
+         "id": "text_one",
+         "label": "Text",
+         "info": "Optional"
+       },
+       {
+         "type": "image_picker",
+         "id": "image_two",
+         "label": "Image"
+       },
+       {
+         "type": "url",
+         "id": "link_two",
+         "label": "Link"
+       },
+       {
+         "type": "text",
+         "id": "text_two",
+         "label": "Text",
+         "info": "Optional"
+       },
+       {
+         "type": "image_picker",
+         "id": "image_three",
+         "label": "Image"
+       },
+       {
+         "type": "url",
+         "id": "link_three",
+         "label": "Link"
+       },
+       {
+         "type": "text",
+         "id": "text_three",
+         "label": "Text",
+         "info": "Optional"
+       },
+       {
+         "type": "image_picker",
+         "id": "image_four",
+         "label": "Image"
+       },
+       {
+         "type": "url",
+         "id": "link_four",
+         "label": "Link"
+       },
+       {
+         "type": "text",
+         "id": "text_four",
+         "label": "Text",
+         "info": "Optional"
+       }
+
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,13 @@
+{% section 'collection-hero' %}
+{% if collection.title == 'Security for Travelers' %}
+  {% section 'custom-small-image-and-text-travelers' %}
+{% elsif collection.title == 'Security for Roommates' %}
+  {% section 'custom-small-image-and-text-roommates' %}
+{% elsif collection.title == 'Security for Families' %}
+  {% section 'custom-small-image-and-text-families' %}
+{% elsif collection.title == 'Security for Pet Parents' %}
+  {% section 'custom-small-image-and-text-pet-parents' %}
+{% endif %}
+{% section 'collection-template' %}
+{% section 'recently-viewed-products' %}
+{% section 'collection-footer' %}

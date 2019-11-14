@@ -1,0 +1,121 @@
+<div style="background:{{section.settings.background_color }}">
+<div id="section-header-text">
+  <h2 class="sectionheader"> {{ section.settings.text-box }} </h2>
+</div>
+</div>
+
+<style>
+  #section-{{ section.id }} .SectionHeader__Heading--emphasize {
+  	font-size: {{ section.settings.title_size }}px;
+  }
+
+  #section-{{ section.id }} .SectionItem .Heading,
+  #section-{{ section.id }} .flickity-page-dots {
+    color: {{ section.settings.text_color }};
+  }
+
+  #section-{{ section.id }} .SectionItem__Link {
+    color: {{ section.settings.button_color }};
+    border-color: {{ section.settings.text_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+
+  #section-{{ section.id }} .SectionItem__Link::before {
+    background-color: {{ section.settings.text_color }};
+  }
+
+  @media (-moz-touch-enabled: 0), (hover: hover) {
+    #section-{{ section.id }} .SectionItem__Link:hover {
+      color: {{ section.settings.button_color_hover }};
+    }
+  }
+
+
+  #section-header-text {
+    padding: 0;
+    display: block;
+  }
+
+
+  .sectionheader {
+    text-align: center;
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: {{ section.settings.text_weight }};
+    color: {{ section.settings.text_color }};
+    letter-spacing: {{ section.settings.text_spacing }}em;
+    padding: 128px 0;
+  }
+
+  @media (max-width: 767px) {
+    .sectionheader {
+      padding: 64px 0;
+    }
+  }
+
+  @media (max-width: 479px) {
+.ctaheader { font-size: 36px; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Header Text Renters",
+  "class": "membership-page-section-header-text",
+  "presets": [
+      {
+        "name": "Header Text Homeowners",
+        "category": "Custom Sections"
+      }
+    ],
+  "settings": [
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "text-box",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+    },
+    { "type": "range",
+      "id": "text_size",
+      "min": 30,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Header Text Size",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "text_weight",
+      "label": "Header Text Weight",
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Header Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text_spacing",
+      "label": "Header Text Spacing",
+      "default": "1em"
+    }
+  ]
+}
+
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

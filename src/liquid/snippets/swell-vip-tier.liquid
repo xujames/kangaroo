@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+{{"swell-vip-tier.css" | asset_url | stylesheet_tag}}
+{{"swell-page-rewards.css" | asset_url | stylesheet_tag}}
+<div class="page vip-tier">
+	{% unless customer %}
+	<h1>VIPS Earn Even More</h1>
+	{% endunless %}
+	{% if customer %}
+	<h1 class="title-to-customer"></h1>
+	{% endif %}
+	<div class="vip-tier-table">
+		<div class="benefits">
+			<div class="div-to-current-status"></div>
+			<div></div>
+			<div>Benefits</div>
+			<div>Points multiplier </div>
+		</div>
+		<div class="tiers">
+		</div>
+	</div>
+</div>
+{{"swell-vip-tier.js" | asset_url | script_tag}}

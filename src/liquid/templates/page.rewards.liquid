@@ -1,0 +1,21 @@
+{{"swell-page-rewards.css" | asset_url | stylesheet_tag}}
+<div class="page page-rewards">
+	{% if customer %}
+	{% include "swell-banner" %}
+	{% include "swell-refer" %}
+	{% include "swell-vip-tier" %}
+	{% include "swell-redeem" %}
+	{% include "swell-campaign" %}
+	{% endif %}
+	{% unless customer %}
+	{% include "swell-banner" %}
+	{% include "swell-how-it-work" %}
+	{% include "swell-campaign" %}
+	{% include "swell-refer" %}
+	{% include "swell-vip-tier" %}
+	{% include "swell-redeem" %}
+	{% endunless %}
+</div>
+{{ "//code.jquery.com/jquery-3.3.1.min.js" | script_tag}}
+{{"swell-difinition.js" | asset_url | script_tag}}
+{{"swell-page-rewards.js" | asset_url | script_tag}}

@@ -1,0 +1,301 @@
+<div id="section-{{ section.id }}" class="download-app-cover" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="description-block">
+      {% if section.settings.title != blank %}<h2 class="download-app-heading" style="font-size: {{section.settings.font_size}}px;font-weight: {{section.settings.font_weight}}">{{section.settings.title}}</h2>{% endif %}
+      {% if section.settings.sub_title != blank %}<p class="download-app-subheading" style="font-size: {{section.settings.font_size_2}}px;font-weight: {{section.settings.font_weight_2}}">{{section.settings.sub_title}}</p>{% endif %}
+      {% if section.settings.link != blank and section.settings.link_text != blank %} 
+      <a href="{{section.settings.link}}" class="download-app-pricing" style="font-size: {{section.settings.font_size_3}}px;font-weight: {{section.settings.font_weight_3}}">{{section.settings.link_text}}</a>
+      {% endif %}
+    </div>
+    
+    <div class="services-slider">
+      <div class="main-container-slider">
+        <img src="{{ 'without-mobile.png' | asset_img_url : 'original' }}" class="hidden-phone">
+        <div class="slider-main for-slider">
+          {%- for block in section.blocks -%}
+          <div class="image-wrap" data-image="{{forloop.index}}">
+            <img src="{{block.settings.image | img_url : 'master'}}" />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="nav-container">
+        <ul class="slider-nav">
+          {%- for block in section.blocks -%}
+          <li data-id="{{forloop.index}}" style="font-size: {{section.settings.font_size_4}}px;font-weight: {{section.settings.font_weight_4}}"><span>{{block.settings.title}}</span></li>
+          {% endfor %}
+        </ul>
+        
+        <div class="kangaroo-security-img-cover hidden-phone">
+          <div class="img-sec">
+             <img src="{{ section.settings.app_icon }}" alt="" />
+          </div>
+          <div class="text-sec">
+             Kangaroo Security
+          </div>
+        </div>
+    
+        <div class="app-store-cover hidden-phone">
+          <div class="android-sec">
+            <a href="{{section.settings.google_paly_link}}">
+             <img src="{{ 'android-store.png' | asset_img_url : '150x' }}" alt="" />
+            </a>
+          </div>
+          <div class="apple-sec">
+            <a href="{{section.settings.app_pay_link }}">
+             <img src="{{ 'apple-store.png' | asset_img_url : '150x' }}" alt="" />
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="for-mobile hidden-tablet-and-up">		
+      <div class="kangaroo-security-img-cover">		
+        <div class="img-sec">		
+          <img src="{{ section.settings.app_icon }}" alt="" />		
+        </div>		
+        		
+        <div class="text-sec">		
+          Kangaroo Security		
+        </div>		
+      </div>		
+      <div class="app-store-cover">		
+        <div class="android-sec">		
+          <a href="{{section.settings.google_paly_link}}">		
+            <img src="{{ 'android-store.png' | asset_img_url : '150x' }}" alt="" />		
+          </a>		
+        </div>		
+        <div class="apple-sec">		
+            <a href="{{section.settings.app_pay_link }}">		
+             <img src="{{ 'apple-store.png' | asset_img_url : '150x' }}" alt="" />		
+            </a>		
+          </div>		
+      </div>		
+    </div>
+    
+    
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Download App",
+    "class": "download-app",
+	"max_blocks": 6,
+    "presets": [
+    {
+      "category": "Download App",
+      "name": "Download App"
+    }],
+    "settings": [
+		{
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+            "type": "range",
+            "id": "font_size",
+            "label": "Title Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 40,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight",
+			"label": "Title Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "900"
+		},
+		{
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub Title"
+        },
+        {
+            "type": "range",
+            "id": "font_size_2",
+            "label": "Sub Title Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 20,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight_2",
+			"label": "Sub Title Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "600"
+		},
+		{
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+		{
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+        {
+            "type": "range",
+            "id": "font_size_3",
+            "label": "Link Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 20,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight_3",
+			"label": "Link Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "600"
+		},
+        {
+            "type": "range",
+            "id": "font_size_4",
+            "label": "Option Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 20,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight_4",
+			"label": "OPtion Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "600"
+		},
+		{
+			"type": "url",
+			"id": "app_icon",
+			"label": "App Icon"
+		},
+		{
+			"type": "url",
+			"id": "google_paly_link",
+			"label": "Google Paly Link"
+		},
+		{
+			"type": "url",
+			"id": "app_pay_link",
+			"label": "Apple Pay Link"
+		}
+	],
+	"blocks": [
+      {
+        "type": "image",
+        "name": "features",
+        "settings": [
+          {
+              "type": "image_picker",
+              "id": "image",
+              "label": "product image"
+          },
+          {
+              "type": "text",
+              "id": "title",
+              "label": "Title"
+          }
+		]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,90 @@
+<section class="section-contacts-intro">
+  <div class="main-container">
+    <a href="javascript:void(Intercom('show'));"><img src="{{ 'guroo-animation.gif' | asset_url }}" /></a>
+    <h1 class="page-lead color-black">{{ section.settings.text_header }}</h1>
+  </div>
+</section>
+
+<section class="section-contacts-faq">
+  <div class="main-container">
+    <p class="text-center">Your question may also be answered on our <a href="https://support.heykangaroo.com" class="underline-link color-blue" target="_blank">FAQ page</a></p>
+  </div>
+</section>
+
+<section class="section-contacts-options">
+  <div class="main-container">
+    <div class="row row-contacts-options">
+      <div class="col-12 col-lg contact-col">
+        <img src="{{ 'icon-chat.svg' | asset_url }}" alt="Chat" />
+        <a href="javascript:void(Intercom('show'));" class="btn btn-contact-option">Chat now</a>
+        <p>Available:</p>
+        <p>{{ section.settings.chat_time }}</p>
+      </div>
+      <div class="col-12 col-lg contact-col">
+        <img src="{{ 'icon-phone.svg' | asset_url }}" alt="Phone" />
+        <div class="contact-form">
+          <div class="contacts-phone-form">
+            <form class="intercom-form">
+              <input type="tel" placeholder="Your Phone #" class="form-control" />
+              <button type="submit" class="contacts-form-submit"><img src="{{ 'submit-arrow.svg' | asset_url }}" alt="Submit" /></button>
+            </form>
+          </div>
+
+          <button disabled="true" href="#" class="btn btn-contact-option">Let us call you</button>
+        </div>
+        <p>or simply call {{ section.settings.call_number }}</p>
+        <p>{{ section.settings.call_time }}</p>
+      </div>
+      <div class="col-12 col-lg contact-col">
+        <img src="{{ 'icon-email.svg' | asset_url }}" alt="Email" />
+        <a href="mailto: {{ section.settings.email }}" class="btn btn-contact-option">Email us</a>
+        <p>{{ section.settings.email }}</p>
+        <p>{{ section.settings.email_time }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Contacts",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text_header",
+        "label": "Header",
+        "default": "Three ways to reach us, <br>unlimited solutions."
+      },
+      {
+        "type": "text",
+        "id": "call_number",
+        "label": "Call number",
+        "default": "800 371 0097"
+      },
+      {
+        "type": "text",
+        "id": "call_time",
+        "label": "Call time",
+        "default": "Mon-Fri 9am-6pm EST"
+      },
+      {
+        "type": "text",
+        "id": "chat_time",
+        "label": "Chat time",
+        "default": "Mon-Fri 9am-6pm EST"
+      },
+      {
+        "type": "text",
+        "id": "email_time",
+        "label": "Email time",
+        "default": "Mon-Fri 9am-6pm EST"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email",
+        "default": "support@heykangaroo.com"
+      }
+    ]
+  }
+{% endschema %}

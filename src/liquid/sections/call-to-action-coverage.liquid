@@ -1,0 +1,207 @@
+<div style="background:{{section.settings.background_color }}; margin-bottom:-120px;">
+<div id="section-cta">
+  <h1 class="ctaheader"> {{ section.settings.text_box_header }} </h1>
+  <div class="ctacontent Rte">
+                {{ section.settings.content }}
+   </div>
+  <div id="section-cta-button">
+  <a href="{{ section.settings.link }}" class="ctabutton">{{ section.settings.linktext }}</a>
+  </div>
+</div>
+</div>
+
+<style>
+  #section-{{ section.id }} .SectionHeader__Heading--emphasize {
+  	font-size: {{ section.settings.title_size }}px;
+  }
+  
+  #section-{{ section.id }} .SectionItem .Heading,
+  #section-{{ section.id }} .flickity-page-dots {
+    color: {{ section.settings.text_color }};
+  }
+
+  #section-{{ section.id }} .SectionItem__Link {
+    color: {{ section.settings.button_color }};
+    border-color: {{ section.settings.text_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+
+  #section-{{ section.id }} .SectionItem__Link::before {
+    background-color: {{ section.settings.text_color }};
+  }
+
+  @media (-moz-touch-enabled: 0), (hover: hover) {
+    #section-{{ section.id }} .SectionItem__Link:hover {
+      color: {{ section.settings.button_color_hover }};
+    }
+  }
+  
+  .ctabutton {
+    display: inline-block;
+    text-align: center;
+    background: {{ section.settings.button_background_color }};
+    color: {{ section.settings.button_text_color }};
+    height: {{ section.settings.button_height }}px;
+    width: {{ section.settings.button_width }}px;
+    border-color: {{ section.settings.button_color }};
+    border-radius: 50px;
+    font-size: {{ section.settings.button_text_size }}px;
+    font-weight: {{ section.settings.button_text_weight }};
+    text-decoration: none;
+    letter-spacing: {{ section.settings.button_text_spacing }}px;
+    padding: 10px;
+    margin: 0 auto;
+  }
+  
+  #section-cta {
+    padding: 80px 0px;
+    display: block;
+    text-align: center;
+  }
+  
+  #section-cta-button {
+    text-align: center;
+    padding: 20px 0px;
+  }
+  
+  .ctaheader {
+    text-align: center;
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: {{ section.settings.text_weight }};
+    color: {{section.settings.text_color }};
+    letter-spacing: {{section.settings.text_spacing }}em;
+    padding: 30px;
+  }
+  
+  @media (max-width: 479px) {
+.ctaheader { font-size: 40px; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Call to Action",
+  "presets": [
+      {
+        "name": "Call to Action",
+        "category": "Custom sections"
+      }
+    ],
+  "settings": [
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "text_box_header",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+    },
+    {
+      "id": "content",
+      "type": "richtext",
+      "label": "Content",
+	  "default": "<p>Content goes here.</p>"
+    },
+
+    { "type": "range",
+      "id": "text_size",
+      "min": 30,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Header Text Size",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "text_weight",
+      "label": "Header Text Weight",
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Header Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text_spacing",
+      "label": "Header Text Spacing",
+      "default": "1em"
+    },
+
+    {
+      "id": "link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "linktext",
+      "type": "text",
+      "label": "Button text",
+      "default": "Click Here"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#ccc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }, 
+    {
+      "type": "text",
+      "id": "button_height",
+      "label": "Button height",
+      "default": "40"
+    },
+
+    {
+      "type": "range",
+      "id": "button_width",
+      "min": 50,
+      "max": 400,
+      "step": 50,
+      "unit": "px",
+      "label": "Button Width",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Text Size",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "button_text_weight",
+      "label": "Button Text Weight",
+      "default": "300"
+    }
+  ]
+}
+
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

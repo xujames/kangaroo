@@ -1,0 +1,127 @@
+.purches{
+	position: relative;
+}
+.hidden-purches{
+	display: none !important;
+}
+.purches
+{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 3333;
+    padding-top: 0rem;
+    flex-direction: column-reverse;
+}
+.purches .refer{
+	background-color: white;
+	font-family: "Sofia Pro", sans-serif;
+	padding-right: 3rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+    border-radius: 40px;
+    width: 38rem;
+    margin-top: 2rem;
+}
+.purches .close-popup{
+    cursor: pointer;
+    font-size: xx-large;
+        width:44rem;
+      color: white;
+}
+.purches-hidden{
+	display: none;
+}
+.purches .thank-you{
+    color: white;
+    font-size: -webkit-xxx-large;
+    font-weight: bold;
+    width:44rem;
+    margin-top: 2.5rem;
+}
+.purches .explain-refer h3{
+	font-size: large;
+}
+.purches .explain-refer h2{
+	font-size: 38px;
+	margin-bottom: 1rem;
+}
+.purches .explain-refer h4{
+	font-size: medium;
+	line-height: 1.3rem;
+}
+.purches .explain-refer p{
+	font-size: small;
+	font-weight: 500;
+}
+.purches .refer-form-input{
+	width: 24rem;
+    font-size: x-small;
+}
+.purches .shareLinks{
+	width: 20rem;
+	    margin-top: .3rem;
+}
+.purches .refer-form-input input[type=submit]
+{
+	width: 24%;
+}
+.purches .refer-form-input input[type=text]
+{
+	width: 67%;
+}
+.purches .shareLinks label{
+	font-size: 14px;
+}
+.purches img{
+	height: 19rem;
+}
+@media screen and (max-width: 800px)
+{
+	.purches{
+		    position: absolute;
+    height: 150vh;
+	}
+	.purches .refer-form-input input[type=submit]{
+		width: 72%;
+	}
+	.purches .thank-you{
+    	font-size: 42px;
+	}
+	.purches .popup-close{
+		top:9%;
+		font-size: x-large;
+	}
+	.purches .refer{
+		    width: 67%;;
+	}
+	.purches .explain-refer p{
+		font-size: medium;
+	}
+	.purches .refer-form-input{
+		font-size: small;
+	}
+	.purches .shareLinks{
+		width: 19rem;
+	}
+	.purches img {
+    	margin-bottom: 2rem;
+    }
+    .purches .close-popup,.purches .thank-you{
+    	width: 81%;
+    }
+    .purches{
+    	background-color: rgba(0, 0, 0, .8);
+    }
+}
+@media screen and (max-width: 500px){
+	    .purches .close-popup,.purches .thank-you{
+    	    width: 87%;
+    }
+}

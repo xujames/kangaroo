@@ -1,0 +1,189 @@
+<div style="background:{{section.settings.background_color }}">
+<div id="section-cta">
+  <h1 class="ctaheader"> {{ section.settings.text-box }} </h1>
+  <div id="section-cta-button">
+  <a href="{{ section.settings.link }}" class="ctabutton">{{ section.settings.linktext }}</a>
+  </div>
+</div>
+</div>
+
+<style>
+  #section-{{ section.id }} .SectionHeader__Heading--emphasize {
+  	font-size: {{ section.settings.title_size }}px;
+  }
+
+  #section-{{ section.id }} .SectionItem .Heading,
+  #section-{{ section.id }} .flickity-page-dots {
+    color: {{ section.settings.text_color }};
+  }
+
+  #section-{{ section.id }} .SectionItem__Link {
+    color: {{ section.settings.button_color }};
+    border-color: {{ section.settings.text_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+
+  #section-{{ section.id }} .SectionItem__Link::before {
+    background-color: {{ section.settings.text_color }};
+  }
+
+  @media (-moz-touch-enabled: 0), (hover: hover) {
+    #section-{{ section.id }} .SectionItem__Link:hover {
+      color: {{ section.settings.button_color_hover }};
+    }
+  }
+
+  .ctabutton {
+    display: inline-block;
+    text-align: center;
+    background: {{ section.settings.button_background_color }};
+    color: {{ section.settings.button_text_color }};
+    line-height: {{ section.settings.button_text_size }}px;
+    border-color: {{ section.settings.button_color }};
+    font-size: {{ section.settings.button_text_size }}px;
+    font-weight: {{ section.settings.button_text_weight }};
+    text-decoration: none;
+    letter-spacing: {{ section.settings.button_text_spacing }}px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 20px 35px;
+  }
+
+  a.ctabutton:hover {
+    color: {{ section.settings.button_text_color }};
+  }
+
+  #section-cta {
+    padding: 106px 0px;
+    display: block;
+  }
+
+  #section-cta-button {
+    text-align: center;
+    padding: 20px 0px;
+  }
+
+  .ctaheader {
+    text-align: center;
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: {{ section.settings.text_weight }};
+    color: {{section.settings.text_color }};
+    letter-spacing: {{section.settings.text_spacing }}em;
+    padding: 30px;
+  }
+
+  @media (max-width: 479px) {
+.ctaheader { font-size: 40px; }
+}
+
+@media (max-width: 767px) {
+  .ctaheader {
+    font-size: 30px;
+  }
+
+  #section-cta {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Call to Action (Pricing)",
+  "class": "membership-page-section-call-to-action",
+  "presets": [
+      {
+        "name": "Call to Action",
+        "category": "Custom sections"
+      }
+    ],
+  "settings": [
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "text-box",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+    },
+    { "type": "range",
+      "id": "text_size",
+      "min": 30,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Header Text Size",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "text_weight",
+      "label": "Header Text Weight",
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Header Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text_spacing",
+      "label": "Header Text Spacing",
+      "default": "1em"
+    },
+
+    {
+      "id": "link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "linktext",
+      "type": "text",
+      "label": "Button text",
+      "default": "Click Here"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#ccc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Text Size",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "button_text_weight",
+      "label": "Button Text Weight",
+      "default": "300"
+    }
+  ]
+}
+
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

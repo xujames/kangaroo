@@ -1,0 +1,86 @@
+.redeem{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 5rem;
+}
+.redeem .redeemOptions{
+    display: flex;
+    width: 900px;
+    height: 9rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+.redeem .redeemOption{
+        width: 33.33%;
+       border: 1px solid rgba(0,0,0,.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.redeem  h5{
+        font-weight: 500;
+    font-size: larger;
+        margin-bottom: 0.2rem;
+}
+.redeem h1{
+	margin-bottom: 1rem
+}
+.redeem p{
+	font-size: 14px;
+    line-height: 1rem;
+    font-weight: 500;
+}
+@media screen and (max-width: 1150px){
+    .redeem .redeemOptions{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 1024px){
+    .redeem .redeemOptions{
+        width: 80%;
+    }
+    .redeem p {
+    font-size: 12px;
+    line-height: .8rem;
+}
+.redeem h5{
+    font-size: large;
+}
+.redeem .redeemOptions{
+    height: 8rem;
+}
+}
+@media screen and (max-width: 850px){
+.redeem .redeemOptions {
+    width: 85%;
+    height: 6rem;
+    margin-top: 2rem;
+}
+@media screen and (max-width: 750px){
+.redeem .redeemOptions{
+    width: 90%;
+}
+}
+@media screen and (max-width: 600px)
+{	
+	.redeem p {
+    	font-size: 15px;
+    	line-height: 1.3rem;
+	}
+    .redeem .redeemOption{
+        width: 50%;
+    }
+    .redeem .redeemOption:last-child
+    {
+        width: 100%;
+    }
+    .redeem .redeemOptions{
+        height: 16rem;
+    }
+    .redeem  h1{
+        font-size: 31px;
+        padding: 0 10px;
+    }
+}

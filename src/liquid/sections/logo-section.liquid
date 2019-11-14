@@ -1,0 +1,51 @@
+<div id="section-{{ section.id }}" data-section-id="{{ section.id }}" class="hidden-phone" data-section-type="logo">
+  <div class="Container">
+    <ul class="logo-list" style="list-style: none;">
+      {%- for block in section.blocks-%}
+      <li class="logo-img">
+      	<img src="{{ block.settings.image}}"/>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+<style>
+  .logo-img img{
+  	height: 30px;
+  }
+</style>
+{% schema %}
+  {
+    "name": "Logo List",
+    "class": "home-logo-section",
+    "presets": [
+      {
+        "name": "Logo block",
+        "category": "Custom sections"
+      }
+     ],
+	"settings": [],
+	"blocks": [
+    {
+      "type": "image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "url",
+          "id": "image",
+          "label": "Logo Url"
+        },
+        {
+          "type": "text",
+          "label": "Image alt text",
+          "id": "img_alt"
+        }]
+	}]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

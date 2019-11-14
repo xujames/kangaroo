@@ -1,0 +1,196 @@
+<div class="icon-bar">
+<h2 class="icon-bar-header">{{ section.settings.title | escape }}</h2>
+  
+    <ul>
+  {% for block in section.blocks %}
+    <li class="icon-bar-section" {{ block.shopify_attributes }}>
+      {% if block.settings.link != blank %}
+        <a href="{{ block.settings.link }}">
+      {% endif %}
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | img_url: '150x150', scale: 2 | img_tag: block.settings.image.alt, 'logo-bar__image' }}
+      {% else %}
+        {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if block.settings.link != blank %}
+        </a>
+      {% endif %}
+      {% if block.settings.grid_subhead != blank %}
+      <h3></h3>
+      {% else %}
+      <h3 class="grid-subhead">{{ block.settings.subhead }}</h3>
+      {% endif %}
+      {% if block.settings.caption != blank %}
+       <p></p>
+      {% else %}
+      <p>{{ block.settings.text }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+</div>
+
+
+
+
+<style>
+ 
+  
+ .icon-bar {
+  display: block;
+  text-align: center;
+  margin: 100px 20px 100px 20px;
+ }
+ 
+ .icon-bar-section {
+  max-width: {{ section.settings.logo_width }};
+  display: inline-block;
+  margin: 10px 60px 20px 60px;
+  text-align: center;
+ }
+  
+ .icon-bar-header {
+   text-align: center;
+   font-size: {{ section.settings.header_text_size }}px;
+   font-weight: {{ section.settings.header_text_weight }};
+   color: {{section.settings.header_text_color }};
+   letter-spacing: {{section.settings.header_text_spacing }}em;
+   padding: 30px;
+ }
+  
+ .grid-subhead {
+   text-align: center;
+   font-size: 18px;
+   font-weight: 600;
+   margin-bottom: 20px;
+   color: {{section.settings.text_color }};
+ }
+  
+
+</style>
+
+
+
+
+
+{% schema %}
+
+
+  {
+    "name": "Grid",
+    "presets": [
+      {
+        "name": "Grid",
+        "category": "Custom sections"
+      }
+    ],
+    "settings": [
+       {
+         "type": "text",
+         "id": "title",
+         "label": "Heading",
+         "default": "Header Text"
+       },
+       { "type": "range",
+         "id": "header_text_size",
+         "min": 30,
+         "max": 60,
+         "step": 1,
+         "unit": "px",
+         "label": "Header Text Size",
+         "default": 50
+       },
+       {
+         "type": "text",
+         "id": "header_text_weight",
+         "label": "Header Text Weight",
+         "default": "600"
+       },
+       {
+         "type": "color",
+         "id": "header_text_color",
+         "label": "Header Text Color",
+         "default": "#ffffff"
+       },
+       {
+         "type": "text",
+         "id": "header_text_spacing",
+         "label": "Header Text Spacing",
+         "default": "1em"
+       },
+       {
+         "type": "color",
+         "id": "text_color",
+         "label": "Caption Color",
+         "default": "#ccc"
+       },
+       {
+        "type": "select",
+        "id": "logo_width",
+        "label": "Logo width",
+        "default": "150px",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "100px"
+          },
+          {
+            "label": "Small",
+            "value": "125px"
+          },
+          {
+            "label": "Medium",
+            "value": "150px"
+          },
+          {
+            "label": "Large",
+            "value": "175px"
+          },
+          {
+            "label": "Extra Large",              
+            "value": "200px"
+          }
+        ]
+      }
+    ],
+
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Icon",
+
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          },
+		  {
+            "type": "text",
+            "id": "subhead",
+            "label": "Subhead",
+            "info": "Optional"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Caption",
+            "info": "Optional"
+          }
+         ]
+      }
+     ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

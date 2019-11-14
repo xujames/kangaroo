@@ -1,0 +1,161 @@
+<section class="team-section">
+  <div class="main-container">
+    <h2 class="section-lead text-center">Meet our team</h2>
+    <ul class="nav team-tabs" id="teamTabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link btn-tab" id="shenzhen-tab" data-toggle="tab" href="#shenzhen" role="tab" aria-controls="shenzhen" aria-selected="true">Shenzhen</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-tab active" id="newyork-tab" data-toggle="tab" href="#newyork" role="tab" aria-controls="newyork" aria-selected="false">New York</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-tab" id="wroclaw-tab" data-toggle="tab" href="#wroclaw" role="tab" aria-controls="wroclaw" aria-selected="false">Wrocław</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-tab" id="manila-tab" data-toggle="tab" href="#manila" role="tab" aria-controls="manila" aria-selected="false">Manila</a>
+      </li>
+    </ul>
+
+    <div id="teamTabsContent" class="tab-content team-tab-content">
+      
+      <div class="tab-pane fade" id="shenzhen" role="tabpanel" aria-labelledby="shenzhen-tab">
+        {% for block in section.blocks %}
+          {% if block.settings.team_location == 'shenzhen' %}
+            <div class="team-member">
+              <div class="team-member-image">
+                <a href="{{ block.settings.member_link }}" target="_blank">
+                  <img src="{{ block.settings.member_photo.src | img_url: 'x450' }}" />
+                </a>
+              </div>
+              <h4 class="team-member-name">{{ block.settings.member_name }}</h4>
+              <h5 class="team-member-title">{{ block.settings.member_position }}</h4>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="tab-pane fade show active" id="newyork" role="tabpanel" aria-labelledby="newyork-tab">
+        {% for block in section.blocks %}
+          {% if block.settings.team_location == 'newyork' %}
+            <div class="team-member">
+              <div class="team-member-image">
+                <a href="{{ block.settings.member_link }}" target="_blank">
+                  <img src="{{ block.settings.member_photo.src | img_url: 'x450' }}" />
+                </a>
+              </div>
+              <h4 class="team-member-name">{{ block.settings.member_name }}</h4>
+              <h5 class="team-member-title">{{ block.settings.member_position }}</h4>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="tab-pane fade" id="wroclaw" role="tabpanel" aria-labelledby="wroclaw-tab">
+        {% for block in section.blocks %}
+          {% if block.settings.team_location == 'wroclaw' %}
+            <div class="team-member">
+              <div class="team-member-image">
+                <a href="{{ block.settings.member_link }}" target="_blank">
+                  <img src="{{ block.settings.member_photo.src | img_url: 'x450' }}" />
+                </a>
+              </div>
+              <h4 class="team-member-name">{{ block.settings.member_name }}</h4>
+              <h5 class="team-member-title">{{ block.settings.member_position }}</h4>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="tab-pane fade show" id="manila" role="tabpanel" aria-labelledby="manila-tab">
+        {% for block in section.blocks %}
+          {% if block.settings.team_location == 'manila' %}
+            <div class="team-member">
+              <div class="team-member-image">
+                <a href="{% if block.settings.member_link %}{{ block.settings.member_link }}{% else %}#{% endif %}" target="_blank">
+                  <img src="{{ block.settings.member_photo.src | img_url: 'x450' }}" />
+                </a>
+              </div>
+              <h4 class="team-member-name">{{ block.settings.member_name }}</h4>
+              <h5 class="team-member-title">{{ block.settings.member_position }}</h4>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <a href="mailto:notjustajob@heykangaroo.com" class="join-our-team">Join our Croo</a>
+  </div>
+</section>
+
+<section class="section-team-treats">
+  <div class="main-container">
+    <div class="row">
+      <div class="col col-12 col-sm-6">
+        <h2 class="page-lead">What we do</h2>
+
+        <h4>Think as big as we can.</h4>
+        <h4>Break things, make things.</h4>
+        <h4>Laugh at ourselves & each other.</h4>
+        <h4>Celebrate victories and birthdays.</h4>
+        <h4>Make kangaroo puns. Often.</h4>
+        <h4>Eat group dinners.</h4>
+      </div>
+
+      <div class="col col-12 col-sm-6">
+        <h2 class="page-lead">What we don't</h2>
+
+        <h4>Allow egos.</h4>
+        <h4>Discourage crazy ideas.</h4>
+        <h4>Wear blazers.</h4>
+        <h4>Get bored.</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "text",
+        "name": "TeamMember",
+        "settings": [
+          {
+            "id": "member_name",
+            "type": "text",
+            "label": "Member name",
+            "default": "Member name"
+          },
+          {
+            "id": "member_position",
+            "type": "text",
+            "label": "Member position",
+            "default": "Member position"
+          },
+          {
+            "id": "member_link",
+            "type": "text",
+            "label": "Link to profile"
+          },
+          {
+            "type": "image_picker",
+            "id": "member_photo",
+            "label": "Member photo"
+          },
+          {
+            "id": "team_location",
+            "type": "select",
+            "label": "Location",
+            "options": [
+              { "value": "wroclaw", "label": "Wroclaw" },
+              { "value": "newyork", "label": "New York" },
+              { "value": "shenzhen", "label": "Shenzhen" },
+              { "value": "manila", "label": "Manila" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

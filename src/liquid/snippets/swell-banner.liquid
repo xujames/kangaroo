@@ -1,0 +1,29 @@
+{{"swell-banner.css" | asset_url | stylesheet_tag}}
+{{"swell-page-rewards.css" | asset_url | stylesheet_tag}}
+<div class="page banner">
+	<div class="banner-bgc">
+		<h4>Welcome to Roowards!</h4>
+		<p>As a Roowards member you'll get<br class="show-at-mobile"> closer <br class="show-at-leptop">to earning exclusive rewards <br class="show-at-mobile">every time you shop.</p>
+		{% unless customer %}
+				<b>Earn 25 points just by joining!</b>
+		<input type="button" value="Join Now" onclick="window.location.href='/account/register'">
+		<div style="width: 100%; display: flex;justify-content: center;" class="input-to-mobile">
+			<input type="button" value="Log In" onclick="window.location.href='/account/login'">
+		</div>
+		<br>
+		<p>Already have an account?<!-- <br class="show-at-mobile"> --> <a href="/account/login">Log In</a></p>
+	{% endunless %}
+	</div>
+	{% if customer %}
+	<div class="customer">
+		<h1>Hi, {{customer.name}}!<br>you have <span class="swell-point-balance"></span> points.</h1>
+		<div class="div-to-input" style="display: flex;
+		justify-content: space-around;margin-top: 1.5rem;">
+			<input type="button" value="Redeem Now" onclick="window.location.href='/collections/products'">
+		</div>
+		<a class="swell-history-link">Rewards History</a>
+	</div>
+	{% endif  %}
+	<!-- <p class="text-to-account">Earn more points</p> -->
+</div>
+

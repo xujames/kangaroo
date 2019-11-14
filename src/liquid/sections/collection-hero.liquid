@@ -1,0 +1,103 @@
+{%- capture section_settings -%}
+{
+  "collectionUrl": {{ collection.url | default: '/collections/all' | json }},
+  "currentTags": {% if active_tags != blank %}{{ active_tags | split: '+' | json }}{% else %}[]{% endif %},
+  "sortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+  "filterPosition": {{ section.settings.filter_position | json }}
+}
+{%- endcapture -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="collection" data-section-settings='{{ section_settings }}'>
+
+{%- if section.settings.show_collection_info and collection.all_products_count > 0 -%}
+  {%- if section.settings.show_collection_image and collection.image and collection.template_suffix != 'no-image' -%}
+    <div class="FlexboxIeFix">
+    <header class="PageHeader PageHeader--withBackground {% if section.settings.collection_image_size != 'normal' %}PageHeader--{{ section.settings.collection_image_size }}{% endif %}" style="background: url({{ collection.image | img_url: '1x1', format: 'jpg' }})">
+      <div class="PageHeader__ImageWrapper Image--lazyLoad Image--fadeIn {% if section.settings.apply_overlay %}Image--contrast{% endif %}"
+           data-optimumx="1.2"
+           data-bgset="{{ collection.image | img_url: 'x600' }} 600w, {{ collection.image | img_url: '800x' }} 800w, {{ collection.image | img_url: '1200x' }} 1200w, {{ collection.image | img_url: '1400x' }} 1400w, {{ collection.image | img_url: '1600x' }} 1600w">
+      </div>
+
+      <noscript>
+        <div class="PageHeader__ImageWrapper {% if section.settings.apply_overlay %}Image--contrast{% endif %}" style="background-image: url({{ collection.image | img_url: '800x' }})"></div>
+      </noscript>
+
+      <div class="Container">
+        <div class="SectionHeader SectionHeader--center">
+          <h1 class="SectionHeader__Heading Heading u-h1">{{ collection.title }}</h1>
+
+          {%- if collection.description != blank -%}
+            <div class="SectionHeader__Description Rte">
+              {{- collection.description -}}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </header>
+    </div>
+  {%- else -%}
+    <header class="PageHeader">
+      <div class="Container">
+        <div class="SectionHeader SectionHeader--center">
+          <h1 class="SectionHeader__Heading Heading u-h1">{{ collection.title }}</h1>
+
+          {%- if collection.description != blank -%}
+            <div class="SectionHeader__Description Rte">
+              {{- collection.description -}}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </header>
+  {%- endif -%}
+{%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Collection page hero",
+  "class": "shopify-section--bordered",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_info",
+      "label": "Show collection info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "apply_overlay",
+      "label": "Apply overlay on image",
+      "info": "This can improve text visibility.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "collection_image_size",
+      "label": "Collection image size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "normal"
+    }
+  ]
+}
+{% endschema %}

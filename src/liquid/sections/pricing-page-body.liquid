@@ -1,0 +1,373 @@
+{%- if section.settings.enable -%}
+
+<section>
+  <div class="main-container">
+    <div class="pricing-table-wrapper-desktop">
+      <div class="most-popular-plan">Most Popular Plan</div>
+      <table class="table pricing-table">
+        <thead>
+          <tr>
+            <th></th>
+            <td><h2 class="section-lead">Basic</h2></td>
+            <td><h2 class="section-lead">Complete</h2></td>
+          </tr>
+          <tr>
+            <th>
+              <div class="pricing-bill-options">
+                <p>Billed yearly</p>
+
+                <label class="switch-toggle">
+                  <input type="checkbox" checked>
+                  <span class="switch-slider"></span>
+                </label>
+
+                <p>Billed monthly</p>
+              </div>
+            </th>
+            <td><h2 class="section-lead color-blue pricing-lead-wrapper"><span class="pricing-yearly">Free</span><span class="pricing-monthly active">Free</span></h2></td>
+            <td><h2 class="section-lead color-blue pricing-lead-wrapper"><span class="pricing-yearly">$90/yr</span><span class="pricing-monthly active">$9/mo</span></h2></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">App Push Notification</th>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Unlimited User Invites</th>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Text Notification</th>
+            <td>
+              <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" />
+            </td>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Voice Call Notification</th>
+            <td>
+              <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" />
+            </td>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              24/7 Pro Monitoring <a href="#monitoring-popup" data-toggle="modal" class="underline-link color-blue">What's this?</a>
+            </th>
+            <td>
+              <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" />
+            </td>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Homeowners Insurance Discount<br>
+              Up to 20% Off <a href="#discount-popup" data-toggle="modal" class="underline-link color-blue">What's this?</a>
+            </th>
+            <td><img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" /></td>
+            <td><img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" /></td>
+          </tr>
+          <tr>
+            <th scope="row">Alexa Integration</th>
+            <td>
+              <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" />
+            </td>
+            <td>
+              <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pricing-table-wrapper-mobile">
+      <div class="pricing-well most-popular">
+        <div class="most-popular-plan">Most Popular Plan</div>
+
+        <h2 class="section-lead">Complete</h2>
+        <h2 class="section-lead color-blue pricing-lead-wrapper"><span class="pricing-yearly">$60/yr</span><span class="pricing-monthly active">$9/mo</span></h2>
+
+        <div class="pricing-bill-options">
+          <p>Billed yearly</p>
+
+          <label class="switch-toggle">
+            <input type="checkbox" checked>
+            <span class="switch-slider"></span>
+          </label>
+
+          <p>Billed monthly</p>
+        </div>
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">App Push Notification</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Unlimited User Invites</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Text Notification</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="No" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Voice Call Notification</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="No" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                24/7 Pro Monitoring <a href="#monitoring-popup" data-toggle="modal" class="underline-link color-blue">What's this?</a>
+              </th>
+              <td><img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" /></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <img src="{{ 'saving-icon.svg' | asset_url }}" class="saving-icon"/>
+                Insurance Discount<br>
+                Up to 20% Off <a href="#discount-popup" data-toggle="modal" class="underline-link color-blue">What's this?</a>
+              </th>
+              <td><img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Alexa Integration</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="No" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="pricing-well">
+        <h2 class="section-lead">Basic</h2>
+        <h2 class="section-lead color-blue pricing-lead-wrapper"><span class="pricing-yearly">Free</span><span class="pricing-monthly active">Free</span></h2>
+
+        <div class="pricing-bill-options">
+          <p>Billed yearly</p>
+
+          <label class="switch-toggle">
+            <input type="checkbox" checked>
+            <span class="switch-slider"></span>
+          </label>
+
+          <p>Billed monthly</p>
+        </div>
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">App Push Notification</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Unlimited User Invites</th>
+              <td>
+                <img src="{{ 'check-mark-icon.svg' | asset_url }}" alt="Yes" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Text Notification</th>
+              <td>
+                <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="Yes" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Voice Call Notification</th>
+              <td>
+                <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                24/7 Pro Monitoring <a href="#monitoring-popup" data-toggle="modal" class="underline-link color-blue">What's this?</a>
+              </th>
+              <td><img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" /></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <img src="{{ 'saving-icon.svg' | asset_url }}" class="saving-icon"/>
+                Insurance Discount<br>
+                Up to 20% Off <a href="#discount-popup" data-toggle="modal" class="underline-link color-blue">What's this?</a>
+              </th>
+              <td><img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Alexa Integration</th>
+              <td>
+                <img src="{{ 'cross-mark-icon.svg' | asset_url }}" alt="No" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+ <section class="section-pricing-cta">
+  <div class="main-container-cta">
+    <h2 class="section-lead-cta">Ready to secure your space?</h2>
+    <a href="/products/motion-sensor" class="ctabutton">Shop Now</a>
+  </div>
+</section>
+
+
+<div class="modal fade whatsthis-modal" id="monitoring-popup" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <img src="{{ 'close-icon.svg' | asset_url }}">
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="{{ 'police-car-icon.png' | asset_url }}" />
+        <h3>24/7 Pro-Monitoring</h3>
+        <p>If you can't respond to an alert yourself, a professional monitoring agent will handle the situation, call 911, and direct authorities to your house. They will also provide guidance over the phone in the case of an emergency.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade whatsthis-modal" id="discount-popup" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <img src="{{ 'close-icon.svg' | asset_url }}">
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="{{ 'saving-icon.svg' | asset_url }}" />
+        <h3>Home Owner’s Insurance Discount</h3>
+        <p>When you choose our Complete Plan, we will help you submit all the tedious paperwork to your insurance provider to get you your insurance discount (up to 20%!)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+
+
+  .section-pricing-cta {
+    background-color: #334C80;
+    margin-top: 50px;
+  }
+
+  .section-lead-cta {
+    font-weight: 700;
+    font-size: 50px;
+    color: #ffffff;
+  }
+
+    @media (max-width: 479px) {
+  .section-lead-cta { font-size: 40px; }
+}
+
+  .ctabutton {
+    display: inline-block;
+    text-align: center;
+    background: #FFF166;
+    color: ##1C1B1B;
+    width: 170px;
+    border-radius: 50px;
+    font-size: 21px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px;
+    margin: 20px 0px 20px 0px;
+  }
+
+</style>
+
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Pricing Page Body (old)",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enabled Section?"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Plan",
+        "settings": [
+          {
+            "id": "plan_name",
+            "type": "text",
+            "label": "Feature name",
+            "default": "Feature name"
+          },
+          {
+            "id": "pro_plan",
+            "type": "select",
+            "label": "Pro Plan",
+            "options": [
+              { "value": "check", "label": "Yes" },
+              { "value": "cross", "label": "No" }
+            ]
+          },
+          {
+            "id": "self_plan",
+            "type": "select",
+            "label": "Self Plan",
+            "options": [
+              { "value": "check", "label": "Yes" },
+              { "value": "cross", "label": "No" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% javascript %}
+
+
+  $('.switch-toggle input').on('change', function() {
+    var isChecked = $(this).is(':checked')
+    $('.switch-toggle input').prop('checked', isChecked);
+
+    $('.pricing-yearly').toggleClass('active', !isChecked);
+    $('.pricing-monthly').toggleClass('active', isChecked);
+  });
+
+{% endjavascript %}

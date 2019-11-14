@@ -1,0 +1,26 @@
+{% comment %}
+<section class="section-pricing-intro">
+  <div class="main-container">
+    <div class="row">
+      <div class="col col-12 col-sm-5">
+        <img src="{{ 'pricing.png' | asset_url }}" />
+      </div>
+      <div class="col col-12 col-sm-7">
+        <h1 class="page-lead">{{ page.title }}</h1>
+        <p class="mb-4">You can switch back to Basic whenever you wish!</p>
+        <div class="get-the-app-wrapper d-none d-lg-flex">
+          <h4>Get the App</h4>
+          <a href="https://itunes.apple.com/us/app/kangaroo-simple-home-security/id1388241447?mt=8" class="ios" title="Get it on the App Store" target="_blank"><img src="{{ 'apple.svg' | asset_url }}" alt="iOS"/></a>
+          <a href="https://play.google.com/store/apps/details?id=com.kangaroo.security" target="_blank" class="android" title="Get it on Google Play"><img src="{{ 'android.svg' | asset_url }}" alt="Android"/></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endcomment %}
+
+{% section 'pricing-page-body' %}
+{% section 'hero-pricing' %}
+{% section 'custom-small-image-and-text-pricing' %}
+{% section 'pricing-cta' %}
+{% section 'custom-small-image-with-text-pricing' %}

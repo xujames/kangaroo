@@ -1,0 +1,105 @@
+<section class="section-office-feed">
+  <div class="main-container">
+    <h2 class="section-lead">{{ section.settings.title }}</h2>
+    <h4>{{'now' | date: "%H:%M %P %Z" }}</h4>
+
+    <div class="office-feed">
+
+      <!-- coffee cups -->
+      {% assign date_start = '27-08-2018' | date: '%s' %}
+      {% assign now_timestamp = 'now' | date: '%s' %}
+      {% assign diff_seconds = now_timestamp | minus: date_start %}
+      {% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
+      {% assign cups = diff_days | times: 12 | plus: 1000 %}
+
+      <div class="office-feed-item">
+        <h2 class="odometer" data-value="{{cups}}">{{cups}}</h2>
+        <h4>Coffee Cups</h4>
+      </div>
+
+      {% for block in section.blocks %}
+        <div class="office-feed-item">
+          <h2 class="odometer" data-value="{{ block.settings.feed_count }}">{{ block.settings.feed_count }}</h2>
+          <h4>{{ block.settings.feed_title }}</h4>
+        </div>
+      {% endfor %}
+
+      <!-- Days -->
+      {% assign date_start = '17-02-2018' | date: '%s' %}
+      {% assign now_timestamp = 'now' | date: '%s' %}
+      {% assign diff_seconds = now_timestamp | minus: date_start %}
+      {% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
+
+      <div class="office-feed-item">
+        <h2 class="odometer" data-value="{{diff_days}}">1000</h2>
+        <h4>Days</h4>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  window.odometerOptions = {
+    format: 'd'
+  };
+</script>
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Office Feed"
+      },
+      {
+        "type": "text",
+        "id": "time",
+        "label": "Time",
+        "default": "12:45pm EST"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "TeamFeed",
+        "settings": [
+          {
+            "id": "feed_title",
+            "type": "text",
+            "label": "Feed title",
+            "default": "Feed title"
+          },
+          {
+            "id": "feed_count",
+            "type": "text",
+            "label": "Feed count",
+            "default": "Feed count"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% javascript %}
+
+	$(document).ready(function() {
+      if ($('.section-office-feed').length) {
+        if (!isTablet()) {
+          $('.section-office-feed').scrollIntoView(function() {
+            $('.office-feed-item .odometer').each(function() {
+              $(this).html('1' + $(this).data('value'));
+            });
+          });
+        } else {
+          $('.office-feed-item .odometer').each(function() {
+            $(this).html('1' + $(this).data('value'));
+          });
+        }
+      }     
+	})
+
+{% endjavascript %}

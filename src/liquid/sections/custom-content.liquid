@@ -1,0 +1,120 @@
+{%- if section.settings.enable -%}
+
+ <div class="custom-content-area section-content" data-section-id="{{ section.id }}" style="background-color:{% if section.settings.bg_color %} {{section.settings.bg_color}} {% endif %}">
+	<div class="container">
+      <div class="section_content" style="text-align: {{ section.settings.content_position }}">
+        {%- if section.settings.heading != blank -%}
+        	<h2 style="color: {{ section.settings.heading_color }};">{{section.settings.heading}}</h2>
+        {%- endif -%}
+        {%- if section.settings.content != blank -%}
+        	<p style="color: {{ section.settings.content_color }};">{{section.settings.content}}</p>
+        {%- endif -%}
+        {%- if section.settings.button_text_url != blank -%}
+        	<a href="{{ section.settings.button_text_url }}" class="ButtonGroup__Item Button" style="color: {{ section.settings.button_text_color }}; background-color:{% if section.settings.button_background_color %} {{section.settings.button_background_color}} {% endif %}">{{ section.settings.button_text | escape }}</a>
+        {%- endif -%}
+        {% if section.settings.show_social_media %}
+          <div class="social-cover">
+            <div class="icons">{% include 'social-media' %}</div>
+          </div>
+        {% endif %}
+      </div>
+
+
+
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+  {
+    "name": "Custom content",
+	"class": "custom-content",
+    "settings": [
+		{
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enabled Section?"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social_media",
+          "label": "Show Social media"
+        },
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Select Heading Color"
+    },
+		{
+			"type": "textarea",
+			"id": "content",
+			"label": "Content"
+		},
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Select Content Color"
+    },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Title"
+        },
+        {
+          "type": "url",
+          "id": "button_text_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "header",
+          "content": "Color"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Select Button Background Color",
+          "default": "#444141"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Select Button Text Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Select Background Color"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

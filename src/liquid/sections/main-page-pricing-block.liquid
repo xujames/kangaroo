@@ -1,0 +1,189 @@
+<section id="pricing" class="section-pricing auto-height" data-anchor="pricing">
+  <div class="main-container">
+    <div class="pricing-badge"></div>
+    <div class="pricing-lead">
+      {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+
+      <p>
+        {% if section.settings.text_1 != blank %}
+          {{ section.settings.text_1 | strip_html }}
+        {% endif %}
+        {% if section.settings.text_2 != blank %}
+          {{ section.settings.text_2 | strip_html }}
+        {% endif %}
+        </br>
+        </br>
+        {% if section.settings.link_label != blank and section.settings.link != blank %}
+          <a href="{{section.settings.link}}" class="underline-link color-blue">
+            {{section.settings.link_label}}
+          </a>
+        {% endif %}
+      </p>
+        
+    </div>
+
+    <div class="pricing-cards-wrapper">
+      
+      <a href="/pages/pricing" class="pricing-card">
+        <div class="pricing-card-header">
+          {% if section.settings.plan_title_1 != blank %}
+            {{ section.settings.plan_title_1 }}
+          {% endif %}
+        </div>
+        <div class="pricing-card-body">
+          <h2> 
+            <b>
+              {% if section.settings.plan_price_1 != blank %}
+                {{ section.settings.plan_price_1 }}
+              {% endif %}
+            </b>
+          </h2>
+          <!-- <span class="card-price">
+            {% if section.settings.plan_price_1 != blank %}
+              {{ section.settings.plan_price_1 }}
+            {% endif %}
+          </span>
+          <span class="card-term">
+            {% if section.settings.plan_term_1 != blank %}
+              {{ section.settings.plan_term_1 }}
+            {% endif %}
+          </span> -->
+        </div>
+      </a>
+
+      <a href="/pages/pricing" class="pricing-card">
+        <div class="pricing-card-header">
+          {% if section.settings.plan_title_2 != blank %}
+            {{ section.settings.plan_title_2 }}
+          {% endif %}
+        </div>
+        <div class="pricing-card-body">
+          <span class="card-price">
+            {% if section.settings.plan_price_2 != blank %}
+              {{ section.settings.plan_price_2 }}
+            {% endif %}
+          </span>
+          <span class="card-term">
+            {% if section.settings.plan_term_2 != blank %}
+              {{ section.settings.plan_term_2 }}
+            {% endif %}
+          </span>
+          <div class="pricing-card-affix">
+            <img src="{{ 'police-car-icon.png' | asset_url }}" />
+            <h3>24/7 Pro-Monitoring</h3>
+            <p>If you can't respond to an alert yourself, a professional monitoring agent will handle the situation, call 911, and direct authorities to your house. They will also provide guidance over the phone in the case of an emergency.</p>
+          </div>
+
+          <div class="pricing-card-affix">
+            <img src="{{ 'saving-icon.svg' | asset_url }}" />
+            <h3>Homeowners Insurance Discount (Coming Soon)</h3>
+            <p>When you choose our Complete Plan, we will help you submit all the tedious paperwork to your insurance provider to get you your insurance discount (up to 20%!)</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="/pages/pricing" class="pricing-card">
+        <div class="pricing-card-body limited-offer">
+          <div class="limited-offer-icon">
+            <img src="{{ 'app-icon.svg' | asset_url }}" />
+            <h4>Kangaroo</h4>
+          </div>
+
+          <div class="limited-offer-text">
+            <h2>Limited-time only</h2>
+            <h2 class="bigger">14 DAY</h2>
+            <p>Free trial of our <br class="d-lg-none"/>Complete plan.</p>
+            <p class="secondary"> </p>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="pricing-cta">
+      <a href="/products/motion-sensor" class="btn btn-primary btn-lg btn-wide">Shop Now</a>
+      <a href="/pages/pricing" class="underline-link color-blue">See Pricing Details</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Pricing block",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "One App. Two Plans. <br>Unlimited security."
+      },
+      {
+        "type": "text",
+        "id": "text_1",
+        "label": "Text",
+        "default": "Let’s break it down: all you need to get started is a product, <br>our app and your choice of safety plan."
+      },
+      {
+        "type": "text",
+        "id": "text_2",
+        "label": "Text",
+        "default": "Your first 14 days are free, and you can pause or cancel anytime."
+      },
+      {
+        "type": "text",
+        "id": "link_label",
+        "label": "Link label",
+        "default": "Learn more"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Url"
+      },
+      {
+        "type": "text",
+        "id": "plan_title_1",
+        "label": "Plan title",
+        "default": "Self-Monitored"
+      },
+      {
+        "type": "text",
+        "id": "plan_price_1",
+        "label": "Plan price",
+        "default": "$1"
+      },
+      {
+        "type": "text",
+        "id": "plan_term_1",
+        "label": "Plan term",
+        "default": "Per Month"
+      },
+      {
+        "type": "text",
+        "id": "plan_title_2",
+        "label": "Plan title",
+        "default": "Pro-Monitored"
+      },
+      {
+        "type": "text",
+        "id": "plan_price_2",
+        "label": "Plan price",
+        "default": "$5"
+      },
+      {
+        "type": "text",
+        "id": "plan_term_2",
+        "label": "Plan term",
+        "default": "Per Month"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Pricing block",
+        "category": "Custom sections"
+      }
+    ]
+  }
+{% endschema %}

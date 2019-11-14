@@ -1,0 +1,427 @@
+{%- if section.settings.layout_mode == 'carousel' -%}
+  {%- capture flickity_options -%}
+  {
+    "prevNextButtons": true,
+    "pageDots": false,
+    "wrapAround": false,
+    "contain": true,
+    "cellAlign": "center",
+    "watchCSS": true,
+    "dragThreshold": 8,
+    "groupCells": true,
+    "arrowShape": {"x0": 20, "x1": 60, "y1": 40, "x2": 60, "y2": 35, "x3": 25}
+  }
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- capture section_settings -%}
+{
+  "layout": {{ section.settings.layout_mode | json }}
+}
+{%- endcapture -%}
+
+{%- assign font_size = section.settings.font_size -%}
+{%- assign font_size_2 = section.settings.font_size_2 -%}
+{%- assign font_weight = section.settings.font_weight -%}
+{%- assign font_weight_2 = section.settings.font_weight_2 -%}
+
+
+<div class="Section Section--spacingLarge" data-section-id="{{ section.id }}" data-section-type="featured-collections" data-settings='{{ section_settings }}'>
+  <header class="SectionHeader SectionHeader--center">
+    <div class="Container">
+    {%- if section.settings.title != blank -%}
+      <h3 class="SectionHeader__SubHeading Heading u-h3">{{ section.settings.title | escape }}</h3>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="SectionHeader__TabList TabList" role="tablist">
+        {%- for block in section.blocks -%}
+          {%- assign collection = collections[block.settings.collection] -%}
+
+          <button class="Heading u-h1 TabList__Item {% if forloop.first %}is-active{% endif %}" data-action="toggle-tab" aria-controls="block-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" role="tab" >
+            {%- if collection != empty -%}
+              {{- block.settings.title | default: collection.title -}}
+            {%- else -%}
+              {{- 'home_page.onboarding.collection_title' | t -}}
+            {%- endif -%}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      {%- assign collection = collections[section.blocks.first.settings.collection] -%}
+
+      {%- if collection != empty -%}
+        <h2 class="SectionHeader__Heading Heading u-h2" style="font-size:{{section.settings.font_size_3}}px;font-weight: {{section.settings.font_weight_3}}">{{ section.blocks.first.settings.title | default: collection.title }}</h2>
+      {%- else -%}
+        <h2 class="SectionHeader__Heading Heading u-h2" style="font-size:{{section.settings.font_size_3}}px;font-weight: {{section.settings.font_weight_3}}">{{ 'home_page.onboarding.collection_title' | t }}</h2>
+      {%- endif -%}
+    {%- endif -%}
+    </div>
+  </header>
+
+  {%- for block in section.blocks -%}
+    {%- assign collection = collections[block.settings.collection] -%}
+
+    <div class="TabPanel" id="block-{{ block.id }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" role="tabpanel" {{ block.shopify_attributes }}>
+      <div class="ProductListWrapper">
+        {%- if collection != empty -%}
+          {%- assign item_count = block.settings.grid_items_count -%}
+
+          {%- if collection.products_count < block.settings.grid_items_count -%}
+            {%- assign item_count = collection.products_count -%}
+          {%- endif -%}
+
+          {%- if section.settings.layout_mode == 'grid' -%}
+            <div class="ProductList ProductList--grid thin-grid Grid" data-mobile-count="{{ section.settings.grid_mobile_items_per_row }}" data-desktop-count="{{ section.settings.grid_desktop_items_per_row }}">
+              {%- for product in collection.products limit: block.settings.grid_items_count -%}
+{%- include 'bold-product' with product, hide_action: 'skip' -%}
+                <div class="Grid__Cell 1/{{ section.settings.grid_mobile_items_per_row }}--phone 1/2--tablet-and-up 1/{{ section.settings.grid_desktop_items_per_row }}--desk">
+
+                  {%- include 'product-item', show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_color_swatch: section.settings.show_color_swatch, show_labels: true -%}
+                  <div class="collection-add-button">
+                    <div class="collection-card-opener">
+                      <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="7.82161" cy="8.15437" r="6.26253" stroke="#334D80" stroke-width="3"/>
+                      <path d="M16.3498 18.8041C16.9356 19.3899 17.8853 19.3899 18.4711 18.8041C19.0569 18.2183 19.0569 17.2686 18.4711 16.6828L16.3498 18.8041ZM11.7836 14.2379L16.3498 18.8041L18.4711 16.6828L13.9049 12.1166L11.7836 14.2379Z" fill="#334D80"/>
+                      </svg>
+                    </div>
+                    {%- include 'product-form' -%}
+                  </div>
+
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="ProductList ProductList--carousel Carousel" data-flickity-config='{{ flickity_options }}'>
+              {%- for product in collection.products limit: block.settings.grid_items_count -%}
+{%- include 'bold-product' with product, hide_action: 'skip' -%}
+                <div class="Carousel__Cell">
+
+                  {%- include 'product-item', show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_color_swatch: section.settings.show_color_swatch, show_labels: true -%}
+                  <div class="collection-add-button">
+                    <div class="collection-card-opener">
+                      <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="7.82161" cy="8.15437" r="6.26253" stroke="#334D80" stroke-width="3"/>
+                      <path d="M16.3498 18.8041C16.9356 19.3899 17.8853 19.3899 18.4711 18.8041C19.0569 18.2183 19.0569 17.2686 18.4711 16.6828L16.3498 18.8041ZM11.7836 14.2379L16.3498 18.8041L18.4711 16.6828L13.9049 12.1166L11.7836 14.2379Z" fill="#334D80"/>
+                      </svg>
+                    </div>
+                    {%- include 'product-form' -%}
+                  </div>
+
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          {%- comment -%}If collection is not set, we use placeholder content for all three layout mode{%- endcomment -%}
+
+          {%- capture products_placeholder -%}
+            {%- for i in (1..block.settings.grid_items_count) -%}
+              <div class="{% if section.settings.layout_mode == 'grid' %}Grid__Cell 1/{{ section.settings.grid_mobile_items_per_row }}--phone 1/2--tablet-and-up 1/{{ section.settings.grid_desktop_items_per_row }}--lap-and-up{% else %}Carousel__Cell{% endif %}">
+                <div class="ProductItem">
+                  <div class="ProductItem__Wrapper">
+
+                    <a href="#" class="ProductItem__ImageWrapper">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'product-' | append: current | placeholder_svg_tag: 'ProductItem__Image PlaceholderSvg PlaceholderSvg--dark' }}
+                    </a>
+
+                    {%- if section.settings.show_product_info -%}
+                      <div class="ProductItem__Info ProductItem__Info--{{ settings.product_info_alignment }}">
+                        {%- if section.settings.show_vendor -%}
+                          <p class="ProductItem__Vendor Heading">{{ 'home_page.onboarding.vendor_title' | t }}</p>
+                        {%- endif -%}
+
+                        <h3 class="ProductItem__Title Heading">{{ 'home_page.onboarding.product_title' | t }}</h3>
+
+                        <div class="ProductItem__PriceList Heading">
+                          <span class="ProductItem__Price Price Text--subdued" data-money-convertible>{{ 3000 | money_without_trailing_zeros }}</span>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          {%- if section.settings.layout_mode == 'grid' -%}
+            <div class="ProductList ProductList--grid ProductList--removeMargin Grid" data-mobile-count="{{ section.settings.grid_mobile_items_per_row }}" data-desktop-count="{{ section.settings.grid_desktop_items_per_row }}">
+              {{ products_placeholder }}
+            </div>
+          {%- else -%}
+            <div class="ProductList ProductList--carousel Carousel" data-flickity-config='{{ flickity_options }}'>
+              {{ products_placeholder }}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      {%- if block.settings.button_text != blank -%}
+        <div class="Container">
+          <div class="SectionFooter">
+            <a href="{{ collection.url }}" class="Button Button--primary">{{ block.settings.button_text | escape }}</a>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
+
+{%- capture hack -%}
+{%- comment -%}This is just an ugly hack to make those variables appear as part of the theme editor in the General Settings{%- endcomment -%}
+{% if section.settings.layout_mode == 'grid' %}{{ settings.product_list_horizontal_spacing }},{{ settings.product_list_vertical_spacing }}{% endif %}
+{%- endcapture -%}
+
+
+
+{% schema %}
+{
+  "name": "Featured collections",
+  "class": "shopify-section--bordered",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Sub-heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_info",
+      "label": "Show product info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_color_swatch",
+      "label": "Show color swatch",
+      "info": "Some colors appear white? [Learn more](http://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch).",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Grid",
+      "info": "Those settings apply only if the layout mode is set to grid."
+    },
+    {
+      "type": "select",
+      "id": "grid_mobile_items_per_row",
+      "label": "Products per row (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 4,
+      "id": "grid_desktop_items_per_row",
+      "label": "Products per row (desktop)",
+      "default": 4
+    },
+        {
+            "type": "range",
+            "id": "font_size_3",
+            "label": "Title Font Size",
+            "min": 10,
+            "max": 50,
+            "default": 50,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight_3",
+			"label": "Title Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "600"
+		},{
+            "type": "range",
+            "id": "font_size",
+            "label": "Product Title Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 21,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight",
+			"label": "Product Title Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "500"
+		},
+        {
+            "type": "range",
+            "id": "font_size_2",
+            "label": "Product Price Font Size",
+            "min": 10,
+            "max": 40,
+            "default": 21,
+            "unit": "px"
+        },
+		{
+			"type": "select",
+			"id": "font_weight_2",
+			"label": "Product Price Font weight",
+			"options": [
+              {
+                "value": "300",
+                "label": "Thin"
+              },
+              {
+                "value": "400",
+                "label": "Normal"
+              },
+              {
+                "value": "500",
+                "label": "Medium"
+              },
+              {
+                "value": "600",
+                "label": "Bold"
+              },
+			  {
+                "value": "900",
+                "label": "Semi Bold"
+			  }
+			],
+			"default": "500"
+		}
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "info": "If none is set, collection title is used."
+        },
+        { "type": "range",
+         "id": "text_size",
+         "min": 21,
+         "max": 60,
+         "step": 1,
+         "unit": "px",
+         "label": "Text Size",
+         "default": 50
+        },
+        {
+          "type": "text",
+          "id": "text-weight",
+          "label": "Text Weight",
+          "default": "600"
+        },
+        {
+          "type": "range",
+          "id": "grid_items_count",
+          "min": 2,
+          "max": 50,
+          "step": 1,
+          "label": "Products to show",
+          "default": 8
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "View all products"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Featured collections",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
