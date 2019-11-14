@@ -5,9 +5,9 @@
       .hero__background
       .container
         .row
-          .small-12.medium-7.column
+          .small-12.large-7.column
             product-carousel(:images="product.images")
-          .small-12.medium-5.column(v-if="$mq !== 'mobile'")
+          .small-12.large-5.column(v-if="$mq !== 'mobile'")
             .product-info
               slot(name="content")
             product-form-gift-card(v-if="product.type === 'Gift Card'" :product="product")
@@ -47,32 +47,38 @@
   }
 </script>
 
+<style lang="scss">
+.yotpo__reviews-section__header {
+  text-align: center;
+  margin: 40px 0 20px 0;
+  padding: 0 $grid-gutter;
+  font-weight: bold;
+  font-size: rem(24);
+  line-height: 32px;
+
+  @include tablet-up {
+    font-size: rem(32);
+    line-height: 40px;
+    margin: 80px 0;
+  }
+}
+</style>
+
 <style scoped lang="scss">
   .product-display {
     position: relative;
     overflow: hidden;
-    margin-bottom: $grid-gutter;
-
-    @include mobile-only {
-      padding-bottom: 24px;
-    }
-    
-    &--wrapper {
-      @include mobile-only {
-        padding-bottom: 24px;
-      }
-    }
 
     .hero__background {
+      bottom: 120px;
+
       @include mobile-only {
         display: none;
       }
-
-      bottom: 120px;
     }
 
     & > .container {
-      margin-top: 24px;
+      padding: 10px 10px 0 10px;
       
       @include tablet-up {
         z-index: 1;

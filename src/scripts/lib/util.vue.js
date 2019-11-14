@@ -1,5 +1,5 @@
 
-import { uniqueId } from 'scripts/helpers/util.js'
+import { uniqueId } from 'scripts/lib/util.js'
 
 function extractData (vnode, index) {
   const cOpts = vnode.componentOptions;

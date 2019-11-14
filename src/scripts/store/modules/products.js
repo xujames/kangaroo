@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 
-import { parseDataForEditor } from 'scripts/helpers/util.js'
+import { parseDataForEditor } from 'scripts/lib/util.js'
 
 var queue = []
 var fetching = false

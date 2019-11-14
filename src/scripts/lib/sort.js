@@ -9,7 +9,7 @@ export const sortProductsBy = sortMethod => {
     case 'alphabetically': return sortAlphabetically;
     case 'priceDesc': return sortPriceDesc;
     case 'priceAsc': return sortPriceAsc;
-    default: return sortAlphabetically;
+    default: return;
   }
 }
 

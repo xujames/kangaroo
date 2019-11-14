@@ -43,6 +43,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ 'theme.scss.css' | asset_url }}">
 
+    {% if template == 'product.bundle' %}
+    {{ 'bvaccel.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+
+    <style>.u-hidden { display: none !important; }</style>
+
 {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
 {%- assign time_now = 'now' | date: '%s' %}
 {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}

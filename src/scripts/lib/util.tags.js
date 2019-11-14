@@ -6,6 +6,8 @@ const getValueByPrefix = (tags, param) => {
   return tag ? tag.slice(prefix.length) : tag
 }
 
-// usage example
-// export const getRecurringProductId = tags =>
-//   getValueByPrefix(tags, 'my-tag')
+/**
+ * Product Info
+ */
+export const getSynopsis = tags =>
+  getValueByPrefix(tags, 'synopsis')

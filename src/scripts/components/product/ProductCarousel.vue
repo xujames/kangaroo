@@ -1,36 +1,27 @@
 
 <template lang="pug">
   .product-carousel
-    icon-button.product-carousel__prev(
-      v-if="multipleImages"
-      label="Next Slide",
-      icon="arrow-left",
-      @click="$refs.productImageCarousel.slidePrev()"
-    )
-    icon-button.product-carousel__next(
-      v-if="multipleImages"
-      label="Previous Slide",
-      icon="arrow-right",
-      @click="$refs.productImageCarousel.slideNext()"
-    )
     carousel(
       ref="productImageCarousel", 
       :slides-to-show="1", 
       :infinite="multipleImages ? true : false",
-      :dots="multipleImages ? true : false"
+      :dots="multipleImages && $mq === 'mobile' ? true : false"
+      :verticalDots="multipleImages && $mq != 'mobile' ? true : false"
+      :thumbnail-images="$mq != 'mobile' ? images : []"
     )
       slide(v-for="(image, index) in images", :key="index")
-        img.product-carousel__image(v-lazy="image.src", :alt="image.alt" draggable="false")
+        product-carousel-image(:image="image")
 </template>
 
 <script>
   import IconButton from 'scripts/components/buttons/IconButton.vue'
   import Carousel from 'scripts/components/basic/Carousel.vue'
   import Slide from 'scripts/components/basic/Slide.vue'
+  import ProductCarouselImage from 'scripts/components/product/ProductCarouselImage.vue'
 
   export default {
     name: 'ProductSlider',
-    components: { IconButton, Carousel, Slide },
+    components: { IconButton, Carousel, Slide, ProductCarouselImage },
     props: {
       images: Array
     },
@@ -45,40 +36,12 @@
 <style scoped lang="scss">
   .product-carousel {
     position: relative;
-    padding: 0 #{24px + $grid-gutter * 2};
+    padding: 0;
 
     @include mobile-only {
-      padding: 0 #{$grid-gutter * 1.5};
       max-width: 550px;
       margin-left: auto;
       margin-right: auto;
-    }
-
-    &__next,
-    &__prev {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &__next {
-      right: $grid-gutter;
-
-      @include mobile-only {
-        right: 4px;
-      }
-    }
-    
-    &__prev {
-      left: $grid-gutter;
-
-      @include mobile-only {
-        left: 4px;
-      }
-    }
-
-    &__image {
-      align-self: center;
     }
   }
 </style>

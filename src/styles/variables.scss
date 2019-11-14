@@ -6,14 +6,16 @@
 // color pallette
 $color-white: #fff;
 $color-off-white: #f8f8f8;
-$color-light-grey: #ccc;
+$color-light-grey: #FAF9F4;
 $color-lead: #939393;
 $color-charcoal: #666;
 $color-dark-grey: #2c2c2c;
-$color-black: #000;
+$color-black: #1C1B1B;
 
 $color-red: #db162e;
 $color-light-red: #FBEFF3;
+
+$color-blue: #343F63;
 
 $color-dark-green: #155724;
 $color-green: #5cdb16;
@@ -21,6 +23,8 @@ $color-light-green: #d4edda;
 
 $color-gold: #cccc00;
 $color-orange: #db8a16;
+$color-yellow: #FEF065;
+$color-pastel-yellow: #FFFBDC;
 
 $color-transparent-black: rgba($color-black, 0.6);
 
@@ -28,12 +32,12 @@ $color-transparent-black: rgba($color-black, 0.6);
 //   Color Usage
 // ---------------------------------
 
-$color--primary: $color-red;
+$color--primary: $color-blue;
 $color--primary--hover: darken($color--primary, 5%);
-$color--secondary: $color-off-white;
+$color--secondary: $color-yellow;
 $color--secondary--hover: darken($color--secondary, 5%);
 
-$color--accent: $color-orange;
+$color--accent: $color-yellow;
 $color--disabled: $color-light-grey;
 $color--error: $color-red;
 $color--error-light: $color-light-red;
@@ -44,13 +48,13 @@ $color--success-dark: $color-dark-green;
 
 // background colors
 $bg--main: $color-white;
-$bg--alt: $color-light-grey;
-$bg--light: $color-off-white;
-$bg--dark: $color-black;
+$bg--alt: $color-pastel-yellow;
+$bg--light: $color-light-grey;
+$bg--dark: $color-blue;
 $bg--overlay: $color-transparent-black;
 
 // borders
-$border--main: $color-charcoal;
+$border--main: $color-black;
 $border--light: $color-light-grey;
 $border--dark: rgba($color-black, 0.15);
 $border--input: $color-lead;

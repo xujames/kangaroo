@@ -12,13 +12,7 @@ html {
 
 body,
 html {
-  height: 100%;
-}
-
-body {
-  @include mobile-only {
-    padding-top: $mobile-nav-height;
-  }
+  min-height: 100%;
 }
 
 table {

@@ -34,6 +34,5 @@
   .slide {
     display: flex;
     flex-direction: column;
-    padding: 0 $grid-gutter / 2;
   }
 </style>

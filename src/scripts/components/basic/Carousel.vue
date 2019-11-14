@@ -1,6 +1,14 @@
 
 <template lang="pug">
-  .carousel(ref="carousel", v-touch:swipe.left="slideNext", v-touch:swipe.right="slidePrev")
+  .carousel(ref="carousel", v-touch:swipe.left="slideNext", v-touch:swipe.right="slidePrev" :class="carouselClasses")
+    ul.carousel__dots.carousel__dots--vertical.u-list-simple.u-list-inline(v-if="verticalDots")
+      li(v-for="n in slides.length" :key="n")
+        button.u-clear-button(
+          :class="{ 'is-active': n === currentSlideIndex + 1, 'carousel__dots__button': thumbnailImages.length === 0, 'carousel__dots__thumbnail': thumbnailImages.length > 0 }",
+          @click="slideTo(n - 1)"
+        )
+          img(v-if="thumbnailImages.length > 0", :src="thumbnailImages[n - 1].src")
+          .u-sr-only Show Slide {{ n }}
     .carousel__track.carousel__track--clone(v-if="infinite", :style="beforeTrackStyles")
       slot(name="clone-before")
     .carousel__track(:style="trackStyles")
@@ -8,20 +16,19 @@
     .carousel__track.carousel__track--clone(v-if="infinite", :style="afterTrackStyles")
       slot(name="clone-after")
     ul.carousel__dots.u-list-simple.u-list-inline(v-if="dots")
-      li
-        button.carousel__dots__button.u-clear-button(
-          v-for="n in slides.length",
-          :key="n",
-          :class="{ 'is-active': n === currentSlideIndex + 1 }",
+      li(v-for="n in slides.length" :key="n")
+        button.u-clear-button(
+          :class="{ 'is-active': n === currentSlideIndex + 1, 'carousel__dots__button': thumbnailImages.length === 0, 'carousel__dots__thumbnail': thumbnailImages.length > 0 }",
           @click="slideTo(n - 1)"
         )
-          .u-hidden Show Slide {{ n }}
+          img(v-if="thumbnailImages.length > 0", :src="thumbnailImages[n - 1].src")
+          .u-sr-only Show Slide {{ n }}
 </template>
 
 <script>
-  import { debounce, clone } from 'scripts/helpers/util.js'
-  import { cloneSlide } from 'scripts/helpers/vue.js'
-  import { getInRange, normalizeSlideIndex } from 'scripts/helpers/carousel.js'
+  import { debounce, clone } from 'scripts/lib/util.js'
+  import { cloneSlide } from 'scripts/lib/util.vue.js'
+  import { getInRange, normalizeSlideIndex } from 'scripts/lib/util.carousel.js'
 
   export default {
     name: 'Carousel',
@@ -59,6 +66,14 @@
       dots: {
         type: Boolean,
         default: false
+      },
+      verticalDots: {
+        type: Boolean,
+        default: false
+      },
+      thumbnailImages: {
+        type: Array,
+        default: () => []
       }
     },
     data () {
@@ -75,6 +90,7 @@
     mounted () {
       this.slides = this.getChildSlides()
       this.slides[0].componentInstance.active = true
+      if (this.slides[1]) this.slides[1].componentInstance.next = true
       this.updateTrackWidth()
       window.addEventListener('resize', () => this.onResize())
 
@@ -86,6 +102,15 @@
         if (this.infinite) this.initClones()
         this.enableTransition = true
       })
+
+      /*
+       * FIXME: for some reason our slide widths will occassionally
+       * get calculated to be too small until the user resizes the screen.
+       * This is a temporary fix, but we will need to find a permanent fix in the future.
+       */
+      setTimeout(() => {
+        this.onResize();
+      }, 100)
     },
     beforeUpdate () {
       let isForcedUpdate = this.infinite && (!this.$slots['before'] || !this.$slots['after'])
@@ -95,6 +120,11 @@
       }
     },
     computed: {
+      carouselClasses () {
+        return {
+          'carousel--vertical-dots': this.verticalDots === true
+        }
+      },
       trackWidth () {
         return this.slideWidth * this.slides.length
       },
@@ -168,15 +198,20 @@
           return el.componentOptions.Ctor.options.name === 'Slide';
         })
       },
-      onResize: debounce(function () {
-        this.updateTrackWidth()
-        this.slideTo(this.currentSlideIndex)
+      onResize: debounce(function() {
+          this.updateTrackWidth()
+          this.slideTo(this.currentSlideIndex)
       }, 50),
       updateTrackWidth () {
         this.carouselWidth = this.$refs.carousel.offsetWidth
       },
       setCurrentSlide (currentIndex) {
-        this.slides.forEach((slide, index) => slide.componentInstance.active = (currentIndex === index))
+        this.slides.forEach((slide, index) => {
+          slide.componentInstance.active = (currentIndex === index)
+          slide.componentInstance.next = (currentIndex + 1 === index)
+          slide.componentInstance.prev = (currentIndex - 1 === index)
+          this.slides[index] = slide;
+        })
         setTimeout(() => {
           this.navigating = false
           this.enableTransition = true
@@ -202,18 +237,18 @@
 
           this.offsetX = this.getNewOffset(index)
 
-          setTimeout(() => {
-            if (this.infinite) {
+          if (this.infinite) {
+            setTimeout(() => {
               index = normalizeSlideIndex(index, this.slides.length)
               this.enableTransition = false
               this.$nextTick(() => {
                 this.offsetX = this.getNewOffset(index)
                 this.setCurrentSlide(index)
               })
-            } else {
-              this.setCurrentSlide(index)
-            }
-          }, this.duration + 1)
+            }, this.duration + 1)
+          } else {
+            this.setCurrentSlide(index)
+          }
         }
       },
       slideNext () {
@@ -225,6 +260,16 @@
     }
   }
 </script>
+
+<style lang="scss">
+.carousel--vertical-dots {
+  .slide {
+    @include tablet-up {
+      padding-left: 116px;
+    }
+  }
+}
+</style>
 
 <style lang="scss">
   .carousel {
@@ -288,7 +333,17 @@
     &__dots {
       display: flex;
       justify-content: center;
-      margin-top: 18px;
+
+      &--vertical {
+        flex-direction: column;
+        justify-content: flex-start;
+        position: absolute;
+        width: 62px;
+        height: 100%;
+        z-index: 1;
+        background-color: $color-white;
+        padding: 5px; // to make box shadows visible
+      }
 
       &__button {
         position: relative;
@@ -297,19 +352,25 @@
         &:after {
           content: '';
           display: block;
-          height: 10px;
-          width: 10px;
+          height: 8px;
+          width: 8px;
           border-radius: 50%;
-          background-color: $bg--alt;
+          background-color: $color-white;
+          border: 1px solid $color-black;
           transition: 0.3s ease all;
         }
 
-        &:hover:after {
-          background-color: darken($bg--alt, 5%);
-        }
-
         &.is-active:after {
-          background-color: $bg--dark;
+          background-color: $color-black;
+        }
+      }
+
+      &--vertical &__thumbnail {
+        margin-bottom: 16px;
+        transition: 0.3s box-shadow;
+
+        &.is-active {
+          box-shadow: 0 2px 4px 0 rgba(34,31,32,0.29);
         }
       }
     }

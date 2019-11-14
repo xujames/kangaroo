@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import { clone } from 'scripts/helpers/util.js'
+  import { clone } from 'scripts/lib/util.js'
 
   import Carousel from 'scripts/components/basic/Carousel.vue'
   import Slide from 'scripts/components/basic/Slide.vue'

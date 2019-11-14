@@ -49,7 +49,6 @@ export const clone = (obj) => {
 export const parseDataForEditor = data => {
   if(typeof data === 'string') {
     let parsed = data.replace(/<!--[\s\S]*?-->/g, "")
-    console.log(parsed)
 
     try {
       return JSON.parse(parsed)
