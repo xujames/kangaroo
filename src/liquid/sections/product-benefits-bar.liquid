@@ -1,0 +1,48 @@
+{% capture benefits %}
+[
+  {% for benefit in section.blocks %}
+  {
+    icon: {
+      src: "{{ benefit.settings.icon | img_url: 'x60' }}",
+      alt: "{{ benefit.settings.icon.alt | escape }}"
+    },
+    title: "{{ benefit.settings.title | escape }}",
+    desc: "{{ benefit.settings.desc | escape }}"
+  },
+  {% endfor %}
+]
+{% endcapture %}
+
+<product-benefits-bar :benefits="{{ benefits | escape }}"></product-benefits-bar>
+
+{% schema %}
+{
+  "name": "Product Benefits",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Default Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Description",
+          "default": "Default benefit description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

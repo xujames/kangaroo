@@ -20,6 +20,8 @@ import VideoModal from "scripts/components/video/VideoModal.vue";
 
 import ProductDisplay from "scripts/components/product/ProductDisplay.vue";
 
+import ProductBenefitsBar from "scripts/components/sections/ProductBenefitsBar.vue";
+
 /**
  * Deferred components
  * 
@@ -48,5 +50,6 @@ export default {
   LinkButton,
   VideoCarousel,
   VideoModal,
-  ProductDisplay
+  ProductDisplay,
+  ProductBenefitsBar
 };
