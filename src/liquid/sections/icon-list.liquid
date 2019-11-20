@@ -1,0 +1,61 @@
+
+{%- capture steps -%}
+[
+  {% for step in section.blocks %}
+    {
+      title: "{{ step.settings.step_title | escape }}",
+      desc: "{{ step.settings.step_desc | escape }}",
+      img_url: "{{ step.settings.image | img_url: 'x125' }}",
+      img_alt: "{{ step.settings.image.alt | escape }}"
+    }{%- unless forloop.last -%},{%- endunless -%}
+  {% endfor %}
+]
+{%- endcapture -%}
+
+<icon-list
+  title="{{ section.settings.title | escape }}"
+  desc="{{ section.settings.desc | escape }}"
+  :steps="{{ steps | escape }}">
+</icon-list>
+
+{% schema %}
+{
+  "name": "Icon List",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "id": "desc",
+      "type": "textarea",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Step",
+      "type": "step",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Step Image"
+        },
+        {
+          "id": "step_title",
+          "type": "text",
+          "label": "Step Title"
+        },
+        {
+          "id": "step_desc",
+          "type": "textarea",
+          "label": "Step Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

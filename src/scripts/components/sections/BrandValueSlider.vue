@@ -116,6 +116,7 @@ export default {
   @include tablet-up {
     display: flex;
     padding-left: $grid-gutter;
+    margin: 80px auto;
   }
 
   &__content-container {
