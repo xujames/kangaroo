@@ -1,3 +1,10 @@
+{% assign hasFreeMembership = false %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'free-membership-included' %}
+    {% assign hasFreeMembership = true %}
+  {% endif %}
+{% endfor %}
 
 <product-display product-handle="{{ product.handle }}">
   <template slot="content-header">
@@ -26,7 +33,7 @@
     </div>
     <!-- End Yotpo Star Rating -->
 
-    {%- if section.settings.membership_line != blank -%}
+    {%- if section.settings.membership_line != blank and hasFreeMembership -%}
     <p class="product-info__membership-line">
       {{ section.settings.membership_line | escape }}
       <icon tabindex="0" v-tooltip="{ ref: 'membership-tooltip' }" name="help" size="17px"></icon>
