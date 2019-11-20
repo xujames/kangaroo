@@ -149,6 +149,7 @@ export default {
 
     &__title {
       font-size: 24px;
+      font-weight: bold;
       line-height: 40px;
       opacity: 0.51;
       transition: 0.4s opacity;
