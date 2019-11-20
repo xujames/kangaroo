@@ -4,7 +4,7 @@
     .product-form__options
       option-select-buttons.product-form__options__option1(
         v-if="hasVariants",
-        label="Size",
+        label="Version",
         :product="product",
         option="option1",
         v-model="selectedOption1",
@@ -132,10 +132,12 @@
         }
 
         if (currentlySelectedVariant) {
+          this.$store.dispatch('pdp/update', currentlySelectedVariant)
           return currentlySelectedVariant
         }
 
         // if we're still here... return the first variant
+        this.$store.dispatch('pdp/update', this.product.variants[0])
         return this.product.variants[0]
       },
       currentVariantIsAvailable () {
@@ -189,8 +191,13 @@
 
 <style lang="scss">
   .product-form {
-    margin-top: 36px;
-    padding-right: 36px;
+    margin-top: 0;
+    padding-right: 0;
+
+    @include tablet-up {
+      padding-right: 36px;
+      margin-top: 24px;
+    }
 
     &__price {
       font-size: rem(16);

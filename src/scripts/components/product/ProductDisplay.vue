@@ -143,7 +143,9 @@
         display: none;
       }
 
-      .accordion__content {
+      .accordion__content,
+      .accordion__content pre {
+        font-family: $font-body--main;
         font-size: 12px;
         line-height: 20px;
       }
@@ -157,7 +159,9 @@
         display: block;
       }
 
-      &::v-deep .tab {
+      &::v-deep .tab,
+      &::v-deep .tab pre {
+        font-family: $font-body--main;
         font-size: 14px;
         line-height: 20px;
       }

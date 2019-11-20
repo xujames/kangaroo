@@ -9,6 +9,7 @@ import cart from './modules/cart'
 import toast from './modules/toast'
 import scroll from './modules/scroll'
 import video from './modules/video'
+import pdp from './modules/pdp'
 
 Vue.use(Vuex)
 
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     cart,
     toast,
     scroll,
-    video
+    video,
+    pdp
   }
 })

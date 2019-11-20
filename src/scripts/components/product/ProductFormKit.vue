@@ -124,10 +124,12 @@
         }
 
         if (currentlySelectedVariant) {
+          this.$store.dispatch('pdp/update', currentlySelectedVariant)
           return currentlySelectedVariant
         }
 
         // if we're still here... return the first variant
+        this.$store.dispatch('pdp/update', this.product.variants[0])
         return this.product.variants[0]
       },
       currentVariantIsAvailable () {

@@ -1,12 +1,11 @@
 
 <template lang="pug">
   fieldset.option-select.option-select--buttons
-    legend.option-select__legend(v-if="label")
+    legend.option-select__legend.u-sr-only(v-if="label")
       span.option-select__legend--title {{ label }}
       span.option-select__legend--selection(v-if="label === 'Color'") {{ value }}
-      a.option-select__legend--size-guide-link(v-if="label === 'Size'" href="#" title="Open Size Guide") Size Guide 
 
-    label.option-select__label(v-for="option in optionSet" tabindex="0" :class="{ 'is-selected': option.value === value }") {{ option.label }}
+    label.option-select__label(v-for="option in optionSet" tabindex="0" :class="{ 'is-selected': option.value === value }") {{ option.price | money }} - {{ option.label }}
       input.u-sr-only(
         type="radio"
         tabindex="-1"
@@ -17,6 +16,9 @@
         :name="option"
         @change.prevent="onChange(option.value)"
       )
+      .option-select__label__image-container
+        img(v-if="option.img" :src="option.img" :alt="option.label")
+      span.option-select__label__disclaimer(v-if="option.disclaimer") {{ option.disclaimer }}
 </template>
 
 <script>
@@ -47,8 +49,20 @@
     },
     computed: {
       optionSet () {
-        return [...new Set(this.product.variants.slice().map(variant => variant[this.option]))]
-          .map(option => ({ label: option, value: option }))
+        return [...new Set(this.product.variants.slice().map(variant => {
+          return {
+            name: variant[this.option],
+            price: variant.price,
+            img: variant.image.src,
+            disclaimer: variant.custom_fields.option_disclaimer
+          }
+        }))].map(option => ({
+          label: option.name,
+          value: option.name,
+          price: option.price,
+          img: option.img,
+          disclaimer: option.disclaimer
+        }))
       }
     },
     methods: {
@@ -89,33 +103,69 @@
     }
 
     &__label {
+      position: relative;
       display: inline-block;
       padding: 11px 10px 9px 10px;
-      min-width: 56px; 
-      border: 1px solid transparent; 
-      background-color: $color--secondary;
+      min-width: 56px;
+      width: calc(50% - 8px);
+      border: 2px solid transparent;
+      border-radius: 4px;
+      border-color: $border--input;
       cursor: pointer;
-      font-size: rem(13); 
-      font-weight: 500;
-      line-height: 22px; 
+      font-size: 12px;
+      float: left;
+      line-height: 16px;
       text-align: center;
-      text-transform: uppercase;
+      box-shadow: 0 2px 4px 0 rgba(34,31,32,0.05);
       transition: 0.3s ease-in-out;
+      margin-right: 16px;
+      margin-bottom: 24px;
+      white-space: nowrap;
+
+      &:nth-child(odd) {
+        margin-right: 0;
+      }
 
       &.is-selected {
-        border-color: $border--main;
-        background-color: $bg--main;
+        border-color: $border--input--selected;
       }
 
-      &:hover {
-        background-color: $bg--main;
+      @include tablet-up {
+        font-size: 14px;
+        line-height: 20px;
       }
 
-      &:not(last-child) {
-        margin-right: 10px;
+      &__image-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 70%;
 
         @include tablet-up {
-          margin-right: 12px;
+          padding-bottom: 50%;
+        }
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      &__disclaimer {
+        position: absolute;
+        bottom: -23px;
+        left: 0;
+        width: 100%;
+        font-size: 10px;
+        line-height: 14px;
+        color: $text--mid;
+
+        @include tablet-up {
+          font-size: 12px;
+          line-height: 16px;
         }
       }
     }

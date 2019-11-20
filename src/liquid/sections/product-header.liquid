@@ -42,18 +42,34 @@
   <template slot="content">
     <accordion-group class="product-info__accordians">
       {%- if product.description != blank -%}
-      <accordion heading="Description">some content</accordion>
+      <accordion heading="Description">{{ product.description }}</accordion>
       {%- endif -%}
-      <accordion heading="Included">some content</accordion>
-      <accordion heading="Features">some content</accordion>
+      <accordion heading="Included">
+        {% raw %}
+          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.included : '' }}</pre>
+        {% endraw %}
+      </accordion>
+      <accordion heading="Features">
+        {% raw %}
+          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.features : '' }}</pre>
+        {% endraw %}
+      </accordion>
     </accordion-group>
     
     <tabs class="product-info__tabs">
       {%- if product.description != blank -%}
-      <tab heading="Description" selected>some content</tab>
+      <tab heading="Description" selected>{{ product.description }}</tab>
       {%- endif -%}
-      <tab heading="Included">some content</tab>
-      <tab heading="Features">some content</tab>
+      <tab heading="Included">
+        {% raw %}
+          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.included : '' }}</pre>
+        {% endraw %}
+      </tab>
+      <tab heading="Features">
+        {% raw %}
+          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.features : '' }}</pre>
+        {% endraw %}
+      </tab>
     </tabs>
   </template>
 </product-display>

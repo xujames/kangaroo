@@ -23,6 +23,7 @@
       "{{ tag }}"{%- unless forloop.last -%},{%- endunless -%}
     {%- endfor -%}
   ],
+  "custom_fields": {{ product.metafields.custom_fields | json}},
   "options": [
     {%- for option in product.options -%}
       "{{ option }}"{%- unless forloop.last -%},{%- endunless -%}
@@ -57,7 +58,8 @@
         "option2": "{{ variant.option2 }}",
         "option3": "{{ variant.option3 }}",
         "inventory_management": "{{ variant.inventory_management }}",
-        "inventory_policy": "{{ variant.inventory_policy }}"
+        "inventory_policy": "{{ variant.inventory_policy }}",
+        "custom_fields": {{ variant.metafields.custom_fields | json}}
         {%- if variant.metafields.subscriptions.discount_variant_id != blank -%}
           , "subscription_variant_id": {{ variant.metafields.subscriptions.discount_variant_id }}
         {%- endif -%}
