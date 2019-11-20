@@ -9,31 +9,34 @@
             product-carousel(:images="product.images")
           .small-12.large-5.column(v-if="$mq !== 'mobile'")
             .product-info
-              slot(name="content")
+              slot(name="content-header")
             product-form-gift-card(v-if="product.type === 'Gift Card'" :product="product")
+            product-form-kit(v-if="product.type === 'Kit'" :product="product")
             product-form(v-else :product="product")
-            slot(name="icons")
+            slot(name="content")
     .container(v-if="$mq === 'mobile'")
       .row
         .column.small-12
           .product-info
-            slot(name="content")
+            slot(name="content-header")
           product-form-gift-card(v-if="product.type === 'Gift Card'" :product="product")
+          product-form-kit(v-if="product.type === 'Kit'" :product="product")
           product-form(v-else :product="product")
-          slot(name="icons")
+          slot(name="content")
 </template>
 
 <script>
   import storeProduct from 'scripts/mixins/storeProduct.js'
 
   import ProductForm from 'scripts/components/product/ProductForm.vue'
+  import ProductFormKit from 'scripts/components/product/ProductFormKit.vue'
   import ProductFormGiftCard from 'scripts/components/product/ProductFormGiftCard.vue'
   import ProductCarousel from 'scripts/components/product/ProductCarousel.vue'
 
   export default {
     name: 'ProductDisplay',
     mixins: [ storeProduct ],
-    components: { ProductForm, ProductFormGiftCard, ProductCarousel },
+    components: { ProductForm, ProductFormGiftCard, ProductFormKit, ProductCarousel },
     mounted () {
       // wait for the display to render, then initialize yotpo
       let interval = setInterval(() => {
@@ -48,19 +51,8 @@
 </script>
 
 <style lang="scss">
-.yotpo__reviews-section__header {
-  text-align: center;
-  margin: 40px 0 20px 0;
-  padding: 0 $grid-gutter;
-  font-weight: bold;
-  font-size: rem(24);
-  line-height: 32px;
-
-  @include tablet-up {
-    font-size: rem(32);
-    line-height: 40px;
-    margin: 80px 0;
-  }
+.product-info__membership-tooltip p {
+  margin: 0;
 }
 </style>
 
@@ -84,6 +76,90 @@
         z-index: 1;
         position: relative;
         margin-top: 72px;
+      }
+    }
+  }
+
+  .product-info {
+    &__promo-line {
+      display: none;
+      color: $text--subtitle;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 4px;
+
+      @include tablet-up {
+        display: block;
+      }
+    }
+
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: bold;
+      margin: 0;
+      margin-top: 17px;
+
+      @include tablet-up {
+        margin-top: 0;
+        font-size: 36px;
+        line-height: 48px;
+      }
+    }
+
+    &__membership-line {
+      font-size: 18px;
+      line-height: 40px;
+      font-weight: 500 !important;
+      color: $color--primary--light;
+      margin: 6px 0 0 0;
+
+      @include tablet-up {
+        font-size: 20px;
+        line-height: 32px;
+      }
+
+      .icon--help {
+        margin-left: 5px;
+        margin-bottom: 1px;
+        cursor: pointer;
+      }
+    }
+
+    &__kits-tagline {
+      font-size: 12px;
+      line-height: 20px;
+      margin-bottom: 16px;
+
+      @include tablet-up {
+        display: none;
+      }
+    }
+
+    &__accordians {
+      margin: 30px 0 20px 0;
+
+      @include tablet-up {
+        display: none;
+      }
+
+      .accordion__content {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+
+    &__tabs {
+      display: none;
+      margin-top: 40px;
+
+      @include tablet-up {
+        display: block;
+      }
+
+      &::v-deep .tab {
+        font-size: 14px;
+        line-height: 20px;
       }
     }
   }

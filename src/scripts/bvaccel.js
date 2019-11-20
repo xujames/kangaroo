@@ -6,6 +6,7 @@ import Vue from "vue";
 import Vue2TouchEvents from "vue2-touch-events";
 import VueScript2 from "scripts/lib/script2.js";
 import VueLazyLoad from "vue-lazyload";
+import Tooltip from "vue-directive-tooltip";
 import VueMq from "vue-mq";
 import { mapState } from "vuex";
 
@@ -22,6 +23,9 @@ Vue.config.productionTip = false;
 
 Vue.use(Vue2TouchEvents);
 Vue.use(VueScript2);
+Vue.use(Tooltip, {
+  class: 'tooltip-custom'
+});
 
 Vue.use(VueLazyLoad, {
   preload: 1.3,

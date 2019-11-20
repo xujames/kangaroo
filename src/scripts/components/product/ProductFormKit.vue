@@ -1,6 +1,6 @@
 
 <template lang="pug">
-  form.product-form(@submit.prevent="addToCart", novalidate)
+  form.product-form.product-form--kit(@submit.prevent="addToCart", novalidate)
     .product-form__options
       option-select-buttons.product-form__options__option1(
         v-if="hasVariants",
@@ -29,20 +29,11 @@
               select.product-form__frequency__duration(v-model="selectedFrequency", @click.capture)
                 option(v-for="frequency in subscriptionFrequencies", :value="frequency", :key="frequency") {{ frequency }} {{ subscriptionUnitType }}
               icon(name="chevron-down", size="9px")
-    p.product-form__price(v-else) 
-      strong {{ product.price | money }}
     transition(name="fade")
       p.product-form__savings(v-if="subscriptionSavings > 0 && selectedPurchaseType === purchaseTypeRecurring") You are saving {{ subscriptionSavings | money }} by choosing a subscription.
     .product-form__atc
-      quantity-input.product-form__quantity(
-        label="Quantity", 
-        v-model="quantity",
-        :min="1", 
-        :max="remainingQuantity"
-      )
       submit-button(
-        :label="buttonLabel", 
-        :inline="true",
+        :label="buttonLabel",
         :disabled="isDisabled",
         :loading="adding"
         full
@@ -86,7 +77,8 @@
         return this.adding || !this.currentVariantIsAvailable
       },
       buttonLabel () {
-        return this.currentVariantIsAvailable ? 'Add to Cart' : 'Sold Out'
+        let { currentPrice, $options} = this
+        return this.currentVariantIsAvailable ? `Add to Cart - ${$options.filters.money(currentPrice)}` : 'Sold Out'
       },
       // subscription data
       hasSubscription () {
@@ -188,91 +180,7 @@
 </script>
 
 <style lang="scss">
-  .product-form {
-    margin-top: 36px;
-    padding-right: 36px;
-
-    &__price {
-      font-size: rem(16);
-      margin-bottom: 15px;
-      line-height: 20px;
-    }
-    
-    &__atc {
-      display: flex;
-    }
-
-    &__quantity {
-      margin-right: 14px;
-
-      > label {
-        margin-right: 5px;
-      }
-    }
-
-    &__options {
-      &__option1,
-      &__option2,
-      &__option3 {
-        margin-bottom: $content-gutter;
-      }
-    }
-
-    &__frequency {
-      &__single,
-      &__recurring {
-        margin-bottom: 15px;
-      }
-
-      &__recurring {
-        display: flex;
-      }
-
-      &__duration {
-        display: inline-block;
-        border: none;
-        background-color: transparent;
-        color: $color--primary;
-        font-weight: bold;
-        padding-right: 20px;
-        padding-left: 4px;
-        line-height: 20px;
-        -webkit-appearance: none;
-
-        &::-ms-expand {
-          display: none;
-        }
-      }
-
-      &__duration-wrapper {
-        position: relative;
-        display: inline-block;
-      }
-
-      .icon {
-        position: absolute;
-        pointer-events: none;
-        top: 50%;
-        right: 6px;
-        transform: translateY(-50%);
-        fill: $color--primary;
-      }
-    }
-
-    &__variant-select-wrapper {
-      display: flex;
-      margin-bottom: 16px;
-    }
-
-    &__savings {
-      font-size: rem(12);
-      line-height: 1.4;
-      margin-top: 10px;
-      margin-bottom: 10px;
-
-      @include mobile-only {
-        text-align: center;
-      }
-    }
-  }
+.product-form--kit {
+  
+}
 </style>

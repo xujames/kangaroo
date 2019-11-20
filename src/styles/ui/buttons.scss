@@ -9,12 +9,10 @@
   border-style: solid;
   border-color: $color--primary;
   transition: 0.3s ease all;
-  font-size: rem(16);
+  font-size: 20px;
   font-weight: bold;
-  line-height: 1.5;
-  letter-spacing: 2.5px;
+  line-height: 20px;
   text-decoration: none;
-  text-transform: uppercase;
   white-space: nowrap;
 
   &, &:hover {
@@ -49,15 +47,15 @@
   &--secondary {
     background-color: $color--secondary;
     border-color: $color--secondary;
+    color: $color--primary;
 
     &:hover {
       background-color: $color--secondary--hover;
       border-color: $color--secondary--hover;
+      color: $color--primary--hover;
     }
 
     &.button--hollow {
-      color: $color--secondary;
-
       &:hover {
         color: $color--secondary--hover;
       }

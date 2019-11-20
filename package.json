@@ -60,6 +60,7 @@
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.9",
+    "vue-directive-tooltip": "^1.6.3",
     "vue-lazyload": "^1.2.6",
     "vue-loader": "^15.7.0",
     "vue-mq": "^1.0.1",

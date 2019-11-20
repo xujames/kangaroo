@@ -1,0 +1,18 @@
+.yotpo {
+  &__reviews-section {
+    &__header {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      padding: 0 $grid-gutter;
+      font-weight: bold;
+      font-size: rem(24);
+      line-height: 32px;
+
+      @include tablet-up {
+        font-size: rem(32);
+        line-height: 40px;
+        margin: 80px 0;
+      }
+    }
+  }
+}

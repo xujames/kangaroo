@@ -3,6 +3,7 @@
 
 // vendor
 @import 'normalize.css/normalize';
+@import 'vue-directive-tooltip/src/css/index.scss';
 
 // Settings
 @import './boilerplate';
@@ -19,6 +20,8 @@
 
 // UI Components
 @import 'ui/buttons';
+@import 'ui/reviews';
+@import 'ui/tooltip';
 
 // Vue Transitions
 @import 'transitions/fade';

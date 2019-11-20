@@ -171,6 +171,9 @@
       },
       infinite () {
         this.onResize()
+      },
+      currentSlideIndex () {
+        this.$emit('change', this.currentSlideIndex)
       }
     },
     methods: {

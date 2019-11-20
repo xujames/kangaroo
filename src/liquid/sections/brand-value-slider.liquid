@@ -1,0 +1,59 @@
+{% capture content_sections %}
+[
+  {% for content_section in section.blocks %}
+    {
+      title: "{{ content_section.settings.title | escape }}",
+      content: "{{ content_section.settings.content | escape }}",
+      img: {
+        src: "{{ content_section.settings.image | img_url: 'master' }}",
+        alt: "{{ content_section.settings.image.alt | escape }}"
+      }
+    },
+  {% endfor %}
+]
+{% endcapture %}
+
+<brand-value-slider
+  :content_sections="{{ content_sections | escape }}"
+>
+</brand-value-slider>
+
+{% schema %}
+{
+  "name": "Brand Value Slider",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Value Slider",
+      "info": "*Must Contain 3 Blocks*"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Content Section",
+      "type": "content_section",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Don't forget the alt tag!"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Content goes here"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

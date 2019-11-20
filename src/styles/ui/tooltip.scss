@@ -1,0 +1,35 @@
+$tooltip-arrow-size: 10px;
+
+.vue-tooltip.tooltip-custom {
+  background-color: $color--primary--lighter;
+  color: $color-black;
+  font-size: 10px;
+  line-height: 16px;
+  border-radius: 0;
+  padding: 13px 20px;
+  box-shadow: none;
+}
+
+.vue-tooltip.tooltip-custom .tooltip-arrow {
+  border-color: $color--primary--lighter;
+}
+
+.vue-tooltip.tooltip-custom {
+  &[x-placement^="bottom"] {
+    margin-top: $tooltip-arrow-size;
+
+    .tooltip-arrow {
+      border-width: 0 $tooltip-arrow-size $tooltip-arrow-size $tooltip-arrow-size;
+      top: -$tooltip-arrow-size;
+    }
+  }
+
+  &[x-placement^="top"] {
+    margin-bottom: $tooltip-arrow-size;
+
+    .tooltip-arrow {
+      border-width: $tooltip-arrow-size $tooltip-arrow-size 0 $tooltip-arrow-size;
+      bottom: -$tooltip-arrow-size;
+    }
+  }
+}

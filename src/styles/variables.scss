@@ -7,14 +7,17 @@
 $color-white: #fff;
 $color-off-white: #f8f8f8;
 $color-light-grey: #FAF9F4;
-$color-lead: #939393;
-$color-charcoal: #666;
+$color-lead: #D6D6D6;
+$color-charcoal: #6A6A6A;
 $color-dark-grey: #2c2c2c;
+$color-label-grey: #6A6A6A;
 $color-black: #1C1B1B;
 
 $color-red: #db162e;
 $color-light-red: #FBEFF3;
 
+$color-lighter-blue: #B6D0FF;
+$color-light-blue: #526DAA;
 $color-blue: #343F63;
 
 $color-dark-green: #155724;
@@ -25,6 +28,7 @@ $color-gold: #cccc00;
 $color-orange: #db8a16;
 $color-yellow: #FEF065;
 $color-pastel-yellow: #FFFBDC;
+$color-pastel-yellow-2: #FFF8A6;
 
 $color-transparent-black: rgba($color-black, 0.6);
 
@@ -34,6 +38,8 @@ $color-transparent-black: rgba($color-black, 0.6);
 
 $color--primary: $color-blue;
 $color--primary--hover: darken($color--primary, 5%);
+$color--primary--light: $color-light-blue;
+$color--primary--lighter: $color-lighter-blue;
 $color--secondary: $color-yellow;
 $color--secondary--hover: darken($color--secondary, 5%);
 
@@ -55,7 +61,7 @@ $bg--overlay: $color-transparent-black;
 
 // borders
 $border--main: $color-black;
-$border--light: $color-light-grey;
+$border--light: $color-charcoal;
 $border--dark: rgba($color-black, 0.15);
 $border--input: $color-lead;
 
@@ -76,7 +82,7 @@ $text--mid: $color-charcoal;
 $text--light: $color-white;
 $text--accent: $color-orange;
 $text--completed: $color-light-grey;
-$text--subtitle: $color-light-grey;
+$text--subtitle: $color-label-grey;
 
 // ---------------------------------
 //   Type
@@ -108,7 +114,7 @@ $breakpoint-desktop: 1024px;
 $breakpoint-hd: 1280px;
 
 // grid
-$grid-gutter: 30px;
+$grid-gutter: 15px;
 $grid-column-count: 12;
 $block-grid-column-count: 8;
 

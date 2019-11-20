@@ -1,6 +1,6 @@
 
 <product-display product-handle="{{ product.handle }}">
-  <template slot="content">
+  <template slot="content-header">
     {%- if section.settings.promo_line != blank -%}
     <p class="product-info__promo-line">{{ section.settings.promo_line | escape }}</p>
     {%- endif -%}
@@ -25,11 +25,43 @@
     
     </div>
     <!-- End Yotpo Star Rating -->
-    {%- if product.description != blank -%}
-      <p class="product-info__description">{{ product.description }}</p>
+
+    {%- if section.settings.membership_line != blank -%}
+    <p class="product-info__membership-line">
+      {{ section.settings.membership_line | escape }}
+      <icon tabindex="0" v-tooltip="{ ref: 'membership-tooltip' }" name="help" size="17px"></icon>
+    </p>
     {%- endif -%}
+
+    {%- if section.settings.kits_tagline != blank -%}
+    <p class="product-info__kits-tagline">{{ section.settings.kits_tagline | escape }}</p>
+    {%- endif -%}
+
+  </template>
+
+  <template slot="content">
+    <accordion-group class="product-info__accordians">
+      {%- if product.description != blank -%}
+      <accordion heading="Description">some content</accordion>
+      {%- endif -%}
+      <accordion heading="Included">some content</accordion>
+      <accordion heading="Features">some content</accordion>
+    </accordion-group>
+    
+    <tabs class="product-info__tabs">
+      {%- if product.description != blank -%}
+      <tab heading="Description" selected>some content</tab>
+      {%- endif -%}
+      <tab heading="Included">some content</tab>
+      <tab heading="Features">some content</tab>
+    </tabs>
   </template>
 </product-display>
+
+<div class="u-hidden">
+  <div class="product-info__membership-tooltip" ref="membership-tooltip">{{ section.settings.membership_tooltip }}</div>  
+</div>
+
 
 {% schema %}
   {
@@ -39,6 +71,21 @@
         "label": "Promo Line",
         "type": "text",
         "id": "promo_line"
+      },
+      {
+        "label": "Membership Line",
+        "type": "text",
+        "id": "membership_line"
+      },
+      {
+        "label": "Membership Tooltip",
+        "type": "richtext",
+        "id": "membership_tooltip"
+      },
+      {
+        "label": "Kits Tagline",
+        "type": "text",
+        "id": "kits_tagline"
       }
     ]
   }

@@ -1,17 +1,15 @@
-
 <template lang="pug">
   .accordion(:class="accordionClass")
     a.accordion__header(href="#", :class="headerClass", @click.prevent="activate") 
       span {{ heading }}
       icon(:name="currentIcon", size="13px")
     transition(:name="transition")
-      .accordion__content(v-if="active", ref="content", :style="contentStyle")
+      li.accordion__content(v-if="active", ref="content", :style="contentStyle")
         slot
 </template>
 
 <script>
   import Icon from 'scripts/components/basic/Icon.vue'
-
   export default {
     name: 'Accordion',
     components: { Icon },
@@ -26,11 +24,11 @@
       },
       activeIcon: {
         type: String,
-        default: 'plus'
+        default: 'minus'
       },
       inactiveIcon: {
         type: String,
-        default: 'minus'
+        default: 'plus'
       },
       theme: {
         type: String,
@@ -54,11 +52,9 @@
     computed: {
       accordionClass () {
         let classes = []
-
         if (this.theme !== 'default') {
           classes.push(`accordion--${this.theme}`)
         }
-
         return classes
       },
       headerClass () {
@@ -71,12 +67,15 @@
       }
     },
     mounted () {
-      this.setContentHeight()
-
+      let height = this.$refs.content.scrollHeight
+      
+      this.contentStyle = {
+        'max-height': `${height}px`
+      }
       // NOTE: this has to be set to false after mount or scrollHeight will be 0
       this.active = this.selected
       this.transition = 'slide-vertical'
-
+      
       if (this.$parent.addAccordion) {
         this.$parent.addAccordion(this)
       }
@@ -88,24 +87,12 @@
       }
     },
     methods: {
-      setContentHeight () {
-        let height = this.$refs.content.scrollHeight
-        let containerPadding = 50
-
-        // Set max height for animation
-        this.contentStyle = {
-          'max-height': `${ height + containerPadding }px`
-        }
-      },
       activate () {
         if (this.$parent.activate && !this.active) {
           this.$parent.activate(this)
-          this.$emit("active")
         } else {
           this.active = !this.active
         }
-
-        this.$nextTick(() => this.setContentHeight())
       }
     }
   }
@@ -113,43 +100,56 @@
 
 <style scoped lang="scss">
   .accordion {
-    &.accordion--footer {
-      border-top: 1px solid $text--light;
-      background-color: transparent;
+    line-height: rem(17);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid $border--light;
 
-      &:last-child {
-        border-bottom: 1px solid $text--light;
+    &:last-child {
+      border-bottom: 1px solid $border--light;
+    }
+
+    &--footer {
+
+      .icon {
+        fill: $color-white;
+      }
+
+      .accordion__header {
+        color: $color-white;
       }
     }
 
     &__header {
       width: 100%;
-      padding: $grid-gutter;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-family: $font-header--main;
+      color: $color-black;
+      text-transform: uppercase;
+      font-size: 14px;
       font-weight: bold;
+      line-height: 22px;
+      text-decoration: none;
+
+      span {
+        position: relative;
+        top: 3px;
+      }
     }
 
     &__content {
       overflow: hidden;
-      padding: 0 $grid-gutter $grid-gutter;
+      list-style: none;
+      margin: 0;
+      padding: 16px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       
       &--wrapper {
         overflow: hidden;
-      }
-    }
-
-    &__header,
-    &__content {
-      .accordion--footer & {
-        color: $text--light;
-      }
-    }
-
-    &__icon {
-      .accordion--footer & {
-        fill: $text--light;
       }
     }
   }

@@ -40,30 +40,31 @@
 <style scoped lang="scss">
   .tabs {
     &__nav {
-      margin-left: -8px;
-      margin-right: -8px;
       margin-bottom: $content-gutter;
+      border-bottom: 2px solid $color-lead;
 
       &__button {
         cursor: pointer;
+        position: relative;
+        bottom: -2px;
         background-color: transparent;
         position: relative;
-        margin: 5px 8px;
-        line-height: 1.5;
-        padding: 0;
+        margin: 5px 0 0 0;
+        min-width: 90px;
+        padding: 0 0 5px 0;
         border-width: 0 0 2px 0;
         border-style: solid;
-        border-color: transparent;
+        border-color: $color-lead;
         font-weight: bold;
-        color: $text--completed;
+        font-size: 14px;
+        line-height: 22px;
+        color: $color-lead;
         transition: 0.3s ease all;
+        text-transform: uppercase;
 
         &:hover {
           color: $text--main;
-        }
-
-        &:focus {
-          outline: none;
+          border-color: $text--main;
         }
 
         &.active {
