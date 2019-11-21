@@ -1,0 +1,18 @@
+<included-products 
+  title="{{ section.settings.title | escape }}"
+  product-handle="{{ product.handle }}"
+></included-products>
+
+{% schema %}
+{
+  "name": "Included Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What's Included?"
+    }
+  ]
+}
+{% endschema %}

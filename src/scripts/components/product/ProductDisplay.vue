@@ -143,8 +143,8 @@
         display: none;
       }
 
-      .accordion__content,
-      .accordion__content pre {
+      &::v-deep .accordion__content,
+      &::v-deep .accordion__content pre {
         font-family: $font-body--main;
         font-size: 12px;
         line-height: 20px;
