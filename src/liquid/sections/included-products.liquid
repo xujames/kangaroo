@@ -1,17 +1,51 @@
+{% capture extras %}
+[
+  {% for extra in section.blocks %}
+  {
+    name: "{{ extra.settings.name | escape }}",
+    img: {
+      src: "{{ extra.settings.img | img_url: 'x60' }}",
+      alt: "{{ extra.settings.img.alt | escape }}"
+    }
+  },
+  {% endfor %}
+]
+{% endcapture %}
+
 <included-products 
   title="{{ section.settings.title | escape }}"
   product-handle="{{ product.handle }}"
+  :extras="{{ extras | escape }}"
 ></included-products>
 
 {% schema %}
 {
   "name": "Included Products",
+  "max_blocks": 3,
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Title",
       "default": "What's Included?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "extra",
+      "name": "extra",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Extra Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Extra Image"
+        }
+      ]
     }
   ]
 }

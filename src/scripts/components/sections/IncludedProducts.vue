@@ -2,15 +2,20 @@
   .included-products
     .container
       .row
-        .column.small-12.large-6.included-products__selected-product__img-container(v-if="$mq != 'mobile'")
+        .column.small-12.large-6(v-if="$mq != 'mobile'")
           transition(name="fade")
-            img(:src="selectedProductImage.src" :alt="selectedProductImage.alt" :key="selectedProductImage.src")
+            vue-magnifier(
+              :src="selectedProductImage.src"
+              :src-large="selectedProductImage.src"
+              :key="selectedProductImage.src"
+            )
 
         .column.small-12.large-6.included-products__content-container
           h2.included-products__title {{ title }}
           span.included-products__variant-price(v-if="currentVariant") {{ currentVariant.price | money }}
             span.included-products__variant-price.included-products__variant-price--compare(
               v-if="currentVariant.compare_at_price") {{ currentVariant.compare_at_price | money }}
+          
           .included-products__selections-container
             .included-products__selection(
               v-for="product in includedProducts"
@@ -20,18 +25,31 @@
               :class="{ 'selected': product.handle === selected }"
             )
               img(:src="product.images[0].src" :alt="product.images[0].alt")
+
           .included-products__selected-product
             .included-products__selected-product__info
               .included-products__selected-product__title {{ selectedProductQty }} {{ selectedProduct.title }}
               .included-products__selected-product__qty Quantity: {{ selectedProductQty }}
               .included-products__selected-product__img-container(v-if="$mq === 'mobile'")
                 transition(name="fade")
-                  img(:src="selectedProductImage.src" :alt="selectedProductImage.alt" :key="selectedProductImage.src")
+                  img.included-products__selected-product__img(
+                    :src="selectedProductImage.src"
+                    :alt="selectedProductImage.alt"
+                    :key="selectedProductImage.src"
+                  )
                 button.included-products__selected-product__img-container__next(@click="nextProduct") next
               .included-products__selected-product__desc(v-html="selectedProduct.description")
             .included-products__selected-product__features(v-if="selectedProductFeatures")
               h3 Key Features:
               pre {{ selectedProductFeatures }}
+
+          .included-products__extras(v-if="extras.length > 0")
+            h2.included-products__extras__title Extras Include:
+            .included-products__extras-container
+              .included-products__extra(v-for="extra in extras")
+                img(:src="extra.img.src" :alt="extra.img.alt")
+                span {{ extra.name }}
+
 </template>
 
 <script>
@@ -39,12 +57,19 @@ import { mapState } from 'vuex'
 
 import storeProduct from 'scripts/mixins/storeProduct.js'
 
+import VueMagnifier from 'scripts/components/basic/VueMagnifier.vue'
+
 export default {
   mixins: [ storeProduct ],
+  components: { VueMagnifier },
   props: {
     title: {
       type: String,
       default: "What's Included?"
+    },
+    extras: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
@@ -212,8 +237,6 @@ export default {
     }
 
     &__info {
-      max-width: 378px;
-
       @include tablet-up {
         margin-right: 50px;
       }
@@ -269,15 +292,14 @@ export default {
         border-radius: 50%;
         background-color: $color-black;
       }
+    }
 
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
+    &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
 
     &__features {
@@ -295,6 +317,14 @@ export default {
         line-height: 20px;
       }
     }
+  }
+
+  &__extras-container {
+    display: flex;
+  }
+
+  &__extra {
+    display: flex;
   }
 }
 </style>

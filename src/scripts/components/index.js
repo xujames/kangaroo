@@ -9,6 +9,7 @@ import Toast from "scripts/components/basic/Toast.vue";
 import Carousel from "scripts/components/basic/Carousel.vue";
 import Slide from "scripts/components/basic/Slide.vue";
 import Hero from "scripts/components/basic/Hero.vue";
+import VueMagnifier from "scripts/components/basic/VueMagnifier.vue";
 
 // Buttons
 import IconButton from "scripts/components/buttons/IconButton.vue";
@@ -52,6 +53,7 @@ export default {
   Carousel,
   Slide,
   Hero,
+  VueMagnifier,
 
   // Buttons
   IconButton,
