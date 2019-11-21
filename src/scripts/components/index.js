@@ -24,6 +24,7 @@ import VideoModal from "scripts/components/video/VideoModal.vue";
 
 // PDP
 import ProductDisplay from "scripts/components/product/ProductDisplay.vue";
+import ProductBundleNav from "scripts/components/product/ProductBundleNav.vue";
 
 // Sections
 import ProductBenefitsBar from "scripts/components/sections/ProductBenefitsBar.vue";
@@ -68,6 +69,7 @@ export default {
 
   // PDP
   ProductDisplay,
+  ProductBundleNav,
 
   // Sections
   ProductBenefitsBar,

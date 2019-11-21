@@ -108,10 +108,12 @@ export default {
   },
   mounted: function() {
     this.$nextTick(function() {
-      this.$refs.magnificationElement.addEventListener(
-        "mousemove",
-        this.moveMagnifier
-      );
+      if (this.$refs.magnificationElement) {
+        this.$refs.magnificationElement.addEventListener(
+          "mousemove",
+          this.moveMagnifier
+        );
+      }
     });
   },
   data: function() {

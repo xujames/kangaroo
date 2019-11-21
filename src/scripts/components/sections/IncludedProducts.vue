@@ -1,9 +1,8 @@
 <template lang="pug">
-  .included-products
+  #included-products.included-products
     .container
       .row
         .column.small-12.large-6(v-if="$mq != 'mobile'")
-          transition(name="fade")
             vue-magnifier(
               :src="selectedProductImage.src"
               :src-large="selectedProductImage.src"
@@ -239,6 +238,7 @@ export default {
     &__info {
       @include tablet-up {
         margin-right: 50px;
+        max-width: 378px;
       }
     }
 
@@ -319,12 +319,47 @@ export default {
     }
   }
 
+  &__extras {
+    text-align: left;
+
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 24px;
+      margin-top: 18px;
+      margin-bottom: 23px;
+
+      @include tablet-up {
+        font-size: 16px;
+      }
+    }
+  }
+
   &__extras-container {
     display: flex;
+    flex-direction: column;
+
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__extra {
     display: flex;
+    align-items: center;
+    max-width: 264px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    span {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 }
 </style>

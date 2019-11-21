@@ -4,7 +4,7 @@
   {
     name: "{{ extra.settings.name | escape }}",
     img: {
-      src: "{{ extra.settings.img | img_url: 'x60' }}",
+      src: "{{ extra.settings.img | img_url: 'x100' }}",
       alt: "{{ extra.settings.img.alt | escape }}"
     }
   },
@@ -43,7 +43,8 @@
         {
           "type": "image_picker",
           "id": "img",
-          "label": "Extra Image"
+          "label": "Extra Image",
+          "info": "100x100 or higher with square aspect ratio"
         }
       ]
     }

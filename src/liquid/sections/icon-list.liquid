@@ -13,6 +13,9 @@
 {%- endcapture -%}
 
 <icon-list
+  {% if template == 'product.bundle' %}
+  id="how-it-works"
+  {% endif %}
   title="{{ section.settings.title | escape }}"
   desc="{{ section.settings.desc | escape }}"
   :steps="{{ steps | escape }}">
