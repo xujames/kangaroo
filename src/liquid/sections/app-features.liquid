@@ -1,0 +1,104 @@
+{% capture features %}
+[
+  {% for feature in section.blocks %}
+  { 
+    index: {{ forloop.index }},
+    title: {{ feature.settings.title | json }},
+    description: {{ feature.settings.description | json }},
+    icon: "{{ feature.settings.icon | img_url: 'x80' }}",
+    img: {
+      src: "{{ feature.settings.img | img_url: 'x500' }}",
+      alt: "{{ feature.settings.img.alt | escape }}"
+    }
+  },
+  {% endfor %}
+]
+{% endcapture %}
+
+{% capture images %}
+[
+  {%- if section.settings.on_app_store -%}
+  {
+    
+    "src": "{{ section.settings.app_store_image | img_url: 'x200' }}",
+    "alt": "Available on the App Store"
+   
+  }{%- endif -%}{%- if section.settings.on_google_play_store -%},{%- endif -%}
+  {%- if section.settings.on_google_play_store -%}
+  {
+    "src":  "{{ section.settings.google_play_store_image | img_url: 'x200'}}",
+    "alt": "Available on the Google Play Store"
+  }
+  {%- endif -%}  
+]
+{% endcapture %}
+
+<app-features 
+  title="{{ section.settings.title | escape }}"
+  :images="{{ images | escape }}"
+  :features="{{ features | escape }}"
+></app-features>
+
+{% schema %}
+{
+  "name": "App Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Kangaroo App Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "on_app_store",
+      "label": "Included on App Store?"
+    },
+    {
+      "type": "image_picker",
+      "id": "app_store_image",
+      "label": "App Store Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "on_google_play_store",
+      "label": "Included on Google Play Store?"
+    },
+    {
+      "type": "image_picker",
+      "id": "google_play_store_image",
+      "label": "Google Play Store Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "App Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature Icon",
+          "info": "Displayed next to feature text, square width/height ratio reccommended for icon size."
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Featured Image",
+          "info": "1:2 width/height ratio reccommended for image size."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

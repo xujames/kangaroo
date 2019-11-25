@@ -31,6 +31,7 @@ import ProductBenefitsBar from "scripts/components/sections/ProductBenefitsBar.v
 import BrandValueSlider from "scripts/components/sections/BrandValueSlider.vue";
 import IconList from "scripts/components/sections/IconList.vue";
 import IncludedProducts from "scripts/components/sections/IncludedProducts.vue";
+import AppFeatures from "scripts/components/sections/AppFeatures.vue";
 
 /**
  * Deferred components
@@ -75,5 +76,6 @@ export default {
   ProductBenefitsBar,
   BrandValueSlider,
   IconList,
-  IncludedProducts
+  IncludedProducts,
+  AppFeatures
 };
