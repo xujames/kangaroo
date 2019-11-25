@@ -3,9 +3,9 @@
   {% for feature in section.blocks %}
   { 
     index: {{ forloop.index }},
-    title: "{{ feature.settings.title | escape }}",
-    description: "{{ feature.settings.description | escape }}",
-    icon: "{{ feature.settings.icon | img_url: 'x60' }}",
+    title: {{ feature.settings.title | json }},
+    description: {{ feature.settings.description | json }},
+    icon: "{{ feature.settings.icon | img_url: 'x80' }}",
     img: {
       src: "{{ feature.settings.img | img_url: 'x500' }}",
       alt: "{{ feature.settings.img.alt | escape }}"
@@ -42,7 +42,6 @@
 {% schema %}
 {
   "name": "App Features",
-  "max_blocks": 3,
   "settings": [
     {
       "type": "text",
