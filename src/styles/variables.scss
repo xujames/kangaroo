@@ -28,6 +28,7 @@ $color-light-green: #d4edda;
 $color-gold: #cccc00;
 $color-orange: #F4C031;
 $color-yellow: #FEF065;
+$color-yellow-selected: #f9e94f;
 $color-pastel-yellow: #FFFBDC;
 $color-pastel-yellow-2: #FFF8A6;
 
@@ -67,6 +68,7 @@ $border--light: $color-charcoal;
 $border--dark: rgba($color-black, 0.15);
 $border--input: $color-lead;
 $border--input--selected: $color-orange;
+$border--input--selected--light: $color-yellow-selected;
 
 // shadows
 $drop-shadow: 0 3px 8px rgba($color-black, 0.1);

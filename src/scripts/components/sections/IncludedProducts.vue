@@ -207,7 +207,7 @@ export default {
     cursor: pointer;
 
     &.selected {
-      border-color: $border--input--selected;
+      border-color: $border--input--selected--light;
     }
 
     @include tablet-up {
@@ -305,16 +305,23 @@ export default {
     &__features {
       text-align: left;
 
+      @include tablet-up {
+        width: 260px;
+      }
+
       h3 {
         font-size: 16px;
         line-height: 22px;
         margin-bottom: 16px;
+        font-weight: 500;
       }
 
       pre {
         font-family: $font-body--main;
         font-size: 14px;
         line-height: 20px;
+        white-space: pre-wrap;
+        overflow: visible;
       }
     }
   }
