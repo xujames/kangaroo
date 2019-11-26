@@ -10,9 +10,13 @@
         h4.icon-list__step__title {{ step.title }}
         p.icon-list__step__desc {{ step.desc }}
     carousel.icon-list__carousel(dots)
-      slide.icon-list__step(v-for="step in steps" :key="step.title")
+      slide.icon-list__step(v-for="(step, index) in steps" :key="step.title")
         img.icon-list__step__img(:src="step.img_url" :alt="step.img_alt")
-        h4.icon-list__step__title {{ step.title }}
+        
+        h4.icon-list__step__title 
+          span.step(v-if="$mq === 'mobile'") Step {{ index + 1 }}: 
+          | {{ step.title }}
+        
         p.icon-list__step__desc {{ step.desc }}
 </template>
 
@@ -49,11 +53,11 @@
 .icon-list {
   text-align: center;
   padding: 0 $grid-gutter;
-  margin: 50px 0;
+  margin: 80px 0;
 
   &__title {
     margin-top: 0;
-    margin-bottom: 9px;
+    margin-bottom: 16px;
     font-size: 20px;
     line-height: 40px;
     font-weight: bold;
@@ -66,7 +70,7 @@
   &__desc {
     font-size: 14px;
     line-height: 20px;
-    max-width: 760px;
+    max-width: 840px;
     margin: 0 auto;
     margin-bottom: 32px;
 
