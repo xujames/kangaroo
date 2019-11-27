@@ -2,18 +2,17 @@
   #included-products.included-products
     .container
       .row
-        .column.small-12.large-6(v-if="$mq != 'mobile'")
-            vue-magnifier(
-              :src="selectedProductImage.src"
-              :src-large="selectedProductImage.src"
+        .column.small-12.large-6(v-if="$mq != 'mobile' && selectedProductImage.src")
+          .included-products__zoom
+            zoom-on-hover(
+              :img-normal="resizedImageUrl(selectedProductImage.src, '500x')"
+              :img-zoom="resizedImageUrl(selectedProductImage.src, '1000x')"
               :key="selectedProductImage.src"
+              :scale="1.5"
             )
 
         .column.small-12.large-6.included-products__content-container
           h2.included-products__title {{ title }}
-          span.included-products__variant-price(v-if="currentVariant") {{ currentVariant.price | money }}
-            span.included-products__variant-price.included-products__variant-price--compare(
-              v-if="currentVariant.compare_at_price") {{ currentVariant.compare_at_price | money }}
           
           .included-products__selections-container
             .included-products__selection(
@@ -36,7 +35,7 @@
                     :alt="selectedProductImage.alt"
                     :key="selectedProductImage.src"
                   )
-                button.included-products__selected-product__img-container__next(@click="nextProduct") next
+                button.included-products__selected-product__img-container__next(@click="nextProduct" aria-label="next") →
               .included-products__selected-product__desc(v-html="selectedProduct.description")
             .included-products__selected-product__features(v-if="selectedProductFeatures")
               h3 Key Features:
@@ -56,11 +55,11 @@ import { mapState } from 'vuex'
 
 import storeProduct from 'scripts/mixins/storeProduct.js'
 
-import VueMagnifier from 'scripts/components/basic/VueMagnifier.vue'
+import ZoomOnHover from 'scripts/components/zoom/ZoomOnHover.vue'
 
 export default {
   mixins: [ storeProduct ],
-  components: { VueMagnifier },
+  components: { ZoomOnHover },
   props: {
     title: {
       type: String,
@@ -132,6 +131,15 @@ export default {
           break;
         }
       }
+    },
+    resizedImageUrl(url, width) {
+      const re = /\.(jpe?g|png|gif|bmp)/i,
+            index = url.search(re),
+            beginning = url.substr(0, index),
+            end = url.substr(index);
+
+      const newUrl = `${beginning}_${width}${end}`
+      return newUrl;
     }
   }
 }
@@ -148,6 +156,12 @@ export default {
   @include tablet-up {
     padding: 80px 0;
     margin: 80px auto;
+  }
+
+  &__zoom {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__content-container {
@@ -270,6 +284,9 @@ export default {
 
     &__desc {
       text-align: left;
+      @include mobile-only {
+        margin-bottom: 24px;
+      }
     }
 
     &__img-container {
@@ -291,6 +308,7 @@ export default {
         width: 29px;
         border-radius: 50%;
         background-color: $color-black;
+        color: $color-white;
       }
     }
 

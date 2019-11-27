@@ -10,6 +10,7 @@ import Carousel from "scripts/components/basic/Carousel.vue";
 import Slide from "scripts/components/basic/Slide.vue";
 import Hero from "scripts/components/basic/Hero.vue";
 import VueMagnifier from "scripts/components/basic/VueMagnifier.vue";
+import ZoomOnHover from "scripts/components/zoom/ZoomOnHover.vue"
 
 // Buttons
 import IconButton from "scripts/components/buttons/IconButton.vue";
@@ -56,6 +57,7 @@ export default {
   Slide,
   Hero,
   VueMagnifier,
+  ZoomOnHover,
 
   // Buttons
   IconButton,
