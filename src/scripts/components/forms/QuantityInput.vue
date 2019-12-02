@@ -64,7 +64,7 @@
 <style scoped lang="scss">
   .input--quantity {
     position: relative;
-    max-width: 105px;
+    max-width: 64px;
     flex-shrink: 0;
 
     &__input {
@@ -78,7 +78,7 @@
       transform: translateY(-50%);
 
       &.button {
-        padding: 16px;
+        padding: 16px 0;
       }
 
       &[disabled] {
@@ -102,11 +102,13 @@
       background-color: transparent;
       color: $color--primary;
       letter-spacing: 1.88px;
-      border: 2px solid $color--primary;
-      padding-left: 40px;
-      padding-right: 40px;
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
       text-align: center;
       font-weight: bold;
+      font-size: 20px;
+      line-height: 24px;
     }
 
     .icon {

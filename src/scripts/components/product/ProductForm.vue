@@ -29,8 +29,6 @@
               select.product-form__frequency__duration(v-model="selectedFrequency", @click.capture)
                 option(v-for="frequency in subscriptionFrequencies", :value="frequency", :key="frequency") {{ frequency }} {{ subscriptionUnitType }}
               icon(name="chevron-down", size="9px")
-    p.product-form__price(v-else) 
-      strong {{ product.price | money }}
     transition(name="fade")
       p.product-form__savings(v-if="subscriptionSavings > 0 && selectedPurchaseType === purchaseTypeRecurring") You are saving {{ subscriptionSavings | money }} by choosing a subscription.
     .product-form__atc
@@ -86,7 +84,8 @@
         return this.adding || !this.currentVariantIsAvailable
       },
       buttonLabel () {
-        return this.currentVariantIsAvailable ? 'Add to Cart' : 'Sold Out'
+        let price = this.$options.filters.money(this.currentPrice)
+        return this.currentVariantIsAvailable ? `Add to Cart - ${price}` : 'Sold Out'
       },
       // subscription data
       hasSubscription () {
