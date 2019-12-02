@@ -28,6 +28,7 @@ $color-light-green: #d4edda;
 $color-gold: #cccc00;
 $color-orange: #F4C031;
 $color-yellow: #FEF065;
+$color-candlelight-yellow: #fce825;
 $color-pastel-yellow: #FFFBDC;
 $color-pastel-yellow-2: #FFF8A6;
 
@@ -42,7 +43,7 @@ $color--primary--hover: darken($color--primary, 5%);
 $color--primary--light: $color-light-blue;
 $color--primary--lighter: $color-lighter-blue;
 $color--secondary: $color-yellow;
-$color--secondary--hover: darken($color--secondary, 5%);
+$color--secondary--hover: $color-candlelight-yellow;
 
 $color--accent: $color-yellow;
 $color--disabled: $color-light-grey;
@@ -65,7 +66,8 @@ $bg--secondary-nav: $color-seashell-grey;
 $border--main: $color-black;
 $border--light: $color-charcoal;
 $border--dark: rgba($color-black, 0.15);
-$border--input: $color-lead;
+$border--input: $color-seashell-grey;
+$border--input--hover: $color-lead;
 $border--input--selected: $color-orange;
 
 // shadows
@@ -114,7 +116,7 @@ $h6-size: 10.72;
 // media queries
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
-$breakpoint-hd: 1280px;
+$breakpoint-hd: 1340px;
 
 // grid
 $grid-gutter: 15px;

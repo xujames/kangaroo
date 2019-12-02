@@ -73,6 +73,9 @@
       }
     },
     computed: {
+      ...mapState({
+        itemCount: state => state.cart.checkout.item_count
+      }),
       isDisabled () {
         return this.adding || !this.currentVariantIsAvailable
       },
@@ -172,10 +175,28 @@
         this.$store.dispatch('cart/addItem', addProduct)
           .then(() => this.$store.dispatch('cart/openSidecart'))
           .catch(error => this.$store.dispatch('toast/send', { text: error, type: 'error' }))
-          .then(() => this.adding = false)
+          .then(() => { this.adding = false; this.updateSidecart() })
       },
       selectRecurring () {
         this.selectedPurchaseType = this.purchaseTypeRecurring
+      },
+      // This is a hack for updating the existing sidecart
+      async updateSidecart () {
+        let resp = await fetch(`/cart?view=drawer&timestamp=${Date.now()}`, {
+          credentials: "same-origin",
+          method: "GET"
+        })
+        let sidecartString = await resp.text()
+        let domEl = document.createElement('div')
+        let sidecart = document.querySelector('#sidebar-cart')
+        domEl.innerHTML = await sidecartString
+        let newSidecart = domEl.querySelector('#sidebar-cart')
+
+        sidecart.setAttribute("data-section-settings", newSidecart.getAttribute("data-section-settings"))
+        sidecart.querySelector(".Cart").replaceWith(newSidecart.querySelector(".Cart"))
+        sidecart.querySelector(".Drawer__Header").replaceWith(newSidecart.querySelector(".Drawer__Header"))
+        document.querySelector(".Header__CartCount").innerHTML = this.itemCount
+        document.querySelector(".Header__CartCount").parentElement.click()
       }
     }
   }

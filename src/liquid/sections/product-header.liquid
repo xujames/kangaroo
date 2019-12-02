@@ -9,34 +9,35 @@
 <product-display product-handle="{{ product.handle }}">
   <template slot="content-header">
     {%- if section.settings.promo_line != blank -%}
-    <p class="product-info__promo-line">{{ section.settings.promo_line | escape }}</p>
+    <div class="product-info__promo-line">{{ section.settings.promo_line }}</div>
     {%- endif -%}
     <h1 class="product-info__title">{{ product.title }}</h1>
+    
     <!-- Yotpo Star Rating -->
-    <div class="yotpo bottomLine" data-product-id="{{ product.id }}">
-    
-      {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
-      {%- assign time_now = 'now' | date: '%s' %}
-      {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
-      {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
-      {%- assign yotpo_bottomline_last_updated = product.metafields.yotpo.bottomline_update_time | date: '%s' %}
-      {%- assign diff_seconds_from_last_bottomline_update = time_now | minus: yotpo_bottomline_last_updated %}
-      {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_bottomline_last_updated and diff_seconds_from_last_bottomline_update < 86400 -%}
-      {%- assign yotpo_bottomline_obsolete = false %}
-      {%- else %}
-      {%- assign yotpo_bottomline_obsolete = true %}
-      {%- endif %}
-      {%- if yotpo_offload_content == 'yes' and yotpo_bottomline_obsolete != true -%}
-      {{ product.metafields.yotpo.bottomline }}
-      {%- endif %}
-    
-    </div>
+      <div class="yotpo bottomLine" data-product-id="{{ product.id }}">
+      
+        {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+        {%- assign time_now = 'now' | date: '%s' %}
+        {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+        {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
+        {%- assign yotpo_bottomline_last_updated = product.metafields.yotpo.bottomline_update_time | date: '%s' %}
+        {%- assign diff_seconds_from_last_bottomline_update = time_now | minus: yotpo_bottomline_last_updated %}
+        {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_bottomline_last_updated and diff_seconds_from_last_bottomline_update < 86400 -%}
+        {%- assign yotpo_bottomline_obsolete = false %}
+        {%- else %}
+        {%- assign yotpo_bottomline_obsolete = true %}
+        {%- endif %}
+        {%- if yotpo_offload_content == 'yes' and yotpo_bottomline_obsolete != true -%}
+        {{ product.metafields.yotpo.bottomline }}
+        {%- endif %}
+      
+      </div>
     <!-- End Yotpo Star Rating -->
 
     {%- if section.settings.membership_line != blank and hasFreeMembership -%}
     <p class="product-info__membership-line">
       {{ section.settings.membership_line | escape }}
-      <icon tabindex="0" v-tooltip="{ ref: 'membership-tooltip' }" name="help" size="17px"></icon>
+      <icon tabindex="0" v-tooltip.top="{ ref: 'membership-tooltip' }" name="help" size="17px"></icon>
     </p>
     {%- endif -%}
 
@@ -92,7 +93,7 @@
     "settings": [
       {
         "label": "Promo Line",
-        "type": "text",
+        "type": "richtext",
         "id": "promo_line"
       },
       {

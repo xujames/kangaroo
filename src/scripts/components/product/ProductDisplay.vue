@@ -7,7 +7,7 @@
         .row
           .small-12.large-7.column
             product-carousel(:images="product.images")
-          .small-12.large-5.column(v-if="$mq !== 'mobile'")
+          .product-display__form.small-12.large-5.column(v-if="$mq !== 'mobile'")
             .product-info
               slot(name="content-header")
             product-form-gift-card(v-if="product.type === 'Gift Card'" :product="product")
@@ -75,8 +75,12 @@
       @include tablet-up {
         z-index: 1;
         position: relative;
-        margin-top: 72px;
+        margin-top: 32px;
       }
+    }
+
+    &__form {
+      max-width: 450px;
     }
   }
 
@@ -107,6 +111,10 @@
       }
     }
 
+    .yotpo.bottomLine {
+      margin: 8px 0;
+    }
+
     &__membership-line {
       font-size: 18px;
       line-height: 40px;
@@ -121,7 +129,7 @@
 
       .icon--help {
         margin-left: 5px;
-        margin-bottom: 1px;
+        margin-bottom: 4px;
         cursor: pointer;
       }
     }

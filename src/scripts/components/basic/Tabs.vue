@@ -50,8 +50,7 @@
         background-color: transparent;
         position: relative;
         margin: 5px 0 0 0;
-        min-width: 90px;
-        padding: 0 0 5px 0;
+        padding: 0 12px 5px 12px;
         border-width: 0 0 2px 0;
         border-style: solid;
         border-color: $color-lead;
@@ -61,6 +60,10 @@
         color: $color-lead;
         transition: 0.3s ease all;
         text-transform: uppercase;
+
+        &:first-child {
+          padding-left: 0;
+        }
 
         &:hover {
           color: $text--main;
