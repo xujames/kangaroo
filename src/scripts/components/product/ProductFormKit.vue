@@ -160,7 +160,6 @@
           id: this.currentVariant.id,
           quantity: this.quantity 
         }
-
         this.adding = true
 
         if (this.isSubscriptionSelected) {
@@ -171,9 +170,8 @@
             subscription_id: this.subscriptionId
           }
         }
-
         this.$store.dispatch('cart/addItem', addProduct)
-          .then(() => this.$store.dispatch('cart/openSidecart'))
+          .then(() => window.location.href="/cart")
           .catch(error => this.$store.dispatch('toast/send', { text: error, type: 'error' }))
           .then(() => { this.adding = false; this.updateSidecart() })
       },
