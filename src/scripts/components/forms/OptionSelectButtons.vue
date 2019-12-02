@@ -126,6 +126,10 @@
         margin-right: 0;
       }
 
+      &:hover:not(.is-selected) {
+        border-color: $border--input--hover;
+      }
+
       &.is-selected {
         border-color: $border--input--selected;
       }

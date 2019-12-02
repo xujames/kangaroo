@@ -74,7 +74,7 @@ export default {
   width: 100%;
   background-color: $bg--secondary-nav;
   height: 72px;
-  z-index: 50;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;

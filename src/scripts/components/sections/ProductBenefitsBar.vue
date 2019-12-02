@@ -29,6 +29,10 @@ export default {
   align-items: center;
   color: $color-white;
 
+  @include tablet-up {
+    margin: 80px 0;
+  }
+
   @include desktop-up {
     flex-direction: row;
     padding: 60px $grid-gutter;

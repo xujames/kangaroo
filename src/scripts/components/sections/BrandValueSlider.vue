@@ -90,7 +90,7 @@ export default {
       this.timerLength = 0
       this.timerHeight = 0
       setTimeout(() => {
-        this.timerLength = 5
+        this.timerLength = 7
         this.timerHeight = 100
       }, 50)
       this.currentSlide + 1 <= this.content_sections.length - 1 ? this.nextSlide() : this.currentSlide = 0
@@ -102,7 +102,7 @@ export default {
           this.timerLength = 0
           this.timerHeight = 0
         } 
-      }, 5000)
+      }, 7000)
     }
   }
 }
