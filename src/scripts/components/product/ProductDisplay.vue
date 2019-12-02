@@ -1,6 +1,6 @@
 
 <template lang="pug">
-  .product-display--wrapper(v-if="product")
+  .product-display--wrapper#top(v-if="product")
     .product-display
       .hero__background
       .container
