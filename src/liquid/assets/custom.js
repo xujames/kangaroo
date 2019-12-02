@@ -38,19 +38,21 @@ $(document).ready(function() {
 //   });
 
   $(window).scroll(function() {
-  	var breakpoint = $('.download-app-cover').offset().top - $(window).scrollTop();
-    // console.log(breakpoint);
-    if(breakpoint > 1509){
-    	// $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_EntryDetected_Phone.png?37913');
-      $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_Motion_Entry_Alert.png?41549');
-    }
-    else if(breakpoint < 1508 && breakpoint > 1009){
-      // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_MotionDetected_Phone.png?37913');
-      $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_Motion_Alert.png?41549');
-    }
-    else if(breakpoint < 1008){
-      // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_LeakDetected_Phone.png?37913');
-      $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_Water_Climate_Alert.png?41549');
+    if ($('.download-app-cover').length > 0) {
+      var breakpoint = $('.download-app-cover').offset().top - $(window).scrollTop();
+      // console.log(breakpoint);
+      if(breakpoint > 1509){
+        // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_EntryDetected_Phone.png?37913');
+        $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_Motion_Entry_Alert.png?41549');
+      }
+      else if(breakpoint < 1508 && breakpoint > 1009){
+        // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_MotionDetected_Phone.png?37913');
+        $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_Motion_Alert.png?41549');
+      }
+      else if(breakpoint < 1008){
+        // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_LeakDetected_Phone.png?37913');
+        $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_Water_Climate_Alert.png?41549');
+      }
     }
   });
 
