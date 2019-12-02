@@ -61,7 +61,36 @@ export default {
       this.$store.dispatch('cart/addItem', addProduct)
         .then(() => this.$store.dispatch('cart/openSidecart'))
         .catch(error => this.$store.dispatch('toast/send', { text: error, type: 'error' }))
+    },
+    elementInViewport(el) {
+      var top = el.offsetTop;
+      var height = el.offsetHeight;
+      while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+      }
+
+      return (
+        top >= window.pageYOffset &&
+        (top + height) <= (window.pageYOffset + window.innerHeight)
+      );
+    },
+    handleScroll() {
+      var that = this;
+      this.links.forEach(link => {
+        const el = document.getElementById(link.link.replace('#', ''));
+        if(that.elementInViewport(el)) {
+          that.activeLink = link.link;
+          return false;
+        }
+      });
     }
+  },
+  created() {
+    document.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    document.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -118,6 +147,9 @@ export default {
 
     li {
       list-style: none;
+      transition: all .15s ease-in-out;
+      transition-delay: .2s;
+      border-bottom: 2px solid transparent;
       &.active {
         border-bottom: 2px solid $color-black;
       }
