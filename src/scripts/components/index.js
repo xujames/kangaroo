@@ -33,6 +33,7 @@ import BrandValueSlider from "scripts/components/sections/BrandValueSlider.vue";
 import IconList from "scripts/components/sections/IconList.vue";
 import IncludedProducts from "scripts/components/sections/IncludedProducts.vue";
 import AppFeatures from "scripts/components/sections/AppFeatures.vue";
+import SpecsAccordion from "scripts/components/sections/SpecsAccordion.vue";
 
 /**
  * Deferred components
@@ -79,5 +80,6 @@ export default {
   BrandValueSlider,
   IconList,
   IncludedProducts,
-  AppFeatures
+  AppFeatures,
+  SpecsAccordion
 };
