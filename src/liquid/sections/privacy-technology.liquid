@@ -1,0 +1,155 @@
+{% capture slides %}
+[
+  {% for slide in section.blocks %}
+  image: "{{ slide.settings.image | img_url: '1200x' }}",
+  "alt": "{{ slide.settings.image.alt | escape }}", 
+  content: [
+    block_1: {
+      icon: {
+        src: "{{ slide.settings.icon_1 | img_url: 'x60' }}",
+        alt: "{{ slide.settings.icon_1.alt | escape }}"
+      },
+      title: "{{ slide.settings.title_1 | escape }}",
+      desc: "{{ slide.settings.desc_1 | escape }}"
+    },
+     block_2: {
+      icon: {
+        src: "{{ slide.settings.icon_2 | img_url: 'x60' }}",
+        alt: "{{ slide.settings.icon_2.alt | escape }}"
+      },
+      title: "{{ slide.settings.title_2 | escape }}",
+      desc: "{{ slide.settings.desc_2 | escape }}"
+    },
+     block_3: {
+      icon: {
+        src: "{{ slide.settings.icon_3 | img_url: 'x60' }}",
+        alt: "{{ slide.settings.icon_3.alt | escape }}"
+      },
+      title: "{{ slide.settings.title_3 | escape }}",
+      desc: "{{ slide.settings.desc_3 | escape }}"
+    },
+     block_4: {
+      icon: {
+        src: "{{ slide.settings.icon_4 | img_url: 'x60' }}",
+        alt: "{{ slide.settings.icon_4.alt | escape }}"
+      },
+      title: "{{ slide.settings.title_4 | escape }}",
+      desc: "{{ slide.settings.desc_4 | escape }}"
+    }
+  ]
+  {% endfor %}
+]
+{% endcapture %}
+
+<privacy-technology-features title="{{ section.settings.title | escape }}" :slides="{{ slides | escape }}"></privacy-technology-features>
+
+{% schema %}
+{
+  "name": "Privacy Camera Technology",
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Default Heading"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Text Block 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Heading",
+          "default": "Default Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_1",
+          "label": "Description",
+          "default": "Default benefit description"
+        },
+        {
+          "type": "header",
+          "content": "Text Block 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Heading",
+          "default": "Default Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_2",
+          "label": "Description",
+          "default": "Default benefit description"
+        },
+        {
+          "type": "header",
+          "content": "Text Block 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Heading",
+          "default": "Default Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_3",
+          "label": "Description",
+          "default": "Default benefit description"
+        },
+        {
+          "type": "header",
+          "content": "Text Block 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_4",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Heading",
+          "default": "Default Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_4",
+          "label": "Description",
+          "default": "Default benefit description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
