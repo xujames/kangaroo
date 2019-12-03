@@ -26,8 +26,8 @@
     }
 
     .accordion__header {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding-top: 32px;
+      padding-bottom: 32px;
       justify-content: center;
       text-transform: none;
       font-size: rem(20);
@@ -35,6 +35,8 @@
       font-weight: 600;
 
       @include tablet-up {
+        padding-top: 40px;
+        padding-bottom: 40px;
         font-size: rem(24);
         line-height: rem(23);
       }
