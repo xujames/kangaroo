@@ -137,7 +137,9 @@ export default {
       top: -48px;
     }
     &__icon {
-      margin-right: 24px;
+      max-width: 75px;
+      height: auto;
+      margin: 0 24px 0 auto;
     }
     &__copy {
       &-title {
