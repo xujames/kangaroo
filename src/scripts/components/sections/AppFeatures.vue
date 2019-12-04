@@ -1,5 +1,5 @@
 <template lang="pug">
-section.app-features
+section.app-features#app-features
   h2.app-features__title {{ title }}
   .app-features__images
     img.app-features__images-icon(v-for="(image, idx) in images" :src="image.src" :alt="image.alt" :key="idx")
@@ -11,7 +11,7 @@ section.app-features
           .app-feature__copy
             .app-feature__copy-title {{ feature.title }}
             .app-feature__copy-description {{ feature.description }}
-      .large-4.column#app-features
+      .large-4.column
         img.app-feature__image(:src="currentImage" :alt="currentAlt")
       .app-feature__wrapper.large-4.column.move-up
         .app-feature(v-for="(feature, idx) in rightFeatures" :key="feature.title")
