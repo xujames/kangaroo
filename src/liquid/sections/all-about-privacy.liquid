@@ -1,0 +1,166 @@
+{%- if section.settings.enable -%}
+	<div id="section-{{ section.id }}" class="section-content" data-section-id="{{ section.id }}">
+    <div class="container">
+
+        {% if section.settings.main_image != blank %}
+    		<div class="cover">
+            <div class="Grid image_grid dhara">
+							<div class="Grid__Cell 1/1--phone 1/2--tablet-and-up 1/2--desk">
+								{%- if section.settings.image_heading != blank -%}
+									<h2 class="image_heading">{{ section.settings.image_heading }}</h2>
+								{%- endif -%}
+								{%- assign image = section.settings.main_image -%}
+								{%- if image -%}
+									<div class="block_image">
+										<img class="custom_block_image Image--lazyLoad"
+												 src="{{ image | img_url: '1x1' }}"
+												 data-src="{{ image | img_url: '438x' }}"
+												 alt="{{ image.alt | escape }}">
+
+										<noscript>
+											<img class="Slideshow__Image" src="{{ image | img_url: 'x800' }}" alt="{{ image.alt | escape }}">
+										</noscript>
+									</div>
+								{%- else -%}
+									<div class="Slideshow__ImageContainer">
+										{%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+										{{ placeholder | placeholder_svg_tag: 'PlaceholderBackground__Svg' }}
+									</div>
+								{%- endif -%}
+							</div>
+							<div class="Grid__Cell 1/1--phone 1/2--tablet-and-up 1/2--desk">
+								<div class="section_content">
+									{%- if section.settings.content != blank -%}
+										{{ section.settings.content }}
+									{%- endif -%}
+								</div>
+							</div>
+            </div>
+        	</div>
+    		{% endif %}
+
+    </div>
+</div>
+
+<style>
+#section-{{ section.id }} {
+	color: {{ section.settings.text_color }};
+	background: {{section.settings.bg_color}};
+	padding: 60px 0;
+}
+
+#section-{{ section.id }} .image_heading {
+	font-size: 21px;
+	font-weight: 700;
+	text-align: center;
+}
+
+#section-{{ section.id }} .block_image {
+	text-align: center;
+	margin-top: 15px;
+}
+
+#section-{{ section.id }} .block_image img {
+	width: 52px;
+}
+
+#section-{{ section.id }} .section_content {
+	margin-top: 25px;
+}
+
+#section-{{ section.id }} .section_content h3 {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+#section-{{ section.id }} .section_content div {
+	margin-bottom: 20px;
+}
+
+#section-{{ section.id }} .section_content div p {
+	font-size: 14px;
+}
+
+@media(min-width: 768px) {
+	#section-{{ section.id }} {
+		padding: 100px 0;
+	}
+
+	#section-{{ section.id }} .image_heading {
+		font-size: 34px;
+	}
+
+	#section-{{ section.id }} .block_image {
+		margin-top: 100px;
+	}
+
+	#section-{{ section.id }} .block_image img {
+		width: 212px;
+	}
+
+	#section-{{ section.id }} .section_content {
+		width: 85%;
+		margin-top: 0;
+	}
+
+	#section-{{ section.id }} .section_content h3 {
+		font-size: 21px;
+	}
+
+	#section-{{ section.id }} .section_content div {
+		margin-bottom: 50px;
+	}
+
+	#section-{{ section.id }} .section_content div p {
+		font-size: 18px;
+	}
+}
+</style>
+
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "All About Privacy",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enabled Section?"
+      },
+			{
+				"type": "text",
+				"id": "image_heading",
+				"label": "Image Heading"
+			},
+			{
+				"type": "image_picker",
+				"id": "main_image",
+				"label": "Main Image"
+			},
+			{
+				"type": "html",
+				"id": "content",
+				"label": "Content"
+			},
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Select Background Color"
+      },
+			{
+        "type": "color",
+        "id": "text_color",
+        "label": "Select Text Color"
+      }
+		],
+		"presets": [
+	    {
+	      "category": "Custom Section",
+	      "name": "All About Privacy",
+	      "settings": {}
+	    }
+	  ]
+  }
+{% endschema %}
