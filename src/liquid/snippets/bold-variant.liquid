@@ -1,6 +1,6 @@
 {%- comment -%}
-BOLD-VARIANT.LIQUID
-Last updated: 2018-November-6
+BOLD-VARIANT.LIQUID (Optimize Version)
+Last updated: 2019-Oct-31
 
 Sets all appropriate liquid variables for Bold Apps that affect the variant.
 Creates an updated JSON object that includes key information relating to our apps.
@@ -64,6 +64,7 @@ FLAGS:
 {%- endif -%}
 
 {%- assign app_list = '' -%}
+
 {%- if app_list != blank and custom_app_list != blank -%}
   {%- assign bold_variant_app_list = app_list | append: ',' | append: custom_app_list -%}
 {%- else -%}
@@ -171,9 +172,9 @@ FLAGS:
   {%- if bold_variant_hide_action == 'skip' and bold_hidden_variant -%}{%- continue -%}{%- endif -%}
 {% endif %}
 
-{%- assign option1_clean_name = variant.option1 | remove: csp_flag_string -%}
-{%- assign option2_clean_name = variant.option2 | remove: csp_flag_string -%}
-{%- assign option3_clean_name = variant.option3 | remove: csp_flag_string -%}
+  {%- assign option1_clean_name = variant.option1 | remove: csp_flag_string -%}
+  {%- assign option2_clean_name = variant.option2 | remove: csp_flag_string -%}
+  {%- assign option3_clean_name = variant.option3 | remove: csp_flag_string -%}
 
 {%- comment -%}
 ============================================================================================================
@@ -194,7 +195,7 @@ FLAGS:
   "taxable":{{- bold_variant.taxable | json -}},
   "featured_image":
   {%- if bold_variant.featured_image == blank -%}
-    null,
+    {{bold_base_variant.featured_image | json}},
   {%- else -%}
     {
     "created_at":{%- capture created_at -%}{{- bold_variant.featured_image.created_at -}}T{{- bold_variant.featured_image.created_at | date: "%T" -}}{%- endcapture -%}{{- shop.timezone -}}{{- created_at | json -}},
@@ -208,7 +209,7 @@ FLAGS:
     },
   {%- endif -%}
 
-  "image_id":{{variant.featured_image.id | json -}},
+  "image_id":{{variant.featured_image.id | default: bold_base_variant.featured_image.id | json -}},
   "available":{{- bold_variant_available | json -}},
   "name":{{- bold_variant_base_product.title | append: " - " | append: bold_variant.title | remove: csp_flag_string | json -}},
   "options":{{- bold_variant.options | json | remove: csp_flag_string -}},

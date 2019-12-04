@@ -1,6 +1,6 @@
 {%- comment -%}
-BOLD-PRODUCT.LIQUID
-Last updated: 2018-Oct-16
+BOLD-PRODUCT.LIQUID (Optimize Version)
+Last updated: 2019-Oct-31
 
 Sets all the appropriate liquid variables for Bold Apps that affect the product.
 Creates an updated JSON object that takes all appropriate apps into account. Can mimic all three types of product objects that Shopify uses.
@@ -45,21 +45,39 @@ ASSIGN LIQUID VARIABLES
 {%- assign bold_compare_at_price_max = bold_product.compare_at_price_max -%}
 {%- assign bold_compare_at_price_varies = bold_product.compare_at_price_varies -%}
 {%- assign bold_selected_or_first_available_variant = bold_product.selected_or_first_available_variant | default: bold_product.variants.first | default: bold_product.variants[0] -%}
+{%- assign bold_variant = bold-variant | default: product.selected_or_first_available_variant -%}
+{%- assign bold_variant_price = bold_variant.price -%}
 
-{%- if product or bold-product -%}
-    {%- assign bold_apps_installed = shop | map: 'metafields' | map: 'bold_apps_installed' | first -%}
+{%- assign escape_output = escape | default: false -%}
+{%- assign bold_product_output = output | default: 'default' -%}
+{%- assign bold_product_endpoint = endpoint | default: false -%}
+{%- if bold_product_endpoint -%}{%- assign bold_product_output = 'json' -%}{%- endif -%}
 
-    {%- comment -%}Assign flags to their default values if not set {%- endcomment -%}
-    {%- assign escape_output = escape | default: false -%}
-    {%- assign bold_product_output = output | default: 'default' -%}
-    {%- assign bold_product_endpoint = endpoint | default: false -%}
-    {%- if bold_product_endpoint -%}{%- assign bold_product_output = 'json' -%}{%- endif -%}
+{%- assign bold_product_hide_action = hide_action | default: 'none' -%}
+{%- assign bold_product_sort_by = sort_by | default: nil -%}
+{%- assign bold_product_sort_order = sort_order | default: 'asc' -%}
+{%- assign bold_product_quick_price = quick_price | default: false -%}
 
-    {%- assign bold_product_hide_action = hide_action | default: 'none' -%}
-    {%- assign bold_product_sort_by = sort_by | default: nil -%}
-    {%- assign bold_product_sort_order = sort_order | default: 'asc' -%}
-    {%- assign bold_product_quick_price = quick_price | default: false -%}
+{%- assign bold_apps_installed = shop | map: 'metafields' | map: 'bold_apps_installed' | first -%}
+{% assign bold_bundles_version = bold_apps_installed['Product Bundles'] %}
+{% assign bold_csp_version = bold_apps_installed['Customer Pricing'] %}
 
+{%- if bold_bundles_version == 3 or bold_csp_version == 3 and bold_bundles_version != 1 -%}
+{%- capture bold_product_json -%}
+{{product | json}}
+{%- endcapture -%}
+
+    {%- if bold_product_output == 'json' or bold_product_output == 'js' -%}
+        {%- if escape_output -%}
+            {{- bold_product_json | strip_newlines | escape -}}
+        {%- else -%}
+            {{- bold_product_json | strip_newlines -}}
+        {%- endif -%}
+    {%- endif -%}
+
+
+{%- else -%}
+  {%- if product or bold-product -%}
     {%- if bold_product_hide_action == 'skip' and output == blank -%}
         {%- assign product_metafield_check = bold_product.variants | map: 'metafields' | map: 'shappify_csp' | map: 'csp_tag' | uniq -%}
         {%- if product_metafield_check.size > 1 or product_metafield_check.first != blank -%}
@@ -114,13 +132,12 @@ ASSIGN LIQUID VARIABLES
         {%- assign bold_trigger_break = false -%}
 
         {%- if requires_variant_loop -%}
-            {%- comment -%}INTIALIZE VARIABLES, CLEAR OLD VALUES {%- endcomment -%}
-            {%- assign bold_price_min = 1000000000000000000 -%}               {%- comment -%}Starting the count at Shopify's max allowed value {%- endcomment -%}
+            {%- assign bold_price_min = 1000000000000000000 -%}
             {%- assign bold_price_max = 0 -%}
             {%- assign bold_price = bold_price_min -%}
             {%- assign bold_price_varies = false -%}
 
-            {%- assign bold_compare_at_price_min = 1000000000000000000  -%}   {%- comment -%}Starting the count at Shopify's max allowed value {%- endcomment -%}
+            {%- assign bold_compare_at_price_min = 1000000000000000000  -%}
             {%- assign bold_compare_at_price_max = 0 -%}
             {%- assign bold_compare_at_price = bold_compare_at_price_min -%}
             {%- assign bold_compare_at_price_varies = false -%}
@@ -134,7 +151,6 @@ ASSIGN LIQUID VARIABLES
 
             {%- assign bold_product_available = false -%}
 
-            {%- comment -%}SET LIQUID PRODUCT VARIABLES DERIVED FROM VARIANT VALUES {%- endcomment -%}
 
             {%- assign variant_output_json = '' -%}
             {%- for variant in variant_list -%}
@@ -195,13 +211,10 @@ ASSIGN LIQUID VARIABLES
                 {%- assign variant_output_json = '[' | append: variant_output_json | append: ']' -%}
             {%- endif -%}
 
-            {%- comment -%}Failsafe: This will set all the Bold prices to "NaN" (Not A Number) in the unexpected case where all variants are supposed to be hidden from the customer {%- endcomment -%}
             {%- if bold_variants_size == 0 -%}{%- assign bold_price_min = "NaN" -%}{%- assign bold_price_max = "NaN" -%}{%- assign bold_price = "NaN" -%}{%- assign bold_compare_at_price_min = "NaN" -%}{%- assign bold_compare_at_price_max = "NaN" -%}{%- assign bold_compare_at_price = "NaN" -%}{%- endif -%}
 
-            {%- comment -%}Failsafe: This will set all the Bold compare_at prices to the default compare_at_prices when 'compare_at' is not found {%- endcomment -%}
             {%- if bold_compare_at_price_min > bold_compare_at_price_max -%}{%- assign bold_compare_at_price_min = bold_product.compare_at_price_min -%}{%- assign bold_compare_at_price_max = bold_product.compare_at_price_max -%}{%- assign bold_compare_at_price = bold_product.compare_at_price -%}{%- endif -%}
 
-            {%- comment -%}Failsafe: If no valid variants exist, fail back to product.selected_or_first_available_variant after all {%- endcomment -%}
             {%- if bold_selected_or_first_available_variant == "" -%}{%- assign bold_selected_or_first_available_variant = product.selected_or_first_available_variant -%}{%- endif -%}
 
         {%- else -%}
@@ -270,23 +283,16 @@ ASSIGN LIQUID VARIABLES
 
     {%- endif -%}
 
-    {%- comment -%}
-    ============================================================================================================
-    HANDLE HIDDEN PRODUCTS
-    ============================================================================================================
-    {%- endcomment -%}
 
-    {%- comment -%}CHECK FOR CSP VISIBILITY {%- endcomment -%}
+
     {%- assign csp_hide_tag = false -%}
     {%- assign hide_check = bold_product_customer_tag | append: '-HIDE' -%}
     {%- if bold_product.tags contains hide_check -%}{%- assign csp_hide_tag = true -%}{%- endif -%}
-    {%- comment -%}END OF CSP CHECK {%- endcomment -%}
 
     {%- unless bold_product.id == blank -%}
         {%- if csp_hide_tag == true or bold_product.type == 'OPTIONS_HIDDEN_PRODUCT' or bold_product.type == 'MOTIVATOR_HIDDEN_PRODUCT' or bold_product.metafields.inventory.ShappifyHidden == "true" -%}
             {%- assign bold_hidden_product = true -%}
 
-            {%- comment -%}What is the reason for the hidden product? {%- endcomment -%}
             {%- if csp_hide_tag == true -%}                                          {%- assign reason = 'customer-hide-tag' -%}
                 {%- elsif bold_product.type == 'MOTIVATOR_HIDDEN_PRODUCT' -%}            {%- assign reason = 'motivator-hidden-product' -%}
                 {%- elsif bold_product.type == 'OPTIONS_HIDDEN_PRODUCT' -%}              {%- assign reason = 'options-hidden-product' -%}
@@ -319,11 +325,7 @@ ASSIGN LIQUID VARIABLES
         {%- endif -%}
     {%- endunless -%}
 
-    {%- comment -%}
-    ============================================================================================================
-    MIN/MAX QUANTITY
-    ============================================================================================================
-    {%- endcomment -%}
+
 
     {%- if bold_apps_installed contains 'Customer Pricing' or bold_apps_installed contains 'Quantity Breaks' -%}
 
@@ -349,11 +351,7 @@ ASSIGN LIQUID VARIABLES
 
     {%- endif -%}
 
-    {%- comment -%}
-    ============================================================================================================
-    BEGIN JSON OUTPUT
-    ============================================================================================================
-    {%- endcomment -%}
+
 
     {%- unless no_quick_shop_buy == true -%}
     {%- assign variant_ids = product | map: 'variants' | map: 'id' -%}
@@ -432,14 +430,12 @@ ASSIGN LIQUID VARIABLES
     {%- endif -%},
     "url": {{- bold_product.url | json -}}
 
-    {%- comment -%}FLAGS TO INDICATE WHICH APPS ARE IN PLAY {%- endcomment -%}
     {%- if product_has_btm -%},"hasBTM": true{%- endif -%}
     {%- if product_has_csp -%},"hasCSP": true{%- endif -%}
     {%- if product_has_qb -%},"hasQB": true{%- endif -%}
     {%- if product_has_ro -%},"hasRO": true{%- endif -%}
     {%- if product_has_bdl -%},"hasBDL": true{%- endif -%}
 
-    {%- comment -%}SET MINIMUM/MAXIMUM QUANTITIES{%- endcomment -%}
     {%- if bold_product_min -%},"min": {{ bold_product_min | json }}{%- endif -%}
     {%- if bold_product_max -%},"max": {{ bold_product_max | json }}{%- endif -%}
     }
@@ -550,4 +546,5 @@ ASSIGN LIQUID VARIABLES
         {%- break -%}
     {%- endif -%}
 
+{%- endif -%}
 {%- endif -%}

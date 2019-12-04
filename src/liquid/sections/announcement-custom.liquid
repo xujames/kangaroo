@@ -1,0 +1,181 @@
+{%- if section.settings.enable_bar -%}
+  {%- unless section.settings.home_page_only and template != 'index' -%}
+    <div id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="announcement-bar">
+      <div class="AnnouncementBar">
+        <div class="AnnouncementBar__Wrapper">
+          <div class="AnnouncementBar__Content">
+            {{ section.settings.content }}
+          </div>
+          <div class="SectionHeader__ButtonWrapper">
+            <div class="ButtonGroup ButtonGroup--spacingSmall">
+              {%- if section.settings.link_text != blank -%}
+                <a href="{{ section.settings.link_url }}" class="ButtonGroup__Item Button">{{ section.settings.link_text }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      #section-{{ section.id }} {
+        background: {{ section.settings.background }};
+        color: {{ section.settings.text_color }};
+      }
+
+      .announcement-custom {
+        position: sticky;
+        top: 55px;
+        width: 100%;
+        z-index: 50;
+      }
+
+      #section-{{ section.id }} .ButtonGroup {
+        margin: 0;
+      }
+
+      #section-{{ section.id }} .ButtonGroup .Button {
+        width: 60px;
+        font-size: 12px;
+        height: 30px;
+        letter-spacing: 0.03em;
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 4px;
+        background: #5A91FE;
+        margin: 0 auto;
+        padding: 0;
+        line-height: 30px;
+      }
+
+      #section-{{ section.id }} .ButtonGroup .ButtonGroup__Item::before {
+        background: none;
+      }
+
+      #section-{{ section.id }} .Button:hover::after {
+        opacity: 1;
+      }
+
+      #section-{{ section.id }} .Button::after {
+        background: none;
+      }
+
+      #section-{{ section.id }} .AnnouncementBar__Wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 13px 17px;
+      }
+
+      #section-{{ section.id }} .AnnouncementBar__Content {
+        display: inline-block;
+
+      }
+
+      #section-{{ section.id }} .svg_container {
+        display: inline-block;
+        vertical-align: middle;
+        height: 30px;
+      }
+
+      #section-{{ section.id }} .text-content {
+        display: inline-block;
+        vertical-align: middle;
+        font-family: "Sofia Pro";
+        font-size: 16px;
+        margin-left: 12px;
+      }
+
+      #section-{{ section.id }} .SectionHeader__ButtonWrapper {
+        display: inline-block;
+        margin-top: 0;
+      }
+
+      #section-{{ section.id }} .hide-on-mobile {
+        display: none;
+      }
+
+      @media(min-width: 768px) {
+        .announcement-custom {
+          top: 67px;
+        }
+
+        #section-{{ section.id }} .AnnouncementBar__Content {
+          height: 38px;
+          line-height: 38px;
+        }
+
+        #section-{{ section.id }} .AnnouncementBar__Wrapper {
+          padding: 9px 80px;
+        }
+
+        #section-{{ section.id }} .ButtonGroup .Button {
+          width: 108px;
+          height: 38px;
+          font-size: 14px;
+          line-height: 38px;
+          border-radius: 5px;
+          background: #FFF165;
+          color: #334D80;
+        }
+
+        #section-{{ section.id }} .hide-on-mobile {
+          display: inline;
+        }
+      }
+    </style>
+
+    <script>
+      document.documentElement.style.setProperty('--announcement-bar-height', document.getElementById('shopify-section-announcement').offsetHeight + 'px');
+    </script>
+  {%- endunless -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "class": "announcement-custom",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bar",
+      "label": "Enable bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": "Home page only",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "html",
+      "id": "content",
+      "label": "Text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "html",
+      "id": "link_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Button URL"
+    }
+  ]
+}
+{% endschema %}

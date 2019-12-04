@@ -1,17 +1,30 @@
-<div id="section-{{ section.id }}" data-section-id="{{ section.id }}" class="hidden-phone" data-section-type="logo">
+<div id="section-{{ section.id }}" data-section-id="{{ section.id }}" class="" data-section-type="logo">
   <div class="Container">
-    <ul class="logo-list" style="list-style: none;">
+    <div class="logo-list">
       {%- for block in section.blocks-%}
-      <li class="logo-img">
+      <div class="logo-img">
       	<img src="{{ block.settings.image}}"/>
-      </li>
+      </div>
       {%- endfor -%}
-    </ul>
+    </div>
   </div>
 </div>
 <style>
-  .logo-img img{
+  #section-{{ section.id }} .logo-list {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  #section-{{ section.id }} .logo-img {
+    margin-bottom: 20px;
+  }
+  #section-{{ section.id }} .logo-img img {
   	height: 30px;
+  }
+
+  @media (max-width: 400px) {
+    #section-{{ section.id }} .logo-img img {
+    	height: 20px;
+    }
   }
 </style>
 {% schema %}

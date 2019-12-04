@@ -1,0 +1,435 @@
+{%- capture flickity_options -%}
+{
+  "prevNextButtons": false,
+  "wrapAround": false,
+  "dragThreshold": 16,
+  "pageDots": true,
+  "autoPlay": 5000,
+  "groupCells": false
+}
+{%- endcapture -%}
+
+{%- if section.settings.enable -%}
+	<div id="section-{{ section.id }}" class="custom-tabs section-content" data-section-id="{{ section.id }}" style="background-color:{% if section.settings.bg_color %} {{section.settings.bg_color}} {% endif %}">
+      <div class="container">
+
+        <ul class="tabs">
+          {% for block in section.blocks %}
+            {%- assign image = block.settings.image1 -%}
+            {%- if image -%}
+  	          <li class="tab-link {% if forloop.first %} current {% endif %}" data-tab="tab-{{forloop.index}}"><img class="custom_block_image Image--lazyLoad"
+  								 src="{{ block.settings.image1 | img_url: '1x1' }}"
+  								 data-src="{{ block.settings.image1 | img_url: '1000x' }}"
+  								 alt="{{ block.settings.image1.alt | escape }}"></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+				{% capture product_content %}
+				<div class="Grid__Cell 1/1--phone 1/2--tablet-and-up 1/2--desk product_content">
+					<div class="section_content">
+						{%- if section.settings.title != blank -%}
+							<h2 class="tab_content_heading">{{ section.settings.title }}</h2>
+						{%- endif -%}
+						{%- if section.settings.subheading != blank -%}
+							<div class="tab_content_subheading">{{ section.settings.subheading }}</div>
+						{%- endif -%}
+
+            <div class="carousel-container">
+              <div class="homepage-product-mobile-carousel" data-flickity-options='{{ flickity_options }}'>
+              {%- for block in section.blocks -%}
+              	{%- assign block_image = block.settings.image1 -%}
+              	<div class="common-sec">
+                  {%- if block_image -%}
+                    <div class="block_image">
+                      <img class="custom_block_image Image--lazyLoad"
+                           src="{{ block_image | img_url: '1x1' }}"
+                           data-src="{{ block_image | img_url: '1000x' }}"
+                           alt="{{ block_image.alt | escape }}">
+
+                      <noscript>
+                        <img class="Slideshow__Image" src="{{ block_image | img_url: 'x800' }}" alt="{{ block_image.alt | escape }}">
+                      </noscript>
+                    </div>
+                  {%- else -%}
+                    <div class="block_image">
+                      {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+                      {{ placeholder | placeholder_svg_tag: 'Slideshow__Image PlaceholderBackground__Svg' }}
+                    </div>
+                  {%- endif -%}
+
+              	</div>
+                {%- endfor -%}
+              </div>
+            </div>
+
+
+            <div class="SectionHeader__ButtonWrapper mobileButton">
+              <div class="ButtonGroup ButtonGroup--spacingSmall">
+                {%- if section.settings.link_text != blank -%}
+                  <a href="{{ section.settings.link_url }}" class="ButtonGroup__Item Button">{{ section.settings.link_text | escape }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+
+
+            {%- if section.settings.includes_content != blank -%}
+			        <div class="includes_content_container">
+			          {{section.settings.includes_content}}
+			        </div>
+			      {%- endif -%}
+						{%- if section.settings.features_content != blank -%}
+			        <div class="features_content_container">
+			          {{section.settings.features_content}}
+			        </div>
+			      {%- endif -%}
+
+            <div class="SectionHeader__ButtonWrapper desktopButton">
+              <div class="ButtonGroup ButtonGroup--spacingSmall">
+                {%- if section.settings.link_text != blank -%}
+                  <a href="{{ section.settings.link_url }}" class="ButtonGroup__Item Button">{{ section.settings.link_text | escape }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+					</div>
+				</div>
+				{% endcapture %}
+
+        {% capture block_images %}
+          {% for block in section.blocks %}
+  					<div class="Grid__Cell 1/1--phone 1/2--tablet-and-up 1/2--desk tab-content {% if forloop.first %} current {% endif %}" id="tab-{{forloop.index}}">
+  						{%- assign image = block.settings.image1 -%}
+  						{%- if image -%}
+  							<div class="block_image">
+  								<img class="custom_block_image Image--lazyLoad"
+  										 src="{{ image | img_url: '1x1' }}"
+  										 data-src="{{ image | img_url: '1000x' }}"
+  										 alt="{{ image.alt | escape }}">
+
+  								<noscript>
+  									<img class="Slideshow__Image" src="{{ image | img_url: 'x800' }}" alt="{{ image.alt | escape }}">
+  								</noscript>
+  							</div>
+  						{%- else -%}
+  							<div class="Slideshow__ImageContainer">
+  								{%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+  								{{ placeholder | placeholder_svg_tag: 'PlaceholderBackground__Svg' }}
+  							</div>
+  						{%- endif -%}
+  					</div>
+          {% endfor %}
+        {% endcapture %}
+
+    		<div class="cover">
+          <div class="Grid image_grid dhara">
+
+						{{- block_images -}}
+						{{- product_content -}}
+
+          </div>
+      	</div>
+      </div>
+
+
+</div>
+
+<style>
+#section-{{ section.id }} .common-sec {
+  width: 100%;
+  height: 400px;
+}
+
+#section-{{ section.id }}.custom-tabs .tabs {
+  display: none;
+}
+
+#section-{{ section.id }}.custom-tabs .tabs .tab-link {
+	padding: 5px;
+  border: 1px solid #E0E0E0;
+	width: 100px;
+	height: 100px;
+	background: none;
+  border-radius: 2px;
+	margin-bottom: 10px;
+
+}
+
+#section-{{ section.id }}.custom-tabs .tabs .tab-link.current {
+	padding: 3px;
+	border: 3px solid #FFF166;
+}
+
+#section-{{ section.id }}.custom-tabs .Grid .Grid__Cell.tab-content.current {
+  display: none;
+}
+
+#section-{{ section.id }} .tab_content_heading {
+	font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#section-{{ section.id }} .tab_content_subheading {
+  font-size: 14px;
+}
+
+#section-{{ section.id }} .tab_content_subheading svg {
+  width: 100px;
+}
+
+#section-{{ section.id }} .tab_content_subheading p {
+  margin-bottom: 16px;
+  font-weight: 600 !important;
+}
+
+#section-{{ section.id }} .block_image {
+	margin-bottom: 26px;
+}
+
+#section-{{ section.id }} .features_content_container {
+  font-size: 14px;
+}
+
+#section-{{ section.id }} .includes_content_container {
+  margin-bottom: 20px;
+}
+
+#section-{{ section.id }} .includes_content_container h3,
+#section-{{ section.id }} .features_content_container h3 {
+	font-size: 13px;
+	text-transform: uppercase !important;
+	font-weight: 700;
+	margin-bottom: 12px;
+}
+
+#section-{{ section.id }} .includes_content_container ul li {
+	font-size: 14px;
+}
+
+#section-{{ section.id }} .SectionHeader__ButtonWrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#section-{{ section.id }} .ButtonGroup {
+  margin: 0;
+}
+
+#section-{{ section.id }} .ButtonGroup .Button {
+  width: 168px;
+  font-size: 14px;
+  height: 38px;
+  letter-spacing: 0.03em;
+  color: #334D80;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  background: #FFF165;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#section-{{ section.id }} .ButtonGroup .ButtonGroup__Item::before {
+  background: none;
+}
+
+#section-{{ section.id }} .Button:hover::after {
+  opacity: 1;
+}
+
+#section-{{ section.id }} .Button::after {
+  background: none;
+}
+
+#section-{{ section.id }} .mobileButton {
+  display: block;
+}
+
+#section-{{ section.id }} .desktopButton {
+  display: none;
+}
+
+#section-{{ section.id }} .carousel-container {
+  display: block;
+}
+
+#section-{{ section.id }} .flickity-page-dots {
+  padding-left: 24px;
+}
+
+@media(min-width: 500px) {
+  #section-{{ section.id }} .common-sec {
+    width: 100%;
+    height: 500px;
+  }
+}
+
+@media(min-width: 768px) {
+  #section-{{ section.id }}.custom-tabs .tabs {
+    display: inline-block;
+    width: 10%;
+    vertical-align: top;
+	}
+
+  #section-{{ section.id }}.custom-tabs .cover {
+    display: inline-block;
+    width: 88%;
+    vertical-align: top;
+  }
+
+  #section-{{ section.id }}.custom-tabs .Grid {
+    display: block;
+    margin: 0;
+  }
+
+  #section-{{ section.id }}.custom-tabs .Grid .Grid__Cell.tab-content.current {
+    display: inline-block;
+  }
+
+  #section-{{ section.id }}.custom-tabs .Grid .Grid__Cell.product_content {
+    display: inline-block;
+  }
+
+  #section-{{ section.id }}.custom-tabs .Grid .Grid__Cell.tab-content {
+    display: none;
+    padding: 0;
+    width: 45%;
+    margin-left: 5%;
+  }
+
+	#section-{{ section.id }} .block_image {
+
+	}
+
+	#section-{{ section.id }} .tab_content_heading {
+		font-size: 34px;
+		margin-bottom: 25px;
+    text-align: left;
+	}
+
+	#section-{{ section.id }} .tab_content_subheading {
+    font-size: 21px;
+		margin-bottom: 30px;
+	}
+
+  #section-{{ section.id }} .tab_content_subheading svg {
+    width: auto;
+  }
+
+  #section-{{ section.id }} .tab_content_subheading p {
+    margin-bottom: 20px;
+  }
+
+	#section-{{ section.id }} .features_content_container {
+    font-size: 18px;
+    margin-bottom: 40px;
+	}
+
+	#section-{{ section.id }} .includes_content_container ul {
+		list-style-position: outside;
+		margin-left: 18px;
+	}
+
+	#section-{{ section.id }} .includes_content_container ul li {
+		font-size: 18px;
+	}
+
+  #section-{{ section.id }} .SectionHeader__ButtonWrapper {
+    margin-top: 0;
+  }
+
+  #section-{{ section.id }} .ButtonGroup .Button {
+    width: 308px;
+    font-size: 21px;
+    height: 78px;
+    margin: 0;
+  }
+
+  #section-{{ section.id }} .carousel-container {
+    display: none;
+  }
+
+  #section-{{ section.id }} .mobileButton {
+    display: none;
+  }
+
+  #section-{{ section.id }} .desktopButton {
+    display: block;
+  }
+}
+</style>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Starter Kit",
+		"class": "custom-tab",
+		"max_blocks": 5,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enabled Section?"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Select Background Color"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "html",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "html",
+        "id": "includes_content",
+        "label": "Includes Content"
+      },
+      {
+        "type": "html",
+        "id": "features_content",
+        "label": "Features Content"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Bottom Link Text"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Bottom Link URL"
+      }
+		],
+		"blocks":[
+      {
+				"type": "tabs-option",
+				"name": "Tabs",
+				"settings":[
+					{
+		        "type": "image_picker",
+		        "id": "image1",
+		        "label": "Image",
+		        "info": "1560 x 1050px jpg recommended"
+		      }
+				]
+      }
+		],
+		"presets": [
+	    {
+	      "category": "Custom Section",
+	      "name": "Starter Kit",
+	      "settings": {}
+	    }
+	  ]
+  }
+{% endschema %}
