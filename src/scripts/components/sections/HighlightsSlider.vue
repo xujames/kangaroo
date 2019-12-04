@@ -3,7 +3,7 @@
     carousel(
       ref="cameraHighlightsSlider",
       v-if="slides.length",
-      :slides-to-show="$mq === 'mobile' || $mq === 'tablet' ? 1 : 1.5",
+      :slides-to-show="$mq === 'mobile' || $mq === 'tablet' ? 1 : 1.4",
       :labels="labels"
       :center-mode="true"
     )
@@ -12,7 +12,8 @@
           .highlights-slider__slide-text
             h2.highlights-slider__slide-heading {{ slide.heading }}
             p.highlights-slider__slide-subheading {{ slide.subheading }}
-          img.highlights-slider__slide-image(:src="slide.image" draggable="false")
+          .highlights-slider__slide-image
+            img(:src="slide.image" draggable="false")
 </template>
 
 <script>
@@ -49,10 +50,11 @@ export default {
     &__slide {
       display: flex;
       flex-direction: column;
+      height: 100%;
 
       @include desktop-up {
-        padding-left: 48px;
-        padding-right: 48px;
+        padding-left: 64px;
+        padding-right: 64px;
       }
 
       &-text {
@@ -92,6 +94,9 @@ export default {
 
       &-image {
         margin-top: auto;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   }

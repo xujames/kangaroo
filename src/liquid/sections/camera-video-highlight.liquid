@@ -4,7 +4,7 @@
       {
         heading: "{{ block.settings.slide_heading | escape }}",
         subheading: "{{ block.settings.slide_subheading | escape }}",
-        image: "{{ block.settings.slide_image | img_url: '900x' | escape }}",
+        image: "{{ block.settings.slide_image | img_url: '1000x' | escape }}",
         label: "{{ block.settings.slide_label | escape }}"
       }{% unless forloop.last %},{% endunless %}
     {% endfor %}
