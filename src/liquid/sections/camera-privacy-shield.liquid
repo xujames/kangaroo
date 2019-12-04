@@ -1,0 +1,70 @@
+{%- capture section_settings -%}
+{
+  heading: "{{ section.settings.title | escape }}",
+  description: "{{ section.settings.description | escape }}",
+  toggleText: "{{ section.settings.toggle_text | escape }}",
+  badge: "{{ section.settings.badge | img_url: 'master' }}",
+  shieldOnDesktop: "{{ section.settings.shield_on_desktop | img_url: '1400x' }}",
+  shieldOffDesktop: "{{ section.settings.shield_off_desktop | img_url: '1400x' }}",
+  shieldOnMobile: "{{ section.settings.shield_on_mobile | img_url: '768x' }}",
+  shieldOffMobile: "{{ section.settings.shield_off_mobile | img_url: '768x' }}"
+}
+{%- endcapture -%}
+
+<privacy-shield :settings="{{ section_settings | escape }}"></privacy-shield>
+
+{% schema %}
+{
+  "name": "Privacy Shield",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge",
+      "label": "Badge Icon"
+    },
+    {
+      "type": "text",
+      "id": "toggle_text",
+      "label": "Toggle Button Text"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_on_desktop",
+      "label": "Privacy Shield On (Desktop)",
+      "info": "Recommended: 1400 x 640 (camera on right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_off_desktop",
+      "label": "Privacy Shield Off (Desktop)",
+      "info": "Recommended: 1400 x 640 (camera on right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_on_mobile",
+      "label": "Privacy Shield On (Mobile)",
+      "info": "Recommended: 768 x 768 (camera centered)"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_off_mobile",
+      "label": "Privacy Shield Off (Mobile)",
+      "info": "Recommended: 768 x 768 (camera centered)"
+    }
+  ]
+}
+{% endschema %}
