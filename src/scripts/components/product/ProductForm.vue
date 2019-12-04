@@ -84,7 +84,7 @@
         return this.adding || !this.currentVariantIsAvailable
       },
       buttonLabel () {
-        let price = this.$options.filters.money(this.currentPrice)
+        let price = this.$options.filters.money(this.totalPrice)
         return this.currentVariantIsAvailable ? `Add to Cart - ${price}` : 'Sold Out'
       },
       // subscription data
@@ -151,6 +151,9 @@
       },
       currentPrice () {
         return this.currentVariant.price
+      },
+      totalPrice () {
+        return this.currentPrice * this.quantity
       }
     },
     mounted () {
