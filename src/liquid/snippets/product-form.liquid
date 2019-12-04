@@ -318,7 +318,7 @@ THE EXACT SAME ATTRIBUTES.
 
 <script type="application/json" data-product-json>
   {
-    "product": {{ product | json }},
+    "product": {%- include 'bold-product', output: 'json' -%},
     "selected_variant_id": {{ selected_variant.id }}
     {%- if section.settings.show_inventory_quantity -%}
       ,"inventories": {
