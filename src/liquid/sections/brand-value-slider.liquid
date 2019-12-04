@@ -14,6 +14,9 @@
 {% endcapture %}
 
 <brand-value-slider
+  {% if section.settings.title != blank %}
+  title="{{ section.settings.title | escape }}"
+  {% endif %}
   :content_sections="{{ content_sections | escape }}"
 >
 </brand-value-slider>
@@ -27,6 +30,11 @@
       "type": "header",
       "content": "Brand Value Slider",
       "info": "*Must Contain 3 Blocks*"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
     }
   ],
   "blocks": [

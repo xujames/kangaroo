@@ -3,7 +3,9 @@
     v-touch:swipe.left="nextSlide"
     v-touch:swipe.right="prevSlide"
   )
+    h2.brand-value-slider__title(v-if="title && $mq === 'mobile'") {{ title }}
     .brand-value-slider__content-container(v-if="$mq != 'mobile'" ref="tab_container")
+      h2.brand-value-slider__title(v-if="title && $mq != 'mobile'") {{ title }}
       .brand-value-slider__content-highlight(
         :style="{ height: `${highlightHeight}px`, top: `${highlightTop}px` }"
       )
@@ -51,6 +53,10 @@ export default {
     }
   },
   props: {
+    title: {
+      type: String,
+      default: () => ''
+    },
     content_sections: {
       type: Array,
       default: () => []
@@ -119,6 +125,22 @@ export default {
     display: flex;
     padding-left: $grid-gutter;
     margin: 80px auto;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 32px;
+    text-align: center;
+    margin: 0 0 25px 0;
+
+    @include tablet-up {
+      text-align: left;
+      font-size: 36px;
+      line-height: 40px;
+      margin: 0;
+      padding-right: 95px;
+    }
   }
 
   &__content-container {
