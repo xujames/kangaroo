@@ -1,0 +1,13 @@
+{% comment %}
+  DO NOT MODIFY THIS FILE DIRECTLY. THIS FILE WILL BE OVERWRITTEN.
+  YOU CAN MODIFY THE LIQUID CODE FOR THIS CUSTOM FIELD HERE:
+  https://customfields.bonify.io/dashboard/kangaroo-home-security.myshopify.com/products/configure/125088/edit
+{% endcomment %}
+{% if product.metafields.custom_fields["option_disclaimer"] != blank %}
+  <div class="custom-field custom-field__option-disclaimer custom-field__type--text">
+    <h3 class="custom-field--title">Option Disclaimer</h3>
+    <div class="custom-field--value">
+      {{ product.metafields.custom_fields["option_disclaimer"] }}
+    </div>
+  </div>
+{% endif %}

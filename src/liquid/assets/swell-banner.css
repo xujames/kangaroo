@@ -1,0 +1,140 @@
+.banner-bgc{
+    color: black;
+    text-align: center;
+    background-color: #fff067;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 20rem;
+    justify-content: center;
+    align-items: center;
+}
+.customer{
+	margin-top: 6rem;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.banner h5{
+	font-size:27px;
+}
+.banner h1{
+	line-height: 2.5rem;
+}
+.swell-history-link{
+	margin-top: 1rem;
+    font-weight: 400 !important;
+    line-height: 1rem;
+    font-size: larger;
+}
+.banner p{
+	font-size: large;
+    line-height: 1.3rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+.banner p:nth-of-type(2){
+	margin-top: 1rem;
+}
+.banner h4{
+	font-size: 47px;
+    margin-bottom: 0rem;
+    font-weight: 700;
+    line-height: initial;
+}
+.text-to-account{
+	margin-top: 1rem;
+	display: none;
+}
+.banner b{
+	font-size: large;
+	margin-bottom: 1rem;
+}
+.banner a{
+	border-bottom: .01rem solid black;
+    font-weight: bold;
+    padding-bottom: .2rem;
+}
+.banner input{
+    color: white;
+    background-color: #f17268;
+    width: 170px;
+    height: 40px;
+    border-radius: 28px;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 1.5rem;
+    margin-left: .3rem;
+    margin-right: .3rem;
+}
+.input-to-mobile
+{
+	display: none !important;
+}
+@media screen and (max-width: 1024px)
+{
+	.banner p{
+		font-size: medium;
+	    margin-top: .5rem;
+	}
+	.banner b{
+		font-size: medium;
+	}
+	.banner h4{
+		font-size: 42px;
+	}
+	.banner input{
+		width: 180px;
+    	height: 50px;
+        margin-bottom: 1rem;
+	}
+}
+@media screen and (max-width: 600px){
+	.banner-bgc{
+   		min-height: 30rem;
+	}
+	.customer{
+		margin-top: 4rem;
+	}
+	.div-to-input{
+		flex-direction: column;
+    	align-items: center;
+        margin-top: 1.5rem;
+	}
+	.banner h4:nth-of-type(1)
+	{
+		font-size:50px;
+	}
+	.banner h4:nth-of-type(2)
+	{
+		font-size: 69px;
+	}
+	.banner p{
+		font-size: 19px;
+	    margin-bottom: 2.5rem;
+	}
+	.input-to-mobile{
+		/*display: flex !important;*/
+	}
+	.input-to-mobile input
+	{
+		margin-bottom: 0rem;
+	}
+	.banner p:nth-of-type(2)
+	{
+    margin-bottom: 0;
+		/*display: none;*/
+	}
+	.banner b{
+		/*font-weight: 500;*/
+		font-size: larger;
+		/*border-bottom: .08rem solid black;*/
+	}
+	.banner input{
+	    width: 230px;
+    	height: 45px;
+    	margin-bottom: .5rem;
+	}
+}

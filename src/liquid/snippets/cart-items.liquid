@@ -15,6 +15,7 @@
   {%- endunless -%}
 
   {%- for line_item in cart.items -%}
+{%- include 'bold-cart-item' with line_item -%}
 {%- include 'bold-options-hybrid-cart-item' with item -%}
     {%- if for_drawer -%}
       <div class="CartItemWrapper">
@@ -35,11 +36,14 @@
         <div class="CartItem__Meta Heading Text--subdued">
           {%- unless line_item.product.has_only_default_variant -%}
             <p class="CartItem__Variant">{{ line_item.variant.title }}</p>
+{{ bold_recurring_desc }}
           {%- endunless -%}
 
           {%- if line_item.properties != empty -%}
             <ul class="CartItem__PropertyList">
-              {%- for property in line_item.properties -%}
+              
+{%- comment -%}
+{%- for property in line_item.properties -%}
 				{%- if property.first.first == '_' -%}{%- continue -%}{%- endif -%}
                 {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
 
@@ -49,15 +53,17 @@
 
                 <li class="CartItem__Property">{{ property.first }}: {{ property.last }}</li>
               {%- endfor -%}
+{%- endcomment -%}
+{{ bold_item_properties }}
             </ul>
           {%- endif -%}
 
           <div class="CartItem__PriceList">
             {%- if line_item.original_price > line_item.price -%}
-              <span class="CartItem__Price Price Price--highlight" data-money-convertible><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" style="display:none !important;"></span>{{ line_item.price | money_without_trailing_zeros }}</span>
+              <span class="CartItem__Price Price Price--highlight" data-money-convertible><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" style="display:none !important;"></span>{{ bold_item_price | money_without_trailing_zeros }}</span>
               <span class="CartItem__OriginalPrice Price Price--compareAt" data-money-convertible>{{ line_item.original_price | money_without_trailing_zeros }}</span>
             {%- else -%}
-              <span class="CartItem__Price Price" data-money-convertible><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price_2" style="display:none !important;"></span>{{ line_item.price | money_without_trailing_zeros }}</span>
+              <span class="CartItem__Price Price" data-money-convertible><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price_2" style="display:none !important;"></span>{{ bold_item_price | money_without_trailing_zeros }}</span>
             {%- endif -%}
           </div>
         </div>
@@ -92,7 +98,7 @@
       {%- unless for_drawer -%}
         {{ item_actions }}
 
-        <span class="CartItem__LinePrice Price Heading Text--subdued u-h7" data-money-convertible style="text-align: right"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" style="display:none !important;"></span>{{ line_item.line_price | money_without_trailing_zeros }}</span>
+        <span class="CartItem__LinePrice Price Heading Text--subdued u-h7" data-money-convertible style="text-align: right"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" style="display:none !important;"></span>{{ bold_item_line_price | money_without_trailing_zeros }}</span>
       {%- endunless -%}
     </div>
 

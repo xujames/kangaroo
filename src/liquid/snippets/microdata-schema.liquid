@@ -21,14 +21,7 @@
       "name": {{ product.featured_image.alt | json }},
       "width": 1024,
       "height": 1024
-    },
-      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
-          "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
-              "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
-          }
-          {% endif %}
+    }
   {%- endcapture -%}
 {%- elsif template.name == 'article' -%}
   {%- capture main_entity_microdata -%}

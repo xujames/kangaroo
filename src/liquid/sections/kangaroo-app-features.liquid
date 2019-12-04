@@ -1,0 +1,414 @@
+{%- if section.settings.enable -%}
+
+<div id="section-{{ section.id }}" class="custom-small-image-text section-content" data-section-id="{{ section.id }}" style="background-color:{% if section.settings.bg_color %} {{section.settings.bg_color}} {% endif %}">
+  <div class="container">
+
+    <div class="section_top_container">
+      {%- if section.settings.heading != blank -%}
+        <div class="section_heading">
+          <h2>{{section.settings.heading}}</h2>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <div class="section_subheading">
+          <h2>{{section.settings.subheading}}</h2>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.section_content != blank -%}
+        <div class="section_content">
+          {{section.settings.section_content}}
+        </div>
+      {%- endif -%}
+    </div>
+
+
+    {%- assign center_image = section.settings.center_image -%}
+
+    {%- if center_image -%}
+      <div class="center_image">
+        <img class="custom_block_image Image--lazyLoad"
+             src="{{ center_image | img_url: '1x1' }}"
+             data-src="{{ center_image | img_url: '2174x' }}"
+             alt="{{ center_image.alt | escape }}">
+
+        <noscript>
+          <img class="Slideshow__Image" src="{{ center_image | img_url: 'x800' }}" alt="{{ center_image.alt | escape }}">
+        </noscript>
+      </div>
+    {%- else -%}
+      <div class="center_image">
+        {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+        {{ placeholder | placeholder_svg_tag: 'Slideshow__Image PlaceholderBackground__Svg' }}
+      </div>
+  {%- endif -%}
+
+    <div class="left-right-container">
+      <div class="left-section">
+      {% for block in section.blocks %}
+
+        {%- capture feature_content -%}
+          {%- if block.settings.feature_svg_html != blank -%}
+          <div class="feature_svg_container">
+            {{ block.settings.feature_svg_html }}
+          </div>
+          {%- endif -%}
+
+          <div class="feature_content_container">
+            {%- if block.settings.block_heading != blank -%}
+              <h2 class="SectionHeader__SubHeading Banner_Heading u-h6">{{ block.settings.block_heading | escape }}</h2>
+            {%- endif -%}
+            {%- if block.settings.block_content != blank -%}
+              <div class="SectionHeader__content Banner_content u-h6">
+                {{ block.settings.block_content }}
+              </div>
+            {%- endif -%}
+          </div>
+
+        {%- endcapture -%}
+
+        {% if block.settings.left_or_right == 'left' %}
+          <div class="feature_block">
+            {{ feature_content }}
+          </div>
+        {% endif %}
+
+      {% endfor %}
+      </div><div class="right-section">
+      {% for block in section.blocks %}
+
+        {%- capture feature_content -%}
+          {%- if block.settings.feature_svg_html != blank -%}
+          <div class="feature_svg_container">
+            {{ block.settings.feature_svg_html }}
+          </div>
+          {%- endif -%}
+
+          <div class="feature_content_container">
+            {%- if block.settings.block_heading != blank -%}
+              <h2 class="SectionHeader__SubHeading Banner_Heading u-h6">{{ block.settings.block_heading | escape }}</h2>
+            {%- endif -%}
+            {%- if block.settings.block_content != blank -%}
+              <div class="SectionHeader__content Banner_content u-h6">
+                {{ block.settings.block_content }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endcapture -%}
+
+
+        {% if block.settings.left_or_right == 'right' %}
+
+          <div class="feature_block">
+            {{ feature_content }}
+          </div>
+
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+#section-{{ section.id }} .container {
+  position: relative;
+}
+
+#section-{{ section.id }} .section_top_container {
+  text-align: center;
+  padding-top: 230px;
+  margin-bottom: 45px;
+}
+
+#section-{{ section.id }} .center_image {
+
+}
+
+#section-{{ section.id }} .center_image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 92px;
+  margin-left: -46px;
+}
+
+#section-{{ section.id }} .left-right-container {
+  margin-top: 5px;
+}
+
+.kangaroo-app-features #section-{{ section.id }}.custom-small-image-text .section_heading {
+  margin-bottom: 10px;
+}
+
+#section-{{ section.id }} .section_heading h2 {
+  font-size: 21px;
+  margin-bottom: 0;
+}
+
+#section-{{ section.id }} .SectionHeader__SubHeading {
+  font-size: 18px;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+
+#section-{{ section.id }} .SectionHeader__content p {
+  font-size: 14px;
+}
+
+#section-{{ section.id }} .app_store_icon_container img {
+  width: 190px;
+  margin: 0 10px;
+}
+
+
+
+#section-{{ section.id }} .left-section {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#section-{{ section.id }} .right-section {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#section-{{ section.id }} .feature_block {
+  text-align: center;
+  height: 125px;
+  margin-bottom: 48px;
+}
+
+#section-{{ section.id }} .feature_svg_container {
+  height: 72px;
+}
+
+#section-{{ section.id }} .feature_svg_container svg {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#section-{{ section.id }} .feature_content_container {
+  padding: 0 30px;
+}
+
+#section-{{ section.id }} .SectionHeader__SubHeading {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#section-{{ section.id }} .SectionHeader__content {
+  display: none;
+}
+
+.kangaroo-app-features #section-{{ section.id }}.custom-small-image-text {
+  padding-top: 63px;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
+@media screen and (min-width: 641px) {
+
+}
+
+
+
+@media (min-width: 900px) {
+
+  .kangaroo-app-features #section-{{ section.id }}.custom-small-image-text {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
+  #section-{{ section.id }} .section_top_container {
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+
+
+  .kangaroo-app-features #section-{{ section.id }}.custom-small-image-text .section_heading {
+    margin-bottom: 20px;
+  }
+
+  #section-{{ section.id }} .section_heading h2 {
+    font-size: 34px;
+
+  }
+
+  #section-{{ section.id }} .app_store_icon_container {
+
+  }
+
+  #section-{{ section.id }} .app_store_icon_container img {
+    width: 232px;
+  }
+
+  #section-{{ section.id }} .section_content {
+
+  }
+
+  #section-{{ section.id }} .center_image {
+    position: absolute;
+    left: 50%;
+    margin-top: 50px;
+    margin-left: -116px;
+    width: 232px;
+    top: auto;
+  }
+
+  #section-{{ section.id }} .feature_block {
+    text-align: left;
+    display: table;
+    margin-bottom: 50px;
+  }
+
+  #section-{{ section.id }} .left-section .feature_block {
+    margin-right: 180px;
+  }
+
+  #section-{{ section.id }} .right-section .feature_block {
+    margin-left: 180px;
+  }
+
+  #section-{{ section.id }} .feature_svg_container {
+    display: table-cell;
+    width: 20%;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .feature_svg_container svg {
+    top: auto;
+    transform: none;
+  }
+
+  #section-{{ section.id }} .feature_content_container {
+    display: table-cell;
+    width: 80%;
+    padding: 0;
+  }
+
+  #section-{{ section.id }} .feature_content_container .SectionHeader__SubHeading {
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  #section-{{ section.id }} .SectionHeader__content {
+    font-size: 14px;
+    display: block;
+  }
+
+  #section-{{ section.id }} .SectionHeader__content p {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
+
+
+@media (max-width: 767px) {
+
+
+
+}
+
+
+</style>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Kangaroo App Features",
+	   "class": "shopify-section--bordered kangaroo-app-features",
+    "settings": [
+		    {
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enabled Section?"
+        },
+    		{
+    			"type": "text",
+    			"id": "heading",
+    			"label": "Heading"
+    		},
+        {
+    			"type": "text",
+    			"id": "subheading",
+    			"label": "Sub Heading"
+    		},
+        {
+    			"type": "html",
+    			"id": "section_content",
+    			"label": "Top Content"
+    		},
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Select Background Color"
+        },
+        {
+					"type": "image_picker",
+					"id": "center_image",
+					"label": "Image"
+				}
+	],
+	"blocks":[
+		{
+			"type": "block-content",
+			"name": "Image with Text",
+			"settings":[
+        {
+          "type": "html",
+          "id": "feature_svg_html",
+          "label": "Feature SVG HTML"
+        },
+				{
+					"type": "text",
+					"id": "block_heading",
+					"label": "Heading"
+				},
+				{
+					"type": "text",
+					"id": "block_content",
+					"label": "Content"
+				},
+        {
+          "type": "select",
+          "id": "left_or_right",
+          "label": "Left or Right",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
+			]
+		}
+	],
+  "presets": [
+    {
+      "category": "Custom Section",
+      "name": "Kangaroo App Features",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}

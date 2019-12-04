@@ -154,6 +154,10 @@ This file can be re-written at any time.
     <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
     <script src="{{ 'jquery.scrollintoview.min.js' | asset_url }}" defer></script>
     <script src="{{ 'jquery-ui.min.js' | asset_url }}" defer></script>
+
+    {% if template.name contains 'index' %}
+    <script src="{{ 'kevin.js' | asset_url }}" defer></script>
+    {% endif %}
     {% include 'microdata-schema' %}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
@@ -245,6 +249,111 @@ This file can be re-written at any time.
     </script>
 <script type="text/javascript" src="{{ 'collections.js' | asset_url }}"></script>
 <script type="text/javascript" src="{{ 'pricing.js' | asset_url }}"></script>
+<script>
+$(document).ready(function() {
+  (function() {
+    var touchingCarousel = false,
+      touchStartCoords;
+
+    document.body.addEventListener('touchstart', function(e) {
+      if (e.target.closest('.flickity-slider')) {
+        touchingCarousel = true;
+      } else {
+        touchingCarousel = false;
+        return;
+      }
+
+      touchStartCoords = {
+        x: e.touches[0].pageX,
+        y: e.touches[0].pageY
+      }
+    });
+
+    document.body.addEventListener('touchmove', function(e) {
+      if (!(touchingCarousel && e.cancelable)) {
+        return;
+      }
+
+      var moveVector = {
+        x: e.touches[0].pageX - touchStartCoords.x,
+        y: e.touches[0].pageY - touchStartCoords.y
+      };
+
+      if (Math.abs(moveVector.x) > 7)
+        e.preventDefault()
+
+    }, {passive: false});
+  })();
+  // (function() {
+  //   let tapArea;
+  //   let startX;
+  //   tapArea = document.querySelectorAll('.Review__Carousel');
+  //   startX = 0;
+  //   for (var item of tapArea) {
+  //     item.ontouchstart = function(e) {
+  //       startX = e.touches[0].clientX;
+  //     };
+  //     item.ontouchmove = function(e) {
+  //       if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+  //         e.preventDefault();
+  //       }
+  //     };
+  //   }
+  // })();
+  //
+  // (function() {
+  //   let tapArea;
+  //   let startX;
+  //   tapArea = document.querySelectorAll('.how-it-works-carousel');
+  //   startX = 0;
+  //   for (var item of tapArea) {
+  //     item.ontouchstart = function(e) {
+  //       startX = e.touches[0].clientX;
+  //     };
+  //     item.ontouchmove = function(e) {
+  //       if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+  //         e.preventDefault();
+  //       }
+  //     };
+  //   }
+  // })();
+  //
+  // (function() {
+  //   let tapArea;
+  //   let startX;
+  //   tapArea = document.querySelectorAll('.kangaroo-difference-carousel');
+  //   startX = 0;
+  //   for (var item of tapArea) {
+  //     item.ontouchstart = function(e) {
+  //       startX = e.touches[0].clientX;
+  //     };
+  //     item.ontouchmove = function(e) {
+  //       if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+  //         e.preventDefault();
+  //       }
+  //     };
+  //   }
+  // })();
+  //
+  // (function() {
+  //   let tapArea;
+  //   let startX;
+  //   tapArea = document.querySelectorAll('.homepage-product-mobile-carousel');
+  //   startX = 0;
+  //   for (var item of tapArea) {
+  //     item.ontouchstart = function(e) {
+  //       startX = e.touches[0].clientX;
+  //     };
+  //     item.ontouchmove = function(e) {
+  //       if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+  //         e.preventDefault();
+  //       }
+  //     };
+  //   }
+  // })();
+
+});
+</script>
   <style type="text/css">
     body, html {
       width: 100% !important;
