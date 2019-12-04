@@ -58,12 +58,12 @@ export default {
       }
 
       &-text {
-        max-width: 500px;
+        max-width: 750px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 24px;
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
 
         @include desktop-up {
           padding-right: 0;
