@@ -1,0 +1,173 @@
+<specs-accordion accordion-heading="{{ section.settings.title }}">
+  <div class="specs-accordion__flex-column">
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_1_title }}</h2>
+      {{ section.settings.block_1_content }}
+    </div>
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_2_title }}</h2>
+      {{ section.settings.block_2_content }}
+    </div>
+  </div>
+  <div class="specs-accordion__flex-column">
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_3_title }}</h2>
+      {{ section.settings.block_3_content }}
+    </div>
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_4_title }}</h2>
+      {{ section.settings.block_4_content }}
+    </div>
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_5_title }}</h2>
+      {{ section.settings.block_5_content }}
+    </div>
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_6_title }}</h2>
+      {{ section.settings.block_6_content }}
+    </div>
+  </div>
+  <div class="specs-accordion__flex-column">
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_7_title }}</h2>
+      {{ section.settings.block_7_content }}
+    </div>
+    <div class="specs-accordion__block">
+      <h2>{{ section.settings.block_8_title }}</h2>
+      {{ section.settings.block_8_content }}
+    </div>
+  </div>
+</specs-accordion>
+
+{% schema %}
+{
+  "name": "Technical Specifications",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading"
+    },
+    {
+      "type": "header",
+      "content": "Block 1"
+    },
+    {
+      "type": "text",
+      "id": "block_1_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_1_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 2"
+    },
+    {
+      "type": "text",
+      "id": "block_2_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_2_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 3"
+    },
+    {
+      "type": "text",
+      "id": "block_3_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_3_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 4"
+    },
+    {
+      "type": "text",
+      "id": "block_4_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_4_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 5"
+    },
+    {
+      "type": "text",
+      "id": "block_5_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_5_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 6"
+    },
+    {
+      "type": "text",
+      "id": "block_6_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_6_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 7"
+    },
+    {
+      "type": "text",
+      "id": "block_7_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_7_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    },
+    {
+      "type": "header",
+      "content": "Block 8"
+    },
+    {
+      "type": "text",
+      "id": "block_8_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_8_content",
+      "label": "Content",
+      "info": "Press enter for new lines."
+    }
+  ]
+}
+{% endschema %}

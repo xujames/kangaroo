@@ -23,6 +23,13 @@
         )
           img(v-if="thumbnailImages.length > 0", :src="thumbnailImages[n - 1].src")
           .u-sr-only Show Slide {{ n }}
+    ul.carousel__dots.u-list-simple.u-list-inline(v-else-if="labels.length")
+      li.carousel__label-container(v-for="(label, n) in labels" :key="n")
+        button.carousel__label(
+          :class="{ 'is-active': n === currentSlideIndex }",
+          @click="slideTo(n)"
+        ) {{ label }}
+          .u-sr-only Show Slide {{ n + 1 }}
 </template>
 
 <script>
@@ -72,6 +79,10 @@
         default: false
       },
       thumbnailImages: {
+        type: Array,
+        default: () => []
+      },
+      labels: {
         type: Array,
         default: () => []
       }
@@ -330,6 +341,34 @@
 
       &__next {
         margin-left: 4px;
+      }
+    }
+
+    &__label {
+      font-size: rem(16);
+      line-height: 1;
+      opacity: 0.75;
+      padding: 2px;
+      margin: 0;
+      background-color: transparent;
+      cursor: pointer;
+      display: inline-block;
+      border: none;
+
+      &.is-active {
+        opacity: 1;
+        font-weight: 600;
+        border-bottom: 2px solid $color-black;
+      }
+
+      &-container {
+        &:not(:last-child) {
+          margin-right: 16px;
+
+          @include tablet-up {
+            margin-right: 40px;
+          }
+        }
       }
     }
 

@@ -21,6 +21,8 @@
               tabindex="0"
               @focus="selected = product.handle"
               :class="{ 'selected': product.handle === selected }"
+              role="figure"
+              :aria-label="`${currentVariant.title} comes with ${selectedProductQty} ${selectedProduct.title}. ${selectedProduct.title} Description: ${selectedProduct.description}. ${selectedProduct.title} Features: ${selectedProductFeatures}`"
             )
               img(:src="product.images[0].src" :alt="product.images[0].alt")
 

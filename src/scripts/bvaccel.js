@@ -12,7 +12,7 @@ import { mapState } from "vuex";
 
 import components from "./components";
 import store from "./store";
-import { ucfirst, upcase, unhandleize } from "./filters/string.js";
+import { ucfirst, upcase, unhandleize, unescape } from "./filters/string.js";
 import { money, moneyWithoutDecimals } from "./filters/money.js";
 
 import imageConfig from "scripts/config/images.js";
@@ -45,6 +45,7 @@ Vue.use(VueMq, {
 Vue.filter("ucfirst", ucfirst);
 Vue.filter("upcase", upcase);
 Vue.filter("unhandleize", unhandleize);
+Vue.filter("unescape", unescape);
 Vue.filter("money", money);
 Vue.filter("moneyWithoutDecimals", moneyWithoutDecimals);
 

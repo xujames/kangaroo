@@ -1,24 +1,38 @@
 <template lang="pug">
-section.app-features
-  h2.app-features__title {{ title }}
+section.app-features#app-features
+  h2.app-features__title {{ title | unescape }}
   .app-features__images
     img.app-features__images-icon(v-for="(image, idx) in images" :src="image.src" :alt="image.alt" :key="idx")
   .container(v-if="$mq === 'desktop' || $mq === 'hd'")
     .row
       .app-feature__wrapper.large-4.column.move-up
-        .app-feature(v-for="(feature, idx) in leftFeatures" :key="feature.title" @click="swapImage(feature.img)")
+        .app-feature(
+          v-for="(feature, idx) in leftFeatures"
+          :key="feature.title"
+          @focus="swapImage(feature.img)"
+          tabindex="0"
+          :aria-label="`App Feature: ${feature.title}, App Feature Description ${feature.description}`"
+          role="figure"
+        )
           img.app-feature__icon(:src="feature.icon")
           .app-feature__copy
-            .app-feature__copy-title {{ feature.title }}
-            .app-feature__copy-description {{ feature.description }}
-      .large-4.column#app-features
+            .app-feature__copy-title {{ feature.title | unescape }}
+            .app-feature__copy-description {{ feature.description | unescape }}
+      .large-4.column
         img.app-feature__image(:src="currentImage" :alt="currentAlt")
       .app-feature__wrapper.large-4.column.move-up
-        .app-feature(v-for="(feature, idx) in rightFeatures" :key="feature.title")
+        .app-feature(
+          v-for="(feature, idx) in rightFeatures"
+          :key="feature.title"
+          @focus="swapImage(feature.img)"
+          tabindex="0"
+          :aria-label="`App Feature: ${feature.title}, App Feature Description ${feature.description}`"
+          role="figure"
+        )
           img.app-feature__icon(:src="feature.icon")
           .app-feature__copy
-            h4.app-feature__copy-title {{ feature.title }}
-            p.app-feature__copy-description {{ feature.description }}
+            h4.app-feature__copy-title {{ feature.title | unescape }}
+            p.app-feature__copy-description {{ feature.description | unescape }}
   .container.slick-container(v-else)
     carousel(
       ref="appFeaturesCarousel", 
@@ -126,8 +140,10 @@ export default {
     cursor: pointer;
     margin: 24px 0;
     transition: box-shadow .12s ease-in-out;
-    &:hover {
+    &:hover,
+    &:focus {
       box-shadow: 0 2px 4px 0 rgba(34,31,32,0.25);
+      outline: none;
       .app-feature__copy-description {
         opacity: 1;
       }

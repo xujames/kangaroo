@@ -171,7 +171,6 @@
           }
         }
         this.$store.dispatch('cart/addItem', addProduct)
-          .then(() => window.location.href="/cart")
           .catch(error => this.$store.dispatch('toast/send', { text: error, type: 'error' }))
           .then(() => { this.adding = false; this.updateSidecart() })
       },
