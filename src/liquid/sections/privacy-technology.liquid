@@ -1,45 +1,47 @@
-{% capture slides %}
+{%- capture slides -%}
 [
-  {% for slide in section.blocks %}
-  image: "{{ slide.settings.image | img_url: '1200x' }}",
-  "alt": "{{ slide.settings.image.alt | escape }}", 
-  content: [
-    block_1: {
-      icon: {
-        src: "{{ slide.settings.icon_1 | img_url: 'x60' }}",
-        alt: "{{ slide.settings.icon_1.alt | escape }}"
+  {%- for slide in section.blocks -%}
+  {
+    image: "{{ slide.settings.image | img_url: '1000x' }}",
+    alt: "{{ slide.settings.image.alt | escape }}", 
+    content: [
+      {
+        icon: {
+          src: "{{ slide.settings.icon_1 | img_url: 'x60' }}",
+          alt: "{{ slide.settings.icon_1.alt | escape }}"
+        },
+        title: {{ slide.settings.title_1 | json }},
+        desc: "{{ slide.settings.desc_1 | escape }}"
       },
-      title: "{{ slide.settings.title_1 | escape }}",
-      desc: "{{ slide.settings.desc_1 | escape }}"
-    },
-     block_2: {
-      icon: {
-        src: "{{ slide.settings.icon_2 | img_url: 'x60' }}",
-        alt: "{{ slide.settings.icon_2.alt | escape }}"
+      {
+        icon: {
+          src: "{{ slide.settings.icon_2 | img_url: 'x60' }}",
+          alt: "{{ slide.settings.icon_2.alt | escape }}"
+        },
+        title: {{ slide.settings.title_2 | json }},
+        desc: "{{ slide.settings.desc_2 | escape }}"
       },
-      title: "{{ slide.settings.title_2 | escape }}",
-      desc: "{{ slide.settings.desc_2 | escape }}"
-    },
-     block_3: {
-      icon: {
-        src: "{{ slide.settings.icon_3 | img_url: 'x60' }}",
-        alt: "{{ slide.settings.icon_3.alt | escape }}"
+      {
+        icon: {
+          src: "{{ slide.settings.icon_3 | img_url: 'x60' }}",
+          alt: "{{ slide.settings.icon_3.alt | escape }}"
+        },
+        title: {{ slide.settings.title_3 | json }},
+        desc: "{{ slide.settings.desc_3 | escape }}"
       },
-      title: "{{ slide.settings.title_3 | escape }}",
-      desc: "{{ slide.settings.desc_3 | escape }}"
-    },
-     block_4: {
-      icon: {
-        src: "{{ slide.settings.icon_4 | img_url: 'x60' }}",
-        alt: "{{ slide.settings.icon_4.alt | escape }}"
-      },
-      title: "{{ slide.settings.title_4 | escape }}",
-      desc: "{{ slide.settings.desc_4 | escape }}"
-    }
-  ]
-  {% endfor %}
+      {
+        icon: {
+          src: "{{ slide.settings.icon_4 | img_url: 'x60' }}",
+          alt: "{{ slide.settings.icon_4.alt | escape }}"
+        },
+        title: {{ slide.settings.title_4 | json }},
+        desc: "{{ slide.settings.desc_4 | escape }}"
+      }
+    ]
+  },
+  {%- endfor -%}
 ]
-{% endcapture %}
+{%- endcapture -%}
 
 <privacy-technology-features title="{{ section.settings.title | escape }}" :slides="{{ slides | escape }}"></privacy-technology-features>
 
