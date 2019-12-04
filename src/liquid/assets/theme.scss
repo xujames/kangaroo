@@ -6,86 +6,102 @@
 
 /* Colors */
 
-$background      : {{settings.background}};
-$light-background: {{settings.light_background}};
-$heading-color   : {{settings.heading_color}};
-$text-color      : {{settings.text_color}};
-$text-color-light: {{settings.text_light_color}};
-$link-color      : {{settings.link_color}};
-$border-color    : {{settings.background | color_mix: settings.text_color, 85}};
+$background      : #ffffff;
+$light-background: #faf9f5;
+$heading-color   : #1c1b1b;
+$text-color      : #1c1b1b;
+$text-color-light: #6a6a6a;
+$link-color      : #6a6a6a;
+$border-color    : #dddddd;
 
-$button-background: {{settings.button_background}};
-$button-text-color: {{settings.button_text_color}};
+$button-background: #334c80;
+$button-text-color: #ffffff;
 
-$header-background       : {{settings.header_background}};
-$header-heading-color    : {{settings.header_heading_color}};
-$header-light-text-color : {{settings.header_light_color}};
-$header-border-color     : {{settings.header_background | color_mix: settings.header_heading_color, 85}};
+$header-background       : #ffffff;
+$header-heading-color    : #1c1b1b;
+$header-light-text-color : #6a6a6a;
+$header-border-color     : #dddddd;
 
-$footer-background    : {{settings.footer_background}};
-$footer-text-color    : {{settings.footer_text_color}};
-$footer-heading-color : {{settings.footer_heading_color}};
-$footer-border-color  : {{settings.footer_background | color_mix: settings.footer_text_color, 85}};
+$footer-background    : #ffffff;
+$footer-text-color    : #1c1b1b;
+$footer-heading-color : #6a6a6a;
+$footer-border-color  : #dddddd;
 
-$navigation-background      : {{settings.navigation_background}};
-$navigation-text-color      : {{settings.navigation_text_color}};
+$navigation-background      : #1c1b1b;
+$navigation-text-color      : #ffffff;
 $navigation-text-color-light: rgba($navigation-text-color, 0.5);
 $navigation-border-color    : rgba($navigation-text-color, 0.25);
 
-$newsletter-popup-background : {{settings.newsletter_popup_background}};
-$newsletter-popup-text-color : {{settings.newsletter_popup_text_color}};
+$newsletter-popup-background : #1c1b1b;
+$newsletter-popup-text-color : #ffffff;
 
-$secondary-elements-background       : {{settings.secondary_elements_background}};
-$secondary-elements-text-color       : {{settings.secondary_elements_text_color}};
+$secondary-elements-background       : #1c1b1b;
+$secondary-elements-text-color       : #ffffff;
 $secondary-elements-text-color-light : rgba($secondary-elements-text-color, 0.5);
 $secondary-elements-border-color     : rgba($secondary-elements-text-color, 0.25);
 
-$product-sale-price-color: {{settings.product_on_sale_color}};
+$product-sale-price-color: #f94c43;
 
 /* Typography */
 
-{{ settings.heading_font | font_face }}
-{{ settings.text_font | font_face }}
+@font-face {
+  font-family: "Avenir Next";
+  font-weight: 500;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/avenir_next/avenirnext_n5.972a96b7a049f12c89d6d1cd0e1b6c9211f7ba14.woff2?h1=YmV0YS5oZXlrYW5nYXJvby5jb20&h2=aGV5a2FuZ2Fyb28uY29t&hmac=18e18c52a202f80c6a1dcdce966ace7d82bcbc35c4de012e73ea6309358cf987") format("woff2"),
+       url("https://fonts.shopifycdn.com/avenir_next/avenirnext_n5.9e88d20fa9eb66ba268ac60ab013006ef69a310a.woff?h1=YmV0YS5oZXlrYW5nYXJvby5jb20&h2=aGV5a2FuZ2Fyb28uY29t&hmac=4539c10852e08d135c8af68f1545261cf1167e0a9c3d96815df6883447d0a3df") format("woff");
+}
 
-{%- assign text_font_bold = settings.text_font | font_modify: 'weight', 'bolder' -%}
-{%- assign text_font_italic = settings.text_font | font_modify: 'style', 'italic' -%}
-{%- assign text_font_bold_italic = text_font_bold | font_modify: 'style', 'italic' -%}
+@font-face {
+  font-family: "Neuzeit S";
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/neuzeit_s/neuzeits_n4.7275204c8756b197aaff0f2e456feac4e614cb3d.woff2?h1=YmV0YS5oZXlrYW5nYXJvby5jb20&h2=aGV5a2FuZ2Fyb28uY29t&hmac=8e10386f7507aa1dad3e0a7f37169e57aa685917e805a01dc688303f9f204f8d") format("woff2"),
+       url("https://fonts.shopifycdn.com/neuzeit_s/neuzeits_n4.68acb716c715dc60e5b3841889ddf41bc323f616.woff?h1=YmV0YS5oZXlrYW5nYXJvby5jb20&h2=aGV5a2FuZ2Fyb28uY29t&hmac=1c95aae7a07406592f01c76125213ed70846764117a1856856bf015c5c9f81be") format("woff");
+}
 
-{{ text_font_bold | font_face }}
-{{ text_font_italic | font_face }}
-{{ text_font_bold_italic | font_face }}
+@font-face {
+  font-family: "Neuzeit S";
+  font-weight: 900;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/neuzeit_s/neuzeits_n9.a64a5fe634017b1a650f52bf59553ec4c876d58d.woff2?h1=YmV0YS5oZXlrYW5nYXJvby5jb20&h2=aGV5a2FuZ2Fyb28uY29t&hmac=0d799ed0af72e99b101bc1c4ba8dc31ed65393ab825095ad468da05a6b958c7c") format("woff2"),
+       url("https://fonts.shopifycdn.com/neuzeit_s/neuzeits_n9.0328fbbe859508e64e762e98e763b6e729e1df1c.woff?h1=YmV0YS5oZXlrYW5nYXJvby5jb20&h2=aGV5a2FuZ2Fyb28uY29t&hmac=4b56b91827219961e733bf728799364de2ada9958eb2f98d5cef2c69dc30793a") format("woff");
+}
+
+
+
 
 $heading-font-family : "Sofia Pro";
-$heading-font-weight : {{settings.heading_font.weight}};
-$heading-font-style  : {{settings.heading_font.style}};
-$heading-font-size   : {{settings.heading_size}};
+$heading-font-weight : 500;
+$heading-font-style  : normal;
+$heading-font-size   : large;
 
-$text-font-family : {{settings.text_font.family}}, {{ settings.text_font.fallback_families }};
-$text-font-weight : {{settings.text_font.weight}};
-$text-font-style  : {{settings.text_font.style}};
+$text-font-family : "Neuzeit S", sans-serif;
+$text-font-weight : 400;
+$text-font-style  : normal;
 
-$uppercase-heading: {% if settings.uppercase_heading %}true{% else %}false{% endif %};
+$uppercase-heading: false;
 
-$base-text-font-size   : {{settings.base_text_font_size}}px;
+$base-text-font-size   : 18px;
 $default-text-font-size: 16px;
 
 /* Products */
 
-$product-info-alignment         : {{settings.product_info_alignment}};
-$product-show-price-on-hover    : {{settings.product_show_price_on_hover}};
-$product-list-horizontal-spacing: {{settings.product_list_horizontal_spacing}};
-$product-list-vertical-spacing  : {{settings.product_list_vertical_spacing}};
+$product-info-alignment         : center;
+$product-show-price-on-hover    : false;
+$product-list-horizontal-spacing: medium;
+$product-list-vertical-spacing  : extra_small;
 
-$cursor-zoom-in-svg    : "{{ 'cursor-zoom-in.svg' | asset_url }}";
-$cursor-zoom-in-2x-svg : "{{ 'cursor-zoom-in-2x.svg' | asset_url }}";
+$cursor-zoom-in-svg    : "//cdn.shopify.com/s/files/1/0055/2170/2963/t/32/assets/cursor-zoom-in.svg?70170";
+$cursor-zoom-in-2x-svg : "//cdn.shopify.com/s/files/1/0055/2170/2963/t/32/assets/cursor-zoom-in-2x.svg?70170";
 
 /* Animation */
 
 $drawer-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
-$show-page-transition: {% if settings.show_page_transition %}true{% else %}false{% endif %};
-$show-button-transition: {% if settings.show_button_transition %}true{% else %}false{% endif %};
-$show-image-zooming: {% if settings.show_image_zooming %}true{% else %}false{% endif %};
-$show-element-staggering: {% if settings.show_element_staggering %}true{% else %}false{% endif %};
+$show-page-transition: true;
+$show-button-transition: false;
+$show-image-zooming: false;
+$show-element-staggering: true;
 
 /* Other */
 
