@@ -14,9 +14,11 @@
         tabindex="0"
         @focus="currentSlide = idx; autoplay = false"
         :class="{ 'active': currentSlide === idx }"
+        :aria-label="`${sec.title}: ${sec.content}`"
+        role="figure"
       )
-        h3.brand-value-slider__tab__title {{ sec.title }}
-        p.brand-value-slider__tab__content {{ sec.content }}
+        h3.brand-value-slider__tab__title {{ sec.title | unescape }}
+        p.brand-value-slider__tab__content {{ sec.content | unescape }}
     .brand-value-slider__image-container
       transition(name="fade")
         img(:src="currentImage.src" :key="currentImage.src" :alt="currentImage.alt")
@@ -27,8 +29,8 @@
       dots
     )
       slide.brand-value-slider__slide(v-for="(sec, idx) in content_sections" :key="`${sec.title}_${idx}`")
-        h3.brand-value-slider__slide__title {{ sec.title }}
-        p.brand-value-slider__slide__content {{ sec.content }}
+        h3.brand-value-slider__slide__title {{ sec.title | unescape }}
+        p.brand-value-slider__slide__content {{ sec.content | unescape }}
 </template>
 
 <script>

@@ -8,3 +8,8 @@ export const upcase = value =>
 
 export const unhandleize = value =>
   upcase(value.replace(/-/g, ' '))
+
+export const unescape = value =>
+  value
+    .replace(/&amp;/g, '&').replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<').replace(/&quot;/g, '"')
