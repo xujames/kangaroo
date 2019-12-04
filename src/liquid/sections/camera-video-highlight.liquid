@@ -1,0 +1,50 @@
+{% capture section_settings %}
+  [
+    {% for block in section.blocks %}
+      {
+        heading: "{{ block.settings.slide_heading | escape }}",
+        subheading: "{{ block.settings.slide_subheading | escape }}",
+        image: "{{ block.settings.slide_image | img_url: '1000x' | escape }}",
+        label: "{{ block.settings.slide_label | escape }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+{% endcapture %}
+
+<highlights-slider :slides="{{ section_settings | escape }}"></highlights-slider>
+
+{% schema %}
+  {
+    "name": "Video Highlights",
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "slide_heading",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "slide_subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "image_picker",
+            "id": "slide_image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "slide_label",
+            "label": "Label",
+            "info": "Used for the navigation below the images."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,23 +1,23 @@
 
 <template lang="pug">
   .icon-list
-    h3.icon-list__title {{ title }}
-    p.icon-list__desc {{ desc }}
+    h3.icon-list__title {{ title | unescape }}
+    p.icon-list__desc {{ desc | unescape }}
 
     .icon-list__steps
       .icon-list__step(v-for="step in steps" :key="step.title")
         img(:src="step.img_url" :alt="step.img_alt")
-        h4.icon-list__step__title {{ step.title }}
-        p.icon-list__step__desc {{ step.desc }}
+        h4.icon-list__step__title {{ step.title | unescape }}
+        p.icon-list__step__desc {{ step.desc | unescape }}
     carousel.icon-list__carousel(dots)
       slide.icon-list__step(v-for="(step, index) in steps" :key="step.title")
         img.icon-list__step__img(:src="step.img_url" :alt="step.img_alt")
         
         h4.icon-list__step__title 
-          span.step(v-if="$mq === 'mobile'") Step {{ index + 1 }}: 
-          | {{ step.title }}
+          span.step(v-if="$mq === 'mobile'") Step {{ index + 1 }}:
+          | {{ step.title | unescape }}
         
-        p.icon-list__step__desc {{ step.desc }}
+        p.icon-list__step__desc {{ step.desc | unescape }}
 </template>
 
 <script>
