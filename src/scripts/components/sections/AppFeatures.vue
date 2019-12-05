@@ -1,9 +1,9 @@
 <template lang="pug">
-section.app-features#app-features
+section.app-features
   h2.app-features__title {{ title | unescape }}
   .app-features__images
     img.app-features__images-icon(v-for="(image, idx) in images" :src="image.src" :alt="image.alt" :key="idx")
-  .container(v-if="$mq === 'desktop' || $mq === 'hd'")
+  .container#app-features(v-if="$mq === 'desktop' || $mq === 'hd'")
     .row
       .app-feature__wrapper.large-4.column.move-up
         .app-feature(
