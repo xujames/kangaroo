@@ -53,6 +53,11 @@
 <style lang="scss" scoped>
   .privacy-shield {
     max-width: 1390px;
+    margin-top: 50px;
+
+    @include tablet-up {
+      margin-top: 80px;
+    }
 
     &--desktop {
       background-size: cover;
