@@ -35,6 +35,7 @@ import IncludedProducts from "scripts/components/sections/IncludedProducts.vue";
 import AppFeatures from "scripts/components/sections/AppFeatures.vue";
 import SpecsAccordion from "scripts/components/sections/SpecsAccordion.vue";
 import HighlightsSlider from "scripts/components/sections/HighlightsSlider.vue";
+import ImageBanner from "scripts/components/sections/ImageBanner.vue";
 
 /**
  * Deferred components
@@ -83,5 +84,6 @@ export default {
   IncludedProducts,
   AppFeatures,
   SpecsAccordion,
-  HighlightsSlider
+  HighlightsSlider,
+  ImageBanner
 };

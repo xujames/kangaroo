@@ -1,0 +1,52 @@
+{%- capture section_settings -%}
+{
+  heading: {{ section.settings.title | json }},
+  subheading: {{ section.settings.subheading | json }},
+  btnText: {{ section.settings.btn_text | json }},
+  btnUrl: {{ section.settings.btn_url | json }},
+  desktopImage: {{ section.settings.image_desktop | img_url: '1400x' | json }},
+  mobileImage: {{ section.settings.image_mobile | img_url: '800x' | json }}
+}
+{%- endcapture -%}
+
+<image-banner :settings="{{ section_settings | escape }}"></image-banner>
+
+{% schema %}
+{
+  "name": "Image Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Buy Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile Image",
+      "info": "At least 570px tall recommended"
+    }
+  ]
+}
+{% endschema %}
