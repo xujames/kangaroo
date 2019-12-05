@@ -122,7 +122,7 @@ export default {
   width: 100%;
   background-color: $bg--secondary-nav;
   height: 72px;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;

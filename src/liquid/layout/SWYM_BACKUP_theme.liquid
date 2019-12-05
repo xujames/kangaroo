@@ -140,13 +140,17 @@
       <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
     {%- endif -%}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="{{ 'slick.js' | asset_url }}" async></script>
+    <script src="{{ 'slick.js' | asset_url }}" defer></script>
     <script src="{{ 'libs.min.js' | asset_url }}" defer></script>
     <script src="{{ 'jquery-scrolltofixed-min.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
     <script src="{{ 'jquery.scrollintoview.min.js' | asset_url }}" defer></script>
     <script src="{{ 'jquery-ui.min.js' | asset_url }}" defer></script>
+
+    {% if template.name contains 'index' %}
+    <script src="{{ 'kevin.js' | asset_url }}" defer></script>
+    {% endif %}
     {% include 'microdata-schema' %}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
@@ -200,7 +204,9 @@
     {%- endif -%}
 
     <div class="PageContainer">
+
       {% section 'header' %}
+      {% section 'announcement-custom' %}
 
       <main id="main" role="main">
         {{ content_for_layout }}

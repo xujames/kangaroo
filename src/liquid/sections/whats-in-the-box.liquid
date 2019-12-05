@@ -1,0 +1,420 @@
+{%- if section.settings.enable -%}
+	<div id="section-{{ section.id }}" class="custom-tabs section-content" data-section-id="{{ section.id }}" style="background-color:{% if section.settings.bg_color %} {{section.settings.bg_color}} {% endif %}">
+      <div class="container">
+
+
+				<div class="top_container">
+					{%- if section.settings.top_svg != blank -%}
+			      <div class="top_svg_container">
+			        <h2>{{section.settings.top_svg}}</h2>
+			      </div>
+			    {%- endif -%}
+					{%- if section.settings.top_heading != blank -%}
+			      <div class="top_heading">
+			        <h2>{{section.settings.top_heading}}</h2>
+			      </div>
+			    {%- endif -%}
+				</div>
+
+				<div class="arrow-container">
+					<div class="left-arrow arrow">
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+						<path d="M100,45.2H16.3l22.2-22.2c1.9-1.9,1.9-4.9,0-6.7c-1.9-1.9-4.9-1.9-6.7,0L1.4,46.6c-1.9,1.9-1.9,4.9,0,6.7l30.3,30.3
+							c1.9,1.9,4.9,1.9,6.7,0c1.9-1.9,1.9-4.9,0-6.7L16.3,54.8H100V45.2z"/>
+						</svg>
+					</div>
+
+					<div class="right-arrow arrow">
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+						<path d="M0,54.8h83.7L61.6,76.9c-1.9,1.8-1.9,4.8,0,6.7c1.8,1.9,4.8,1.9,6.7,0l30.3-30.3c1.9-1.8,1.9-4.8,0-6.7L68.2,16.3
+							c-1.8-1.9-4.8-1.9-6.7,0c-1.9,1.8-1.9,4.8,0,6.7l22.2,22.2H0V54.8z"/>
+						</svg>
+					</div>
+				</div>
+
+        <ul class="tabs">
+          {% for block in section.blocks %}
+	          <li class="tab-link {% if forloop.first %} current {% endif %}" data-tab="tab-{{forloop.index}}"><img class="custom_block_image Image--lazyLoad"
+								 src="{{ block.settings.thumbnail_image | img_url: '1x1' }}"
+								 data-src="{{ block.settings.thumbnail_image | img_url: '184x' }}"
+								 alt="{{ block.settings.thumbnail_image.alt | escape }}"></li>
+					 	{% if forloop.last == false %}
+	 						<li class="plus-sign">+</li>
+	 					{% endif %}
+          {% endfor %}
+        </ul>
+
+	      {% for block in section.blocks %}
+
+					{% capture block_content %}
+					<div class="Grid__Cell 1/1--phone 1/2--tablet-and-up 1/2--desk">
+						<div class="section_content">
+							{%- if block.settings.title != blank -%}
+								<h2 class="tab_content_heading">{{ block.settings.title }}</h2>
+							{%- endif -%}
+							{%- if block.settings.subheading != blank -%}
+								<div class="tab_content_subheading">{{ block.settings.subheading }}</div>
+							{%- endif -%}
+							{%- if block.settings.features_content != blank -%}
+								<div class="learn_more_button_container">
+									<span class="learn_more_button">Learn More</span>
+								</div>
+				        <div class="features_content_container">
+				          {{block.settings.features_content}}
+				        </div>
+				      {%- endif -%}
+						</div>
+					</div>
+					{% endcapture %}
+
+					{% capture block_image %}
+					<div class="Grid__Cell 1/1--phone 1/2--tablet-and-up 1/2--desk">
+						{%- assign image = block.settings.image1 -%}
+						{%- if image -%}
+							<div class="block_image">
+								<img class="custom_block_image "
+										 src="{{ image | img_url: '1080x' }}"
+										 data-src="{{ image | img_url: '1080x' }}"
+										 alt="{{ image.alt | escape }}">
+
+								<noscript>
+									<img class="Slideshow__Image" src="{{ image | img_url: 'x800' }}" alt="{{ image.alt | escape }}">
+								</noscript>
+							</div>
+						{%- else -%}
+							<div class="Slideshow__ImageContainer">
+								{%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+								{{ placeholder | placeholder_svg_tag: 'PlaceholderBackground__Svg' }}
+							</div>
+						{%- endif -%}
+					</div>
+					{% endcapture %}
+
+
+	      <div id="tab-{{forloop.index}}" class="tab-content {% if forloop.first %} current {% endif %}">
+					{% comment %}
+	        <div class="slider">
+					{% endcomment %}
+	              {% if block.settings.image1 != blank %}
+	          		<div class="cover">
+	                  <div class="Grid image_grid dhara">
+	                    {% if block.settings.image_position == 'left' %}
+											{{- block_image -}}
+											{{- block_content -}}
+											{% else %}
+											{{- block_content -}}
+											{{- block_image -}}
+	                    {% endif %}
+	                  </div>
+	              	</div>
+	          		{% endif %}
+					{% comment %}
+	        </div>
+					{% endcomment %}
+	      </div>
+	      {% endfor %}
+        </div>
+
+
+</div>
+
+<style>
+#section-{{ section.id }} .top_container {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+#section-{{ section.id }} .top_svg_container {
+	margin-bottom: 12px;
+}
+
+#section-{{ section.id }} .top_heading {
+	font-size: 21px;
+	font-weight: 700;
+}
+
+#section-{{ section.id }}.custom-tabs .tabs {
+	flex-direction: row;
+	max-width: 600px;
+	margin: 0 auto 30px;
+}
+
+#section-{{ section.id }}.custom-tabs .tabs .tab-link {
+	padding: 6px;
+	width: 80px;
+	height: 80px;
+	background: none;
+	border: none;
+}
+
+#section-{{ section.id }}.custom-tabs .tabs .tab-link.current {
+	padding: 3px;
+	border: 3px solid #FFF166;
+	border-radius: 2px;
+}
+
+#section-{{ section.id }} .plus-sign {
+	vertical-align: middle;
+	pointer-events: none;
+	padding: 0;
+	font-size: 18px;
+	line-height: 80px;
+}
+
+#section-{{ section.id }} .tab_content_heading {
+	font-size: 18px;
+}
+
+#section-{{ section.id }} .tab_content_subheading .tagline {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+#section-{{ section.id }}.custom-tabs .tab-content .section_content .tab_content_subheading p.quantity {
+	color: #5A91FE;
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: 700 !important;
+}
+
+#section-{{ section.id }} .block_image {
+	margin-bottom: 26px;
+	max-width: 540px;
+}
+
+#section-{{ section.id }} .learn_more_button_container {
+	text-align: center;
+	margin-top: 30px;
+}
+
+#section-{{ section.id }} .learn_more_button {
+	padding: 2px;
+	font-size: 16px;
+	font-weight: 700;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#section-{{ section.id }} .features_content_container {
+	display: none;
+}
+
+#section-{{ section.id }} .features_content_container h3 {
+	font-size: 13px;
+	text-transform: uppercase !important;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+#section-{{ section.id }} .features_content_container ul li {
+	font-size: 14px;
+}
+
+#section-{{ section.id }} .container {
+	position: relative;
+}
+
+#section-{{ section.id }} .arrow-container {
+
+	width: 100%;
+
+}
+
+#section-{{ section.id }} .left-arrow {
+	float: left;
+}
+
+#section-{{ section.id }} .right-arrow {
+	float: right;
+}
+
+#section-{{ section.id }} .left-arrow,
+#section-{{ section.id }} .right-arrow {
+	width: 20px;
+	cursor: pointer;
+}
+
+@media(min-width: 768px) {
+	#section-{{ section.id }} .top_container {
+		margin-bottom: 40px;
+	}
+
+	#section-{{ section.id }} .top_svg_container {
+		margin-bottom: 30px;
+	}
+
+	#section-{{ section.id }} .top_heading {
+		font-size: 34px;
+	}
+
+	#section-{{ section.id }} .plus-sign {
+		font-size: 28px;
+		line-height: 100px;
+	}
+
+	#section-{{ section.id }}.custom-tabs .tabs {
+		margin-bottom: 0;
+	}
+
+	#section-{{ section.id }}.custom-tabs .tab-content {
+		padding-top: 50px;
+	}
+
+	#section-{{ section.id }}.custom-tabs .tabs .tab-link {
+		padding: 6px;
+		width: 100px;
+		height: 100px;
+		background: none;
+		border: none;
+	}
+
+	#section-{{ section.id }}.custom-tabs .tabs .tab-link.current {
+		padding: 3px;
+		border: 3px solid #FFF166;
+		border-radius: 2px;
+	}
+
+	#section-{{ section.id }} .block_image {
+		margin-bottom: 0;
+	}
+
+	#section-{{ section.id }} .tab_content_heading {
+		font-size: 28px;
+		margin-bottom: 20px;
+	}
+
+	#section-{{ section.id }} .tab_content_subheading {
+		margin-bottom: 40px;
+	}
+
+	#section-{{ section.id }} .tab_content_subheading .tagline {
+		font-size: 21px;
+	}
+
+	#section-{{ section.id }} .features_content_container {
+		display: block;
+	}
+
+
+
+	#section-{{ section.id }} .features_content_container ul {
+		list-style-position: outside;
+		margin-left: 18px;
+	}
+
+	#section-{{ section.id }} .features_content_container ul li {
+		font-size: 18px;
+	}
+
+	#section-{{ section.id }} .learn_more_button {
+		display: none;
+	}
+
+	#section-{{ section.id }} .tab-content .Grid {
+		display: block;
+	}
+
+	#section-{{ section.id }} .tab-content .Grid .Grid__Cell {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	#section-{{ section.id }} .section_content {
+		height: 390px;
+	}
+}
+</style>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "What's in the box",
+		"class": "custom-tab",
+		"max_blocks": 5,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enabled Section?"
+      },
+			{
+				"type": "html",
+				"id": "top_svg",
+				"label": "Top SVG"
+			},
+			{
+				"type": "text",
+				"id": "top_heading",
+				"label": "Top Heading"
+			},
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Select Background Color"
+      }
+		],
+		"blocks":[
+      {
+				"type": "tabs-option",
+				"name": "Tabs",
+				"settings":[
+					{
+						"type": "image_picker",
+						"id": "thumbnail_image",
+						"label": "Thumbnail Image"
+					},
+					{
+		        "type": "header",
+		        "content": "Tab Content"
+					},
+					{
+		        "type": "image_picker",
+		        "id": "image1",
+		        "label": "Image",
+		        "info": "1560 x 1050px jpg recommended"
+		      },
+		      {
+		        "type": "text",
+		        "id": "title",
+		        "label": "Heading"
+		      },
+		      {
+		        "type": "html",
+		        "id": "subheading",
+		        "label": "Subheading"
+		      },
+					{
+		        "type": "html",
+		        "id": "features_content",
+		        "label": "Features Content"
+		      },
+					{
+			      "type": "select",
+			      "id": "image_position",
+			      "label": "Image position",
+			      "options": [
+			        {
+			          "value": "left",
+			          "label": "Left"
+			        },
+			        {
+			          "value": "right",
+			          "label": "Right"
+			        }
+			      ],
+			      "default": "left"
+			    }
+				]
+      }
+		],
+		"presets": [
+	    {
+	      "category": "Custom Section",
+	      "name": "What's in the box",
+	      "settings": {}
+	    }
+	  ]
+  }
+{% endschema %}

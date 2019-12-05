@@ -2,7 +2,13 @@
     var links = document.links;
       for (var i = 0, linksLength = links.length ; i < linksLength ; i++) {
         if (links[i].hostname !== window.location.hostname) {
-          links[i].target = '_blank';
+
+          if (window.outerWidth < 768) {
+            if (links[i].innerText == 'Buy Now' || links[i].innerText == 'Buy') {
+              links[i].target = '_blank';
+            }
+          }
+
         }
       }
   }());
@@ -37,45 +43,43 @@ $(document).ready(function() {
 //     }
 //   });
 
-  $(window).scroll(function() {
-    if ($('.download-app-cover').length > 0) {
-      var breakpoint = $('.download-app-cover').offset().top - $(window).scrollTop();
-      // console.log(breakpoint);
-      if(breakpoint > 1509){
-        // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_EntryDetected_Phone.png?37913');
-        $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_Motion_Entry_Alert.png?41549');
-      }
-      else if(breakpoint < 1508 && breakpoint > 1009){
-        // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_MotionDetected_Phone.png?37913');
-        $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_Motion_Alert.png?41549');
-      }
-      else if(breakpoint < 1008){
-        // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_LeakDetected_Phone.png?37913');
-        $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_Water_Climate_Alert.png?41549');
-      }
-    }
-  });
-
-  var summaries = $('.advanced-product-list .middle-part');
-  summaries.each(function(i) {
-    var summary = $(summaries[i]);
-    var next = summaries[i + 1];
-
-    summary.scrollToFixed({
-      marginTop: $('.home-logo-section').outerHeight(true) + 10,
-      limit: function() {
-        var limit = 0;
-        if (next) {
-          limit = $(next).offset().top - $(this).outerHeight(true) - 10;
-        } else {
-          limit = $('.shopify-section.download-app').offset().top - $(this).outerHeight(true) + 80;
-        }
-        return limit;
-      },
-      zIndex: 999
-    });
-
-  });
+  // $(window).scroll(function() {
+  // 	var breakpoint = $('.download-app-cover').offset().top - $(window).scrollTop();
+  //   // console.log(breakpoint);
+  //   if(breakpoint > 1509){
+  //   	// $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_EntryDetected_Phone.png?37913');
+  //     $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/1_Motion_Entry_Alert.png?41549');
+  //   }
+  //   else if(breakpoint < 1508 && breakpoint > 1009){
+  //     // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_MotionDetected_Phone.png?37913');
+  //     $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/2_Motion_Alert.png?41549');
+  //   }
+  //   else if(breakpoint < 1008){
+  //     // $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_LeakDetected_Phone.png?37913');
+  //     $('.middle-part img').attr('src','https://cdn.shopify.com/s/files/1/0055/2170/2963/files/3_Water_Climate_Alert.png?41549');
+  //   }
+  // });
+  //
+  // var summaries = $('.advanced-product-list .middle-part');
+  // summaries.each(function(i) {
+  //   var summary = $(summaries[i]);
+  //   var next = summaries[i + 1];
+  //
+  //   summary.scrollToFixed({
+  //     marginTop: $('.home-logo-section').outerHeight(true) + 10,
+  //     limit: function() {
+  //       var limit = 0;
+  //       if (next) {
+  //         limit = $(next).offset().top - $(this).outerHeight(true) - 10;
+  //       } else {
+  //         limit = $('.shopify-section.download-app').offset().top - $(this).outerHeight(true) + 80;
+  //       }
+  //       return limit;
+  //     },
+  //     zIndex: 999
+  //   });
+  //
+  // });
 
 
   //   end: for sticky mobile
@@ -118,11 +122,17 @@ $('.slider-nav').slick({
   $('ul.tabs li').click(function(){
     var tab_id = $(this).attr('data-tab');
 
-    $('ul.tabs li').removeClass('current');
-    $('.tab-content').removeClass('current');
+    // $('ul.tabs li').removeClass('current');
+    $(this).parent().find('li').removeClass('current');
+
+    // $('.tab-content').removeClass('current');
+    $(this).parents('.container').find('.tab-content').removeClass('current');
 
     $(this).addClass('current');
-    $("#"+tab_id).addClass('current');
+    // $("#"+tab_id).addClass('current');
+    $(this).parents('.container').find("#"+tab_id).addClass('current');
+
+
 
     $('.slider').slick('unslick');
 
@@ -137,6 +147,7 @@ $('.slider-nav').slick({
 
   });
   //   end: Catch Landing page custom tab code
+
 
 });
 // async function autoTab(){

@@ -1,0 +1,276 @@
+{%- capture flickity_options -%}
+{
+  "prevNextButtons": true,
+  "wrapAround": false,
+  "dragThreshold": 16,
+  "pageDots": true,
+  "autoPlay": {% if section.settings.autoplay %}{{ section.settings.cycle_speed | times: 1000 }}{% else %}false{% endif %},
+  "groupCells": 2,
+  "arrowShape": "M 100,45.2 H 16.3 l 22.2,-22.2 c 1.9 -1.9,1.9 -4.9,0 -6.7 c -1.9 -1.9 -4.9 -1.9 -6.7,0 L 1.4,46.6 c -1.9,1.9 -1.9,4.9 0,6.7 l 30.3,30.3 c 1.9,1.9 4.9,1.9 6.7,0 c 1.9,-1.9 1.9,-4.9 0,-6.7 L 16.3,54.8 H 100 V 45.2 z"
+}
+{%- endcapture -%}
+
+
+<!-- M 21,7 H 3.41 L 8.07,2.34 A 1 1 0 1 0 6.66 .93 L .29,7.29 a 1 1 0 0 0 0 1.41 l 6.36,6.36 a 1 1 0 1 0 1.41 -1.41 L 3.41,9 H 21 Z -->
+
+<div class="Section" id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="reviews">
+  <div class="average-rating-container">
+    <div class="ratings-content">
+      <div class="number-rating-container">
+        <h1>4.5</h1>
+      </div>
+      <div class="star-rating-svg">
+        <svg width="156" height="26" viewBox="0 0 156 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M45.5 19.5L37.8588 23.5172L39.3181 15.0086L33.1363 8.98278L41.6794 7.74139L45.5 0L49.3206 7.74139L57.8637 8.98278L51.6819 15.0086L53.1412 23.5172L45.5 19.5Z" fill="#F4C031"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M78 19.5L70.3588 23.5172L71.8181 15.0086L65.6363 8.98278L74.1794 7.74139L78 0L81.8206 7.74139L90.3637 8.98278L84.1819 15.0086L85.6412 23.5172L78 19.5Z" fill="#F4C031"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13 19.5L5.35879 23.5172L6.81813 15.0086L0.636265 8.98278L9.1794 7.74139L13 0L16.8206 7.74139L25.3637 8.98278L19.1819 15.0086L20.6412 23.5172L13 19.5Z" fill="#F4C031"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M110.5 19.5L102.859 23.5172L104.318 15.0086L98.1363 8.98278L106.679 7.74139L110.5 0L114.321 7.74139L122.864 8.98278L116.682 15.0086L118.141 23.5172L110.5 19.5Z" fill="#F4C031"/>
+          <path d="M143.349 18.8362L143 18.6527L142.651 18.8362L136.355 22.1462L137.557 15.1354L137.624 14.7468L137.342 14.4715L132.248 9.50646L139.287 8.48359L139.677 8.4269L139.852 8.07331L143 1.69466L146.148 8.07331L146.323 8.4269L146.713 8.48359L153.752 9.50646L148.658 14.4715L148.376 14.7468L148.443 15.1354L149.645 22.1462L143.349 18.8362Z" fill="#F4C031" stroke="#F4C031" stroke-width="1.5"/>
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="144" y="0" width="12" height="24">
+          <rect x="144" width="12" height="24" fill="#C4C4C4"/>
+          </mask>
+          <g mask="url(#mask0)">
+          <path d="M143.349 18.8362L143 18.6527L142.651 18.8362L136.355 22.1462L137.557 15.1354L137.624 14.7468L137.342 14.4715L132.248 9.50646L139.287 8.48359L139.677 8.4269L139.852 8.07331L143 1.69466L146.148 8.07331L146.323 8.4269L146.713 8.48359L153.752 9.50646L148.658 14.4715L148.376 14.7468L148.443 15.1354L149.645 22.1462L143.349 18.8362Z" fill="white" stroke="#F4C031" stroke-width="1.5"/>
+          </g>
+          </svg>
+      </div>
+      <div class="amazon-logo-container">
+        <img src="https://cdn.shopify.com/s/files/1/0055/2170/2963/files/amazon_logo2.png?44083" alt="">
+      </div>
+
+    </div>
+
+
+  </div>
+  <div class="ReviewList Review__Carousel Review__Carousel--fadeIn" data-flickity-options='{{ flickity_options }}'>
+    {%- for block in section.blocks -%}
+      <div id="block-{{ block.id }}" class="Review__Carousel__Cell Review {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }} data-slide-index="{{ forloop.index0 }}">
+        <div class="Container">
+           {%- if block.settings.heading != blank -%}
+            <div class="Review_Heading">
+             {{ block.settings.heading }}
+            </div>
+            <div class="Review_Content">
+              {{ block.settings.review_content }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }} {
+    color: {{ section.settings.text_color }};
+    background: {{ section.settings.background }};
+  }
+
+  #section-{{ section.id }} .flickity-page-dots .dot:not(.is-selected) {
+    border-color: {{section.settings.background | color_mix: section.settings.text_color, 65}};
+  }
+
+
+
+  .js #section-{{ section.id }} .Review__Carousel__Cell .Container {
+    padding: 0;
+
+  }
+
+  #section-{{ section.id }} {
+    display: table;
+    width: 90%;
+    padding: 50px 0;
+    margin: 0 auto;
+  }
+
+  #section-{{ section.id }} .average-rating-container {
+    width: 25%;
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  #section-{{ section.id }} .Review__Carousel {
+    width: 75%;
+    display: table-cell;
+  }
+
+  #section-{{ section.id }} .Review__Carousel__Cell {
+    width: 40%;
+    margin: 0 5%;
+  }
+
+  #section-{{ section.id }} .average-rating-container .ratings-content {
+    max-width: 300px;
+    display: inline-block;
+    text-align: center;
+
+  }
+
+  #section-{{ section.id }} .average-rating-container .ratings-content .number-rating-container {
+    font-size: 55px;
+    font-weight: 700;
+  }
+
+  #section-{{ section.id }} .Review_Heading {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  #section-{{ section.id }} .Review_Content p {
+    font-size: 14px;
+  }
+
+  #section-{{ section.id }} .rating_svg_container {
+    margin-bottom: 15px;
+  }
+
+  #section-{{ section.id }} .flickity-prev-next-button {
+    top: 50%;
+    margin-top: -22.5px;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  #section-{{ section.id }} .flickity-prev-next-button.previous {
+    left: 0;
+    margin-left: -20px;
+  }
+
+  #section-{{ section.id }} .flickity-prev-next-button.next {
+    right: 0;
+    margin-right: -20px;
+  }
+
+  /* #section-{{ section.id }} .flickity-enabled {
+    position: static;
+  } */
+
+  #section-{{ section.id }} .amazon-logo-container {
+    width: 218px;
+  }
+
+  @media(min-width: 768px) {
+    #section-{{ section.id }} .flickity-page-dots {
+      position: absolute;
+      left: -33.3333%;
+      width: auto;
+      right: 0;
+    }
+  }
+
+
+  @media (max-width: 767px) {
+    #section-{{ section.id }} {
+      display: block;
+      width: 90%;
+      padding: 0 0 50px;
+      margin: 0 auto;
+    }
+
+    #section-{{ section.id }} .Review__Carousel__Cell {
+      width: 100%;
+      margin: 0;
+    }
+
+    #section-{{ section.id }} .Review__Carousel__Cell .Container {
+      text-align: center;
+    }
+
+    #section-{{ section.id }} .average-rating-container {
+      width: 100%;
+      display: block;
+      margin-bottom: 26px;
+    }
+
+    #section-{{ section.id }} .Review__Carousel {
+      width: 100%;
+      display: block;
+    }
+
+    #section-{{ section.id }} .flickity-prev-next-button {
+      top: auto;
+      bottom: 0;
+      margin-bottom: -10px;
+    }
+
+    #section-{{ section.id }} .flickity-prev-next-button.previous {
+      left: 0;
+      margin-left: 20px;
+
+    }
+
+    #section-{{ section.id }} .flickity-prev-next-button.next {
+      right: 0;
+      margin-right: 20px;
+    }
+  }
+
+
+</style>
+
+{% schema %}
+{
+  "name": "Reviews Slider",
+  "class": "shopify-section--bordered",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto rotate between testimonials",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cycle_speed",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change testimonials every",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#eaeaea"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1c1b1b"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "html",
+          "id": "review_content",
+          "label": "Review Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Reviews Slider",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
