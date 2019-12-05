@@ -36,6 +36,7 @@ import AppFeatures from "scripts/components/sections/AppFeatures.vue";
 import SpecsAccordion from "scripts/components/sections/SpecsAccordion.vue";
 import HighlightsSlider from "scripts/components/sections/HighlightsSlider.vue";
 import PrivacyShield from "scripts/components/sections/PrivacyShield/PrivacyShield.vue";
+import FaqAccordions from "scripts/components/sections/FaqAccordions.vue";
 
 /**
  * Deferred components
@@ -85,5 +86,6 @@ export default {
   AppFeatures,
   SpecsAccordion,
   HighlightsSlider,
-  PrivacyShield
+  PrivacyShield,
+  FaqAccordions
 };
