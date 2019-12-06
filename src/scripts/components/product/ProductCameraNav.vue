@@ -2,7 +2,7 @@
   header.product-bundle-nav--container
     .product-bundle-nav(v-if="currentVariant")
       .product-bundle-nav__title-container
-        img(:src="icon" alt="Privacy Camera")
+        img.camera-icon(:src="icon" alt="Privacy Camera")
         h1.product-bundle-nav__title Privacy Camera
           span.product-bundle-nav__title--price(v-if="$mq != 'mobile'") - {{ currentVariant.price | money }}
 
@@ -30,9 +30,9 @@
       return {
         links: [
           { label: "Privacy Camera", link: "#top" },
+          { label: "Specs", link: "#specs" },
           { label: "Capabilities", link: "#capabilities" },
-          { label: "FAQ", link: "#faq" },
-          { label: "Specs", link: "#specs" }
+          { label: "FAQ", link: "#faq" }
         ]
       }
     }
@@ -40,5 +40,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .camera-icon {
+    width: 33px;
+  }
 </style>
