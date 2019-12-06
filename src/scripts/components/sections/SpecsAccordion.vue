@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.specs-accordion
+  section.specs-accordion#specs
     accordion(:heading="accordionHeading")
       .specs-accordion__content
         slot
