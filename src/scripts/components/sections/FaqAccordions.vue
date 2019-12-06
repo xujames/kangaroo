@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.faq-accordions
+  section.faq-accordions#faq
     .faq-accordions__image
       img(:src="image", alt="Frequently Asked Questions")
     .faq-accordions__questions

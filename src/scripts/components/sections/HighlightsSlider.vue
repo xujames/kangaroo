@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.highlights-slider
+  section.highlights-slider#capabilities
     carousel(
       ref="cameraHighlightsSlider",
       v-if="slides.length",

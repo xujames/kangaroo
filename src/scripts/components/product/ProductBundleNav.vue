@@ -114,7 +114,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .product-bundle-nav {
   position: fixed;
   top: 55px;
