@@ -5,7 +5,7 @@
     index: {{ forloop.index }},
     title: {{ feature.settings.title | json }},
     description: {{ feature.settings.description | json }},
-    icon: "{{ feature.settings.icon | img_url: '100x' }}",
+    icon: "{{ feature.settings.icon | img_url: '120x' }}",
     img: {
       src: "{{ feature.settings.img | img_url: 'x500' }}",
       alt: "{{ feature.settings.img.alt | escape }}"

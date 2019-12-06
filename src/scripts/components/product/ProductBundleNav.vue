@@ -2,7 +2,7 @@
 header.product-bundle-nav--container
   .product-bundle-nav(v-if="currentVariant")
     .product-bundle-nav__title-container
-      img(:src="icon" alt="kangaroo shield icon")
+      img.bundle-icon(:src="icon" alt="kangaroo shield icon")
       h1.product-bundle-nav__title {{ currentVariant.title }}
         span.product-bundle-nav__title--price(v-if="$mq != 'mobile'") - {{ currentVariant.price | money }}
 
@@ -144,6 +144,10 @@ export default {
   &__title-container {
     display: flex;
     align-items: center;
+
+    .bundle-icon {
+      width: 21px;
+    }
   }
 
   &__title {
