@@ -5,7 +5,7 @@ section.app-features
     img.app-features__images-icon(v-for="(image, idx) in images" :src="image.src" :alt="image.alt" :key="idx")
   .container(v-if="$mq === 'desktop' || $mq === 'hd'")
     .row
-      .app-feature__wrapper.large-4.column.move-up
+      .app-feature__wrapper.large-4.small-1.column.move-up
         .app-feature(v-for="(feature, idx) in leftFeatures" :key="feature.title" @click="swapImage(feature.img)")
           img.app-feature__icon(:src="feature.icon")
           .app-feature__copy
@@ -13,7 +13,7 @@ section.app-features
             .app-feature__copy-description {{ feature.description }}
       .large-4.column#app-features
         img.app-feature__image(:src="currentImage" :alt="currentAlt")
-      .app-feature__wrapper.large-4.column.move-up
+      .app-feature__wrapper.large-4.small-1.column.move-up
         .app-feature(v-for="(feature, idx) in rightFeatures" :key="feature.title")
           img.app-feature__icon(:src="feature.icon")
           .app-feature__copy

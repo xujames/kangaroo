@@ -5,7 +5,7 @@
       ref="privacyTechCarousel", 
       :slides-to-show="1", 
       :infinite="multipleImages ? true : false",
-      :dots="multipleImages ? true : false"
+      :dots="false"
     )
       slide(v-for="(slide, idx) in slides" :key="idx")
         .container
@@ -17,15 +17,21 @@
                 .slide__copy-text
                   .slide__copy-title {{ block.title }}
                   .slide__copy-description {{ block.desc }}
+    carousel-button(
+      @backClick="onBackButtonClick",
+      @nextClick="onNextButtonClick",
+      color="blue"
+    )
 </template>
 
 <script>
 import Carousel from 'scripts/components/basic/Carousel.vue';
 import Slide from 'scripts/components/basic/Slide.vue';
+import CarouselButton from 'scripts/components/buttons/CarouselButton.vue';
 
 export default {
   name: 'PrivacyTechnologyFeatures',
-  components: { Carousel, Slide },
+  components: { Carousel, Slide, CarouselButton },
   data: function() {
     return {
       multipleImages: this.slides.length > 1
@@ -39,7 +45,12 @@ export default {
     
   },
   methods: {
-    
+    onBackButtonClick(){
+      this.$refs.privacyTechCarousel.slidePrev()
+    },
+    onNextButtonClick(){
+      this.$refs.privacyTechCarousel.slideNext()
+    }
   }
 }
 </script>
@@ -64,7 +75,9 @@ export default {
     .slide {
       &__image {
         flex: 1;
-        max-width: 800px;
+        @include tablet-up {
+          max-width: 800px;
+        }
       }
       &__copy {
         &-wrapper {
