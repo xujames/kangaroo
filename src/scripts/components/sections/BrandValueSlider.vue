@@ -168,7 +168,7 @@ export default {
 
   &__tab {
     padding: 24px 32px;
-    z-index: 2;
+    z-index: 1;
     outline: none;
     cursor: pointer;
 
