@@ -61,6 +61,10 @@
       loading: {
         type: Boolean,
         default: false
+      },
+      addtocart: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {
@@ -73,7 +77,8 @@
           'button--full': this.full === true,
           'button--text': this.text === true,
           'button--flex': this.flex === true,
-          'button--inline': this.inline === true
+          'button--inline': this.inline === true,
+          'addtocart': this.addtocart === true
         }
       },
       isDisabled () {
