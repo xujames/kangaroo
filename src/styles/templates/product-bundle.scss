@@ -1,0 +1,69 @@
+.shopify-section--kit-product {
+  .Product {
+    margin-top: 24px;
+    &__Info {
+      padding-top: 24px;
+    }
+    &__Gallery {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+    &__SlideshowNavScroller {
+      display: flex;
+      flex-direction: column;
+      margin-right: 24px;
+    }
+  }
+  [data-flickity-config] {
+    flex: 1;
+    height: auto;
+    @include desktop-up {
+      max-width: 650px;
+    }
+  }
+  .flickity-page-dots {
+    @include desktop-up {
+      display: none;
+    }
+  }
+  .ProductMeta__Title {
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .ProductForm__QuantitySelector {
+    display: none;
+  }
+  .ProductMeta__Price {
+    display: none;
+  }
+  .ProductForm__Variants {
+    margin-bottom: 0;
+  }
+  .ProductForm__AddToCart {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #343f63;
+    border-color: #fef065;
+    margin-bottom: 48px;
+    &:before {
+      background-color: #fef065;
+    }
+  }
+  .product-info__membership-line {
+    font-weight: 500!important;
+    color: #526daa;
+    margin: 6px 0 0;
+  }
+  .product-info__promo-line {
+    color: #6a6a6a;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 4px;
+  }
+}

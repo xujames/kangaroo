@@ -38,6 +38,7 @@
         :loading="adding"
         full
         secondary
+        addtocart
       )
 </template>
 

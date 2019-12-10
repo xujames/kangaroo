@@ -1,10 +1,9 @@
 <template lang="pug">
 header.product-bundle-nav--container
-  .product-bundle-nav(v-if="currentVariant")
+  .product-bundle-nav
     .product-bundle-nav__title-container
       img.bundle-icon(:src="icon" alt="kangaroo shield icon")
-      h1.product-bundle-nav__title {{ currentVariant.title }}
-        span.product-bundle-nav__title--price(v-if="$mq != 'mobile'") - {{ currentVariant.price | money }}
+      h1.product-bundle-nav__title {{ title }}
 
     ul.product-bundle-nav__link-list(v-if="['desktop', 'hd'].includes($mq)")
       li(v-for="link in links" :class="{ 'active': link.link === activeLink }")
@@ -14,10 +13,18 @@ header.product-bundle-nav--container
         ) {{ link.label }}
 
     primary-button.product-bundle-nav__atc-btn(
-      @click="addToCart"
+      v-if="showAtc"
       :label="ctaText"
       secondary
     )
+    a(
+      v-else
+      href="#top"
+    )
+      primary-button.product-bundle-nav__atc-btn(
+        :label="ctaText"
+        secondary
+      )
 </template>
 
 <script>
@@ -29,7 +36,9 @@ export default {
   name: "ProductBundleNav",
   components: { PrimaryButton },
   props: {
-    icon: String
+    icon: String,
+    title: String,
+    atc: String
   },
   data () {
     return {
@@ -49,6 +58,9 @@ export default {
     ctaText () {
       let money = this.$options.filters.money
       return this.$mq === 'mobile' ? `Buy Now - ${money(this.currentVariant.price)}` : 'Add to Cart'
+    },
+    showAtc () {
+      return this.atc === "true";
     }
   },
   methods: {
