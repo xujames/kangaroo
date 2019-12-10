@@ -18,6 +18,12 @@ export default {
 }
 </script>
 
+<style lang="scss">
+  .suffix-camera .product-benefits {
+    margin-bottom: 0 !important;
+  }
+</style>
+
 <style lang="scss" scoped>
 .product-benefits {
   background-color: $color--primary;

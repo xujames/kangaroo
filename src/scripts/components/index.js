@@ -39,6 +39,7 @@ import HighlightsSlider from "scripts/components/sections/HighlightsSlider.vue";
 import PrivacyShield from "scripts/components/sections/PrivacyShield/PrivacyShield.vue";
 import FaqAccordions from "scripts/components/sections/FaqAccordions.vue";
 import ImageBanner from "scripts/components/sections/ImageBanner.vue";
+import PrivacyTechnologyFeatures from "scripts/components/sections/PrivacyTechnologyFeatures.vue";
 
 /**
  * Deferred components
@@ -91,5 +92,6 @@ export default {
   HighlightsSlider,
   PrivacyShield,
   FaqAccordions,
-  ImageBanner
+  ImageBanner,
+  PrivacyTechnologyFeatures
 };
