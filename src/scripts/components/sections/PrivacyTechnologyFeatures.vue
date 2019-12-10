@@ -1,5 +1,5 @@
 <template lang="pug">
-  .privacy-technology
+  .privacy-technology#specs
     h2.privacy-technology__title {{ title }}
     carousel(
       ref="privacyTechCarousel", 
@@ -17,7 +17,7 @@
                 .slide__copy-text
                   .slide__copy-title {{ block.title }}
                   .slide__copy-description {{ block.desc }}
-    carousel-button(
+    carousel-button.privacy-technology__arrows(
       @backClick="onBackButtonClick",
       @nextClick="onNextButtonClick",
       color="blue"
@@ -57,6 +57,13 @@ export default {
 
 <style lang="scss" scoped>
   .privacy-technology {
+    background-color: $color-light-grey;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    @include tablet-up {
+      padding-bottom: 30px;
+      padding-top: 60px;
+    }
     &__title {
       text-align: center;
       margin-bottom: 48px;
@@ -68,6 +75,9 @@ export default {
         font-size: rem(32);
         margin-bottom: 64px;
       }
+    }
+    &__arrows {
+      text-align: center;
     }
     .row {
       justify-content: center;

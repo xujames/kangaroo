@@ -72,6 +72,7 @@
     border-radius: 50%;
     background: transparent;
     transition: opacity 0.3s ease-in-out;
+    background-color: $color-white;
     &:hover{
       cursor: pointer;
       opacity: .7;
@@ -87,6 +88,7 @@
     &-blue {
       .icon{
         fill: $color-blue;
+        stroke: $color-blue;
       }
     }
   }
