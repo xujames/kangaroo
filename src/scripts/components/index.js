@@ -40,6 +40,7 @@ import PrivacyShield from "scripts/components/sections/PrivacyShield/PrivacyShie
 import FaqAccordions from "scripts/components/sections/FaqAccordions.vue";
 import ImageBanner from "scripts/components/sections/ImageBanner.vue";
 import PrivacyTechnologyFeatures from "scripts/components/sections/PrivacyTechnologyFeatures.vue";
+import StoragePlan from "scripts/components/sections/StoragePlan.vue";
 
 /**
  * Deferred components
@@ -93,5 +94,6 @@ export default {
   PrivacyShield,
   FaqAccordions,
   ImageBanner,
-  PrivacyTechnologyFeatures
+  PrivacyTechnologyFeatures,
+  StoragePlan
 };
