@@ -64,6 +64,10 @@ export default {
   margin: 0;
   padding: 50px 0 29px 0;
 
+  @include tablet-up {
+    padding-bottom: 50px;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
@@ -148,8 +152,11 @@ export default {
     }
 
     &__img {
-      max-height: 126px;
-      max-width: unset;
+      max-width: 100%;
+
+      @include tablet-up {
+        width: 297px;
+      }
     }
 
     &__title {
@@ -203,7 +210,6 @@ export default {
 
     &__info {
       background-color: $color-white;
-      border-top: 2px solid #000;
       padding: 24px 15px 32px 15px;
 
       @include tablet-up {
