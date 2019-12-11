@@ -8,6 +8,10 @@
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
+
+      @include tablet-up {
+        margin-bottom: 125px;
+      }
     }
     &__SlideshowNavScroller {
       display: flex;
@@ -28,6 +32,7 @@
     }
   }
   .ProductMeta__Title {
+    text-align: left;
     font-size: 36px;
     line-height: 48px;
     font-weight: 700;
@@ -61,9 +66,14 @@
     margin: 6px 0 0;
   }
   .product-info__promo-line {
+    display: none;
     color: #6a6a6a;
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 4px;
+
+    @include tablet-up {
+      display: block;
+    }
   }
 }
