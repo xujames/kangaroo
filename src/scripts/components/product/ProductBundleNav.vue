@@ -29,11 +29,13 @@ header.product-bundle-nav--container
 
 <script>
 import { mapState } from 'vuex'
+import storeProduct from 'scripts/mixins/storeProduct.js'
 
 import PrimaryButton from 'scripts/components/buttons/PrimaryButton.vue'
 
 export default {
   name: "ProductBundleNav",
+  mixins: [ storeProduct ],
   components: { PrimaryButton },
   props: {
     icon: String,
@@ -61,6 +63,11 @@ export default {
     },
     showAtc () {
       return this.atc === "true";
+    }
+  },
+  watch: {
+    product() {
+      if (this.product) this.$store.dispatch('pdp/update', this.product.variants[0])
     }
   },
   methods: {
@@ -98,6 +105,23 @@ export default {
         }
       });
     },
+    handleClick(e) {
+      let currentlySelectedVariant
+      let { dataset, classList } = e.target
+
+      if (!classList.contains('Popover__Value') || !classList.contains('is-selected')) return
+
+      if (this.product.variants.length >= 1) {
+        currentlySelectedVariant = this.product.variants.find(variant => 
+          variant.title === dataset.value)
+      }
+
+      if (currentlySelectedVariant) {
+        this.$store.dispatch('pdp/update', currentlySelectedVariant)
+      } else {
+        this.$store.dispatch('pdp/update', this.product.variants[0])
+      }
+    },
     // This is a hack for updating the existing sidecart
     async updateSidecart () {
       let resp = await fetch(`/cart?view=drawer&timestamp=${Date.now()}`, {
@@ -119,14 +143,16 @@ export default {
   },
   created() {
     document.addEventListener('scroll', this.handleScroll);
+    document.addEventListener('click', this.handleClick)
   },
   destroyed() {
     document.removeEventListener('scroll', this.handleScroll);
+    document.removeEventListener('click', this.handleClick)
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .product-bundle-nav {
   position: fixed;
   top: 55px;

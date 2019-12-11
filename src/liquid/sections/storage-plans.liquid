@@ -1,0 +1,104 @@
+{% capture plans %}
+[
+  {% for plan in section.blocks %}
+  {
+    title: "{{ plan.settings.plan_title | escape }}",
+    price: "{{ plan.settings.price | escape }}",
+    subtitle: "{{ plan.settings.plan_subtitle | escape }}",
+    img: {
+      src: "{{ plan.settings.image | img_url: 'master' }}",
+      alt: "{{ plan.settings.image.alt | escape }}"
+    },
+    feature_1: "{{ plan.settings.feature_1 | escape }}",
+    feature_2: "{{ plan.settings.feature_2 | escape }}",
+    feature_3: "{{ plan.settings.feature_3 | escape }}",
+    subcopy: {{ plan.settings.plan_subcopy | json }}
+  },
+  {% endfor %}
+]
+{% endcapture %}
+
+<storage-plan
+  title="{{ section.settings.title | escape }}"
+  subtitle="{{ section.settings.subtitle | escape }}"
+  desc="{{ section.settings.desc | escape }}"
+  disclaimer="{{ section.settings.disclaimer | escape }}"
+  :plans="{{ plans | escape }}"
+></storage-plan>
+
+{% schema %}
+{
+  "name": "Storage Plans",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "id": "desc",
+      "type": "textarea",
+      "label": "Description"
+    },
+    {
+      "id": "disclaimer",
+      "type": "text",
+      "label": "Disclaimer"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Plan",
+      "type": "plan",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Plan Image"
+        },
+        {
+          "id": "plan_title",
+          "type": "text",
+          "label": "Plan Title"
+        },
+        {
+          "id": "plan_subtitle",
+          "type": "text",
+          "label": "Plan Subtitle"
+        },
+        {
+          "id": "price",
+          "type": "text",
+          "label": "Annual Price"
+        },
+        {
+          "id": "feature_1",
+          "type": "text",
+          "label": "Plan Feature 1"
+        },
+        {
+          "id": "feature_2",
+          "type": "text",
+          "label": "Plan Feature 2"
+        },
+        {
+          "id": "feature_3",
+          "type": "text",
+          "label": "Plan Feature 3"
+        },
+        {
+          "id": "plan_subcopy",
+          "type": "richtext",
+          "label": "Plan Subcopy"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
