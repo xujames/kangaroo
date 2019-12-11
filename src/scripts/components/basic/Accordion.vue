@@ -67,11 +67,15 @@
       }
     },
     mounted () {
-      let height = this.$refs.content.scrollHeight
+
+      setTimeout(() => {
+        let height = this.$refs.content.scrollHeight
       
-      this.contentStyle = {
-        'max-height': `${height}px`
-      }
+        this.contentStyle = {
+          'max-height': `${height}px`
+        }
+      }, 500)
+
       // NOTE: this has to be set to false after mount or scrollHeight will be 0
       this.active = this.selected
       this.transition = 'slide-vertical'
@@ -147,6 +151,15 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      font-family: $font-body--main;
+      font-size: 14px;
+      line-height: 20px;
+
+      &::v-deep pre {
+        font-family: $font-body--main;
+        font-size: 14px;
+        line-height: 20px;
+      }
       
       &--wrapper {
         overflow: hidden;

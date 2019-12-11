@@ -73,4 +73,11 @@
       padding: 0;
     }
   }
+
+  .tab,
+  pre {
+    font-family: $font-body--main;
+    font-size: 14px;
+    line-height: 20px;
+  }
 </style>
