@@ -129,7 +129,7 @@
       color: $color-black;
       text-transform: uppercase;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 600;
       line-height: 22px;
       text-decoration: none;
 

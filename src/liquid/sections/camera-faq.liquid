@@ -1,0 +1,55 @@
+{%- capture section_settings -%}
+{
+  image: {{ section.settings.image | img_url: '800x' | json }},
+  heading: {{ section.settings.title | json }},
+  questions: [
+    {%- for block in section.blocks -%}
+      {
+        question: {{ block.settings.question | json }},
+        answer: {{ block.settings.answer | json }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+{%- endcapture -%}
+
+<faq-accordions :settings="{{ section_settings | escape }}"></faq-accordions>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "FAQ"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Question",
+      "type": "question_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "info": "Keep these succinct to avoid line breaks on mobile"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

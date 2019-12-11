@@ -1,10 +1,9 @@
 <template lang="pug">
 header.product-bundle-nav--container
-  .product-bundle-nav(v-if="currentVariant")
+  .product-bundle-nav
     .product-bundle-nav__title-container
       img.bundle-icon(:src="icon" alt="kangaroo shield icon")
-      h1.product-bundle-nav__title {{ currentVariant.title }}
-        span.product-bundle-nav__title--price(v-if="$mq != 'mobile'") - {{ currentVariant.price | money }}
+      h1.product-bundle-nav__title {{ title }}
 
     ul.product-bundle-nav__link-list(v-if="['desktop', 'hd'].includes($mq)")
       li(v-for="link in links" :class="{ 'active': link.link === activeLink }")
@@ -14,22 +13,34 @@ header.product-bundle-nav--container
         ) {{ link.label }}
 
     primary-button.product-bundle-nav__atc-btn(
-      @click="addToCart"
+      v-if="showAtc"
       :label="ctaText"
       secondary
     )
+    a(
+      v-else
+      href="#top"
+    )
+      primary-button.product-bundle-nav__atc-btn(
+        :label="ctaText"
+        secondary
+      )
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import storeProduct from 'scripts/mixins/storeProduct.js'
 
 import PrimaryButton from 'scripts/components/buttons/PrimaryButton.vue'
 
 export default {
   name: "ProductBundleNav",
+  mixins: [ storeProduct ],
   components: { PrimaryButton },
   props: {
-    icon: String
+    icon: String,
+    title: String,
+    atc: String
   },
   data () {
     return {
@@ -49,6 +60,14 @@ export default {
     ctaText () {
       let money = this.$options.filters.money
       return this.$mq === 'mobile' ? `Buy Now - ${money(this.currentVariant.price)}` : 'Add to Cart'
+    },
+    showAtc () {
+      return this.atc === "true";
+    }
+  },
+  watch: {
+    product() {
+      if (this.product) this.$store.dispatch('pdp/update', this.product.variants[0])
     }
   },
   methods: {
@@ -86,6 +105,23 @@ export default {
         }
       });
     },
+    handleClick(e) {
+      let currentlySelectedVariant
+      let { dataset, classList } = e.target
+
+      if (!classList.contains('Popover__Value') || !classList.contains('is-selected')) return
+
+      if (this.product.variants.length >= 1) {
+        currentlySelectedVariant = this.product.variants.find(variant => 
+          variant.title === dataset.value)
+      }
+
+      if (currentlySelectedVariant) {
+        this.$store.dispatch('pdp/update', currentlySelectedVariant)
+      } else {
+        this.$store.dispatch('pdp/update', this.product.variants[0])
+      }
+    },
     // This is a hack for updating the existing sidecart
     async updateSidecart () {
       let resp = await fetch(`/cart?view=drawer&timestamp=${Date.now()}`, {
@@ -107,14 +143,16 @@ export default {
   },
   created() {
     document.addEventListener('scroll', this.handleScroll);
+    document.addEventListener('click', this.handleClick)
   },
   destroyed() {
     document.removeEventListener('scroll', this.handleScroll);
+    document.removeEventListener('click', this.handleClick)
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .product-bundle-nav {
   position: fixed;
   top: 55px;

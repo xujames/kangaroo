@@ -35,7 +35,6 @@
 
     {{ content_for_header }}
     {%- include 'bold-options-hybrid' -%}
-    {%- include 'bold-common' -%}
     {%- include 'bold-product' with product, hide_action: 'header' -%}
     <link rel="stylesheet" href="{{ 'animate.css' | asset_url }}">
     <link rel="stylesheet" href="{{ 'slick-theme.css' | asset_url }}">
@@ -48,7 +47,26 @@
     {{ 'bvaccel-app.css' | asset_url | stylesheet_tag }}
     {% endif %}
 
-    <style>.u-hidden { display: none !important; }</style>
+    <style>
+      .u-hidden { display: none !important; }
+  
+      .shopify-payment-button__button--unbranded {
+        display: compact;
+        background: {{ section.settings.buy_button_background_color }};
+        color: {{ section.settings.buy_button_text_color }};
+        height: {{ section.settings.buy_button_height }}px;
+        width: {{ section.settings.buy_button_width }}px;
+        border-radius: {{ section.settings.buy_border_radius }}px;
+        font-size: {{ section.settings.buy_button_text_size }}px;
+        font-weight: {{ section.settings.buy_button_text_weight }};
+        text-decoration: none;
+        letter-spacing: {{ section.settings.buy_button_text_spacing }}px;
+        padding: {{ section.settings.buy_button_top_padding }}px 28px;
+       }
+      .shopify-payment-button__button--unbranded:hover:not([disabled]) {
+        background: {{ section.settings.buy_button_background_color }};
+      }  
+    </style>
 
 {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
 {%- assign time_now = 'now' | date: '%s' %}
@@ -194,10 +212,11 @@
     </script>
     <!-- End Yotpo -->
 
-
+  {% include 'bold-common' %}
+  {% include 'bold-ro-init' %}
 </head>
 
-  <body class="prestige--v3 {% if template.directory %}template-{{ template.directory | handle }}{% endif %} template-{{ template.name | handle }}">
+  <body class="prestige--v3 {% if template.directory %}template-{{ template.directory | handle }}{% endif %} template-{{ template.name | handle }} {% if template.suffix %}suffix-{{ template.suffix | handle }}{% endif %}">
     {% include 'icon-store' %}
     <a class="PageSkipLink u-visually-hidden" href="#main">{{ 'header.navigation.skip_to_content' | t }}</a>
     <span class="LoadingBar"></span>
@@ -213,8 +232,10 @@
 
     <div class="PageContainer">
       {% section 'header' %}
-      {% section 'announcement-custom' %}
-
+      {% unless template == 'product.bundle' or template == 'product.camera' %}
+        {% section 'announcement-custom' %}
+      {% endunless %}
+      <div class="ro_widget"></div>
       <div id="app">
         <main id="main" role="main">
           {{ content_for_layout }}
@@ -222,7 +243,7 @@
         <toast></toast>
         <video-modal></video-modal>
       </div>
-
+      
       {% section 'footer' %}
     </div>
 

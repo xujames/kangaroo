@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.highlights-slider
+  section.highlights-slider#capabilities
     carousel(
       ref="cameraHighlightsSlider",
       v-if="slides.length",
@@ -42,6 +42,11 @@ export default {
     display: block;
     padding: 0 15px;
     text-align: center;
+    margin-top: 50px;
+
+    @include tablet-up {
+      margin-top: 80px;
+    }
 
     @include desktop-up {
       padding: 0;

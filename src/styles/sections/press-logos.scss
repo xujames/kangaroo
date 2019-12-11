@@ -1,0 +1,25 @@
+.camera--press {
+  background-color: $color-light-grey;
+  padding-bottom: 60px;
+  display: none;
+
+  @include tablet-up {
+    display: block;
+  }
+
+  &__logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    > img {
+      max-height: 22px;
+      margin-top: 10px;
+
+      &:not(:last-child) {
+        margin-right: 26px;
+      }
+    }
+  }
+}

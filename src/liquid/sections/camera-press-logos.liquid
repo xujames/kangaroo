@@ -1,0 +1,27 @@
+<div class="camera--press">
+  <div class="camera--press__logos">
+    {%- for block in section.blocks -%}
+      <img src="{{ block.settings.logo | img_url: 'master' }}" alt="{{ block.settings.logo.alt }}">
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Press Logos",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "press_logo",
+      "name": "Press Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

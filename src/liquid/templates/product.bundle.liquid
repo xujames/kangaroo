@@ -2,11 +2,16 @@
 {%- include 'bold-product' with product, hide_action: 'break', output: 'none' -%}
 <product-bundle-nav
   icon="{{ 'ShieldBadge.svg' | asset_url }}"
+  title="Starter Kit"
+  atc="false"
+  product-handle="{{ product.handle }}"
 ></product-bundle-nav>
-{%- section 'product-header' -%}
+
+{%- section 'kit-product-template' -%}
 {%- section 'product-benefits-bar' -%}
 {%- section 'brand-value-slider' -%}
 {%- section 'included-products' -%}
 {%- section 'icon-list' -%}
 {%- section 'app-features' -%}
 {%- section 'yotpo-product-reviews' -%}
+

@@ -26,6 +26,7 @@ import VideoModal from "scripts/components/video/VideoModal.vue";
 // PDP
 import ProductDisplay from "scripts/components/product/ProductDisplay.vue";
 import ProductBundleNav from "scripts/components/product/ProductBundleNav.vue";
+import ProductCameraNav from "scripts/components/product/ProductCameraNav.vue";
 
 // Sections
 import ProductBenefitsBar from "scripts/components/sections/ProductBenefitsBar.vue";
@@ -35,6 +36,11 @@ import IncludedProducts from "scripts/components/sections/IncludedProducts.vue";
 import AppFeatures from "scripts/components/sections/AppFeatures.vue";
 import SpecsAccordion from "scripts/components/sections/SpecsAccordion.vue";
 import HighlightsSlider from "scripts/components/sections/HighlightsSlider.vue";
+import PrivacyShield from "scripts/components/sections/PrivacyShield/PrivacyShield.vue";
+import FaqAccordions from "scripts/components/sections/FaqAccordions.vue";
+import ImageBanner from "scripts/components/sections/ImageBanner.vue";
+import PrivacyTechnologyFeatures from "scripts/components/sections/PrivacyTechnologyFeatures.vue";
+import StoragePlan from "scripts/components/sections/StoragePlan.vue";
 
 /**
  * Deferred components
@@ -75,6 +81,7 @@ export default {
   // PDP
   ProductDisplay,
   ProductBundleNav,
+  ProductCameraNav,
 
   // Sections
   ProductBenefitsBar,
@@ -83,5 +90,10 @@ export default {
   IncludedProducts,
   AppFeatures,
   SpecsAccordion,
-  HighlightsSlider
+  HighlightsSlider,
+  PrivacyShield,
+  FaqAccordions,
+  ImageBanner,
+  PrivacyTechnologyFeatures,
+  StoragePlan
 };

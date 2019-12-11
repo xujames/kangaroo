@@ -18,6 +18,9 @@
 @import 'core/utility';
 @import 'core/z-index';
 
+// Templates
+@import 'templates/product-bundle';
+
 // UI Components
 @import 'ui/buttons';
 @import 'ui/reviews';
@@ -28,3 +31,6 @@
 @import 'transitions/off-canvas';
 @import 'transitions/slide';
 @import 'transitions/slide-fade';
+
+// Sections
+@import 'sections/press-logos.scss';
