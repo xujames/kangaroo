@@ -19,7 +19,7 @@ header.product-bundle-nav--container
     )
     a(
       v-else
-      href="#top"
+      href="#purchase-form"
     )
       primary-button.product-bundle-nav__atc-btn(
         :label="ctaText"
@@ -176,7 +176,11 @@ export default {
   }
 
   &--container {
-    height: 72px;
+    height: 48px;
+
+    @include tablet-up {
+      height: 72px;
+    }
   }
 
   &__title-container {
@@ -222,6 +226,11 @@ export default {
     line-height: 26px;
     text-decoration: none;
     text-align: center;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
 
     .active > & {
       font-weight: 600;

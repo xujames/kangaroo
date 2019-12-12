@@ -12,7 +12,7 @@ for size, we use it to display a size chart (if applicable)
 
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
 
-{%- form 'product', product, class: 'ProductForm' -%}
+{%- form 'product', product, class: 'ProductForm', id: 'purchase-form' -%}
   <div class="ProductForm__Variants">
     {%- unless product.has_only_default_variant -%}
       {%- for option in product.options_with_values -%}
