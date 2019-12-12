@@ -50,10 +50,6 @@
   }
   .ProductMeta__PriceList {
     margin-top: 6px;
-
-    @include tablet-up {
-      margin-top: 15px;
-    }
   }
   .ProductForm__QuantitySelector {
     display: none;
