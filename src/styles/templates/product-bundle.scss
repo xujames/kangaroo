@@ -2,12 +2,17 @@
   .Product {
     margin-top: 24px;
     &__Info {
-      padding-top: 24px;
+      padding-top: 0;
+
+      @include tablet-up {
+        padding-top: 24px;
+      }
     }
     &__Gallery {
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
+      margin-bottom: 14px;
 
       @include tablet-up {
         margin-bottom: 125px;
@@ -33,10 +38,22 @@
   }
   .ProductMeta__Title {
     text-align: left;
-    font-size: 36px;
-    line-height: 48px;
+    font-size: 27px;
+    line-height: 28px;
     font-weight: 700;
     margin: 0;
+
+    @include tablet-up {
+      font-size: 36px;
+      line-height: 48px;
+    }
+  }
+  .ProductMeta__PriceList {
+    margin-top: 6px;
+
+    @include tablet-up {
+      margin-top: 15px;
+    }
   }
   .ProductForm__QuantitySelector {
     display: none;
