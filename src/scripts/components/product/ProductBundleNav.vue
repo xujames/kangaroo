@@ -11,20 +11,20 @@ header.product-bundle-nav--container
           :href="link.link"
           @click="activeLink = link.link"
         ) {{ link.label }}
-
-    primary-button.product-bundle-nav__atc-btn(
-      v-if="showAtc"
-      :label="ctaText"
-      secondary
-    )
-    a(
-      v-else
-      href="#purchase-form"
-    )
+    .product-bundle-nav__atc-container
       primary-button.product-bundle-nav__atc-btn(
+        v-if="showAtc && atcVisible"
         :label="ctaText"
         secondary
       )
+      a(
+        v-if="!showAtc && atcVisible"
+        href="#top"
+      )
+        primary-button.product-bundle-nav__atc-btn(
+          :label="ctaText"
+          secondary
+        )
 </template>
 
 <script>
@@ -50,7 +50,8 @@ export default {
         { label: "What's Included", link: "#included-products" },
         { label: "How It Works", link: "#how-it-works" },
         { label: "App Features", link: "#app-features" }
-      ]
+      ],
+      atcVisible: true
     }
   },
   computed: {
@@ -59,7 +60,7 @@ export default {
     }),
     ctaText () {
       let money = this.$options.filters.money
-      return this.$mq === 'mobile' ? `Buy Now - ${money(this.currentVariant.price)}` : 'Add to Cart'
+      return this.$mq === 'mobile' ? `Buy Now - ${money(this.currentVariant.price)}` : 'Buy Now'
     },
     showAtc () {
       return this.atc === "true";
@@ -104,6 +105,8 @@ export default {
           return false;
         }
       });
+
+      this.atcVisible = !this.elementInViewport(document.getElementsByClassName("addtocart")[0])
     },
     handleClick(e) {
       let currentlySelectedVariant
@@ -142,6 +145,7 @@ export default {
     }
   },
   created() {
+    this.atcVisible = !this.elementInViewport(document.getElementsByClassName("addtocart")[0])
     document.addEventListener('scroll', this.handleScroll);
     document.addEventListener('click', this.handleClick)
   },
@@ -181,6 +185,10 @@ export default {
     @include tablet-up {
       height: 72px;
     }
+  }
+
+  &__atc-container {
+    min-width: 120px;
   }
 
   &__title-container {
