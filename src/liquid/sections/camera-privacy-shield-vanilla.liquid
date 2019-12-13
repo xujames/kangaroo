@@ -1,0 +1,96 @@
+
+<div class="privacy-shield-container">
+  <section class="container privacy-shield privacy-shield--mobile">
+    <div class="privacy-shield__image" style="background-image: url('{{ section.settings.shield_off_mobile | img_url: '768x' }}');">
+      <div class="privacy-shield__badge">
+        <img src="{{ section.settings.badge | img_url: 'master' }}" alt="Privacy Shield badge" />
+      </div>
+      <div class="privacy-shield__content">
+        <h1>{{ section.settings.title | escape }}</h1>
+        <p>{{ section.settings.description | escape }}</p>
+      </div>
+    </div>
+    <a class="privacy-shield__cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_text | escape }}</a>
+  </section>
+
+  <section class="container privacy-shield privacy-shield--desktop" style="background-image: url('{{ section.settings.shield_on_desktop | img_url: '1400x' }}');">
+    <div class="privacy-shield__image--off" style="background-image: url('{{ section.settings.shield_off_desktop | img_url: '1400x' }}');">
+    </div>
+    <div class="privacy-shield__dim"></div>
+    <div class="privacy-shield__content">
+      <h1>{{ section.settings.title | escape }}</h1>
+      <p>{{ section.settings.description | escape }}</p>
+      <a class="privacy-shield__cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_text | escape }}</a>
+    </div>
+    <button type="button" class="privacy-shield--toggle">
+      {{ section.settings.toggle_text | escape }}
+      <div class="toggle-indicator toggle-off"></div>
+    </button>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Privacy Shield",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge",
+      "label": "Badge Icon"
+    },
+    {
+      "type": "text",
+      "id": "toggle_text",
+      "label": "Toggle Button Text"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_on_desktop",
+      "label": "Privacy Shield On (Desktop)",
+      "info": "Recommended: 1400 x 640 (camera on right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_off_desktop",
+      "label": "Privacy Shield Off (Desktop)",
+      "info": "Recommended: 1400 x 640 (camera on right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "shield_off_mobile",
+      "label": "Privacy Shield Off (Mobile)",
+      "info": "Recommended: 768 x 768 (camera centered)"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom Section",
+      "name": "Privacy Shield"
+    }
+	]
+}
+{% endschema %}
