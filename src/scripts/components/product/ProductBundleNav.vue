@@ -60,7 +60,7 @@ export default {
     }),
     ctaText () {
       let money = this.$options.filters.money
-      return this.$mq === 'mobile' ? `Buy Now - ${money(this.currentVariant.price)}` : 'Add to Cart'
+      return this.$mq === 'mobile' ? `Buy Now - ${money(this.currentVariant.price)}` : 'Buy Now'
     },
     showAtc () {
       return this.atc === "true";
