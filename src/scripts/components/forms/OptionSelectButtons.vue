@@ -122,6 +122,15 @@
       margin-bottom: 24px;
       white-space: nowrap;
 
+      @include mobile-only {
+        margin-right: 0;
+        width: calc(50% - 2px);
+
+        &:last-child {
+          float: right;
+        }
+      }
+
       &:nth-child(odd) {
         margin-right: 0;
       }
@@ -137,6 +146,11 @@
       @include tablet-up {
         font-size: 14px;
         line-height: 20px;
+        margin-right: 0;
+
+        &:nth-child(even) {
+          margin-left: 15px;
+        }
       }
 
       &__image-container {

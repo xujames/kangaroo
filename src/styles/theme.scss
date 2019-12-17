@@ -21,6 +21,8 @@
 // Templates
 @import 'templates/product-bundle';
 
+@import 'templates/index/custom-product-section';
+
 // UI Components
 @import 'ui/buttons';
 @import 'ui/reviews';
@@ -34,3 +36,4 @@
 
 // Sections
 @import 'sections/press-logos.scss';
+@import 'sections/privacy-shield.scss';
