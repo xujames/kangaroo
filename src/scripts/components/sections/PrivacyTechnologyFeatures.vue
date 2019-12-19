@@ -87,6 +87,8 @@ export default {
         flex: 1;
         @include tablet-up {
           max-width: 800px;
+          max-height: 528px;
+          object-fit: contain;
         }
       }
       &__copy {
