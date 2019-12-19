@@ -19,7 +19,7 @@ header.product-bundle-nav--container
       )
       a(
         v-if="!showAtc && atcVisible"
-        href="#top"
+        :href="$mq === 'mobile' ? '#purchase-form' : '#top'"
       )
         primary-button.product-bundle-nav__atc-btn(
           :label="ctaText"
