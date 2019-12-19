@@ -19,7 +19,7 @@ header.product-bundle-nav--container
       )
       a(
         v-if="!showAtc && atcVisible"
-        href="#top"
+        :href="$mq === 'mobile' ? '#purchase-form' : '#top'"
       )
         primary-button.product-bundle-nav__atc-btn(
           :label="ctaText"
@@ -106,7 +106,7 @@ export default {
         }
       });
 
-      this.atcVisible = !this.elementInViewport(document.getElementsByClassName("addtocart")[0])
+      this.atcVisible = !this.elementInViewport(document.getElementsByClassName("ProductForm__AddToCart")[0])
     },
     handleClick(e) {
       let currentlySelectedVariant
@@ -145,7 +145,7 @@ export default {
     }
   },
   created() {
-    this.atcVisible = !this.elementInViewport(document.getElementsByClassName("addtocart")[0])
+    this.atcVisible = !this.elementInViewport(document.getElementsByClassName("ProductForm__AddToCart")[0])
     document.addEventListener('scroll', this.handleScroll);
     document.addEventListener('click', this.handleClick)
   },

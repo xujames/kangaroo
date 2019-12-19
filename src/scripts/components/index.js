@@ -27,6 +27,7 @@ import VideoModal from "scripts/components/video/VideoModal.vue";
 import ProductDisplay from "scripts/components/product/ProductDisplay.vue";
 import ProductBundleNav from "scripts/components/product/ProductBundleNav.vue";
 import ProductCameraNav from "scripts/components/product/ProductCameraNav.vue";
+import KitVariantRadioInputs from "scripts/components/product/KitVariantRadioInputs.vue";
 
 // Sections
 import ProductBenefitsBar from "scripts/components/sections/ProductBenefitsBar.vue";
@@ -82,6 +83,7 @@ export default {
   ProductDisplay,
   ProductBundleNav,
   ProductCameraNav,
+  KitVariantRadioInputs,
 
   // Sections
   ProductBenefitsBar,

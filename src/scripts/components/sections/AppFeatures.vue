@@ -134,6 +134,7 @@ export default {
     }
   }
   .app-feature {
+    max-width: 405px;
     display: flex;
     align-items: start;
     padding: 24px;
@@ -151,6 +152,12 @@ export default {
     &__wrapper.move-up {
       position: relative;
       top: -48px;
+
+      @include desktop-up {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
     &__icon {
       max-width: 75px;
