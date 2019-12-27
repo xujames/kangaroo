@@ -9,7 +9,7 @@ header.product-bundle-nav--container
       li(v-for="link in links" :class="{ 'active': link.link === activeLink }")
         a.product-bundle-nav__link(
           :href="link.link"
-          @click="activeLink = link.link"
+          @click="handleLinkSelect(link.link, $event)"
         ) {{ link.label }}
     .product-bundle-nav__atc-container
       primary-button.product-bundle-nav__atc-btn(
@@ -125,6 +125,17 @@ export default {
         this.$store.dispatch('pdp/update', this.product.variants[0])
       }
     },
+    handleLinkSelect(link, e) {
+      e.preventDefault();
+      const el = document.getElementById(link.replace('#', ''))
+      this.activeLink = link
+
+      // TODO: replace with vanillajs at some point
+      $('html, body').animate({
+        scrollTop: $(link).offset().top - 150
+      })
+    },
+
     // This is a hack for updating the existing sidecart
     async updateSidecart () {
       let resp = await fetch(`/cart?view=drawer&timestamp=${Date.now()}`, {
