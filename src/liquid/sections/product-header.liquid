@@ -55,14 +55,22 @@
       <accordion heading="Description">{{ product.description }}</accordion>
       {%- endif -%}
       <accordion heading="Included">
-        {% raw %}
-          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.included : '' }}</pre>
-        {% endraw %}
+        {% if template contains "bundle" %}
+          {% raw %}
+            <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.included : '' }}</pre>
+          {% endraw %}
+        {% else %}
+          <pre>{{ product.metafields.custom_fields.included }}</pre>
+        {% endif %}
       </accordion>
       <accordion heading="Features">
-        {% raw %}
-          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.features : '' }}</pre>
-        {% endraw %}
+        {% if template contains "bundle" %}
+          {% raw %}
+            <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.features : '' }}</pre>
+          {% endraw %}
+        {% else %}
+          <pre>{{ product.metafields.custom_fields.features }}</pre>
+        {% endif %}
       </accordion>
     </accordion-group>
     
@@ -71,14 +79,22 @@
       <tab heading="Description" selected>{{ product.description }}</tab>
       {%- endif -%}
       <tab heading="Included">
-        {% raw %}
-          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.included : '' }}</pre>
-        {% endraw %}
+        {% if template contains "bundle" %}
+          {% raw %}
+            <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.included : '' }}</pre>
+          {% endraw %}
+        {% else %}
+          <pre>{{ product.metafields.custom_fields.included }}</pre>
+        {% endif %}
       </tab>
       <tab heading="Features">
-        {% raw %}
-          <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.features : '' }}</pre>
-        {% endraw %}
+        {% if template contains "bundle" %}
+          {% raw %}
+            <pre>{{ $store.state.pdp.currentVariant ? $store.state.pdp.currentVariant.custom_fields.features : '' }}</pre>
+          {% endraw %}
+        {% else %}
+          <pre>{{ product.metafields.custom_fields.features }}</pre>
+        {% endif %}
       </tab>
     </tabs>
   </template>
