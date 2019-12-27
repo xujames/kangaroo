@@ -10,7 +10,7 @@
         li(v-for="link in links" :class="{ 'active': link.link === activeLink }")
           a.product-bundle-nav__link(
             :href="link.link"
-            @click="activeLink = link.link"
+            @click="handleLinkSelect(link.link, $event)"
           ) {{ link.label }}
 
       primary-button.product-bundle-nav__atc-btn(
