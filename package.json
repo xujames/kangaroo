@@ -57,7 +57,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^3.3.3",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.9",
     "vue-directive-tooltip": "^1.6.3",
